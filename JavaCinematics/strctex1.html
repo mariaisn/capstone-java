@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class="percent">
+    <head>
+        <title>Java Cinematics Example</title>
+        <link rel="stylesheet" href="css/style2.css" />
+    </head>
+
+
+    <body class="container">
+    <header class="a1 cent">
+      <a href="strctex1.html">
+        <img src="images/java cinematics logo.png" alt="Company Logo">
+      </a>
+    </header>
+
+        <div class="b1 div1 code">
+            <div class="sectiontitle cent ca">
+                Code
+            </div class="cb">
+
+            <pre id="high" class="full">
+                <span> public class Test</span>
+                <span> public static void main(String[] args) {</span>
+                <span>    int x = 5;</span>
+                <span>    int y = 6;</span>
+                <span>    int z = x + y;</span>
+                <span>    System.out.println(z);</span>
+                <span>   }</span>
+                <span> }</span>
+            </pre>
+
+            <div class="cc cent">
+                <button id="back">Back</button>
+                <button id="next">Next</button>
+            </div>
+            
+        </div>
+
+        <div class="b2">
+             <div class="sectiontitle cent">
+                Memory
+            </div>
+            
+            
+            <div>
+                <div>
+                    x: <span>&#9633</span>
+                    y: <span>?</span>
+                    z: <span>?</span>
+                </div>
+
+                <div>
+
+                </div> 
+            </div>
+        </div>
+
+        
+        <div class="c1">
+            <div class="sectiontitle cent">
+                Output
+            </div>
+
+            <div>
+                example text 4
+            </div>
+        </div>
+
+        <script>
+const lines = document.querySelectorAll("#high span");
+const nextBtn = document.getElementById("next");
+const backBtn = document.getElementById("back");
+
+let current = -1; // no line selected
+
+function updateHighlight() {
+    lines.forEach(line => line.classList.remove("highlight"));
+
+    if (current >= 0) {
+        lines[current].classList.add("highlight");
+    }
+
+    backBtn.disabled = current <= 0;
+    nextBtn.disabled = current >= lines.length - 1;
+}
+
+nextBtn.addEventListener("click", () => {
+    if (current < lines.length - 1) {
+        current++;
+        updateHighlight();
+    }
+});
+
+backBtn.addEventListener("click", () => {
+    if (current > 0) {
+        current--;
+        updateHighlight();
+    }
+});
+
+// initial state
+updateHighlight();
+
+        </script>
+    </body>
+</html>
