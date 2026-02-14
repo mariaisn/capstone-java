@@ -1,0 +1,126 @@
+.percent{
+    width:100%;
+    height:100%;
+}
+
+.cent{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.container{
+    display: grid;
+    row-gap: 10px;
+    column-gap: 5px;;
+    grid-template-rows: 15% 65% 20%;
+    grid-template-columns: 30% 70%;
+    grid-template-areas: "a1 a1"
+    "b1 b2"
+    "c1 c1";
+}
+
+.a1 {grid-area:a1; background-color: darkred;}
+.b1 {grid-area:b1; background-color: white}
+.b2 {
+    grid-area:b2; background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.c1 {grid-area:c1; background-color: white;}
+
+.code{
+    display:grid;
+    grid-template-rows: 5% 90% 5%;
+    overflow: auto;
+}
+
+.sectiontitle {
+    background-color: rgb(255, 251, 6);
+}
+
+.ca{grid-row:1;}
+.cb{grid-row:2;}
+.cc{grid-row:3;}
+
+header img{
+    height:115%;
+    width:auto;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color:darkred;
+    margin: 0;
+    padding: 0;
+    width: 100%;      
+    height: 100%;     
+}
+
+#high{
+    font-family: Consolas, monospace;
+}
+
+.highlight{
+    background-color:yellow;
+}
+
+
+
+/*
+added the following 6 classes - antonio
+*/
+.memory-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.mem-square {
+    width: 60px;
+    height: 60px;
+    border: 2px solid black;
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Consolas, monospace;
+    font-size: 18px;
+}
+
+.mem-item {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.mem-label {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.mem-operator {
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 26px;
+}
+
+.fly-value {
+    position: absolute;
+    background: yellow;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.8s ease-in-out;
+    z-index: 1000;
+    font-family: Consolas, monospace;
+}
+
+
