@@ -12,7 +12,7 @@
 .container{
     display: grid;
     row-gap: 10px;
-    column-gap: 5px;;
+    column-gap: 10px;
     grid-template-rows: 15% 65% 20%;
     grid-template-columns: 30% 70%;
     grid-template-areas: "a1 a1"
@@ -21,14 +21,22 @@
 }
 
 .a1 {grid-area:a1; background-color: darkred;}
-.b1 {grid-area:b1; background-color: white}
-.b2 {grid-area:b2; background-color: white;}
+.b1 {grid-area:b1; background-color: white;}
+.b2 {grid-area:b2; background-color: white;
+    display: flex;
+    flex-direction: column;
+}
 .c1 {grid-area:c1; background-color: white;}
 
 .code{
     display:grid;
     grid-template-rows: 5% 90% 5%;
-    overflow: auto;
+}
+
+.bar{
+    overflow:auto;
+    width:100%;
+    height: auto;
 }
 
 .sectiontitle {
@@ -39,9 +47,8 @@
 .cb{grid-row:2;}
 .cc{grid-row:3;}
 
-header img{
-    height:115%;
-    width:auto;
+.fit {
+    height: 100%;
 }
 
 body {
@@ -53,11 +60,71 @@ body {
     height: 100%;     
 }
 
-#high{
-    font-family: Consolas, monospace;
-}
-
 .highlight{
     background-color:yellow;
 }
 
+#high{
+    font-family: Consolas, monospace;
+}
+
+/*
+added the following 6 classes - antonio
+*/
+.memory-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.mem-square {
+    width: 60px;
+    height: 60px;
+    border: 2px solid black;
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Consolas, monospace;
+    font-size: 18px;
+}
+
+.mem-item {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.mem-label {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.mem-operator {
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 26px;
+}
+
+.fly-value {
+    position: absolute;
+    background: yellow;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.8s ease-in-out;
+    z-index: 1000;
+    font-family: Consolas, monospace;
+}
+
+.sticky{
+    position: sticky;
+    bottom:0;
+}
