@@ -1,6 +1,6 @@
 // MAY HAVE TO REMOVE LINES
 const lines = document.querySelectorAll("#high span");
-// const steps = 33;
+const steps = 37;
 
 //BUTTON CODE
 const nextBtn = document.getElementById("next");
@@ -10,7 +10,7 @@ const backBtn = document.getElementById("back");
 //not needed
 const memX = document.getElementById("mem-x");
 const memY = document.getElementById("mem-y");
-const memZ = document.getElementById("mem-z");
+const memADD = document.getElementById("mem-add");
 
 const memItems = document.querySelectorAll(".mem-item");
 //MATH SYMBOLS
@@ -86,7 +86,7 @@ function updateHighlight() {
     // clears values when going backwards
     if (current < 1) memX.innerText = "";
     if (current < 3) memY.innerText = "";
-    if (current < 5) memZ.innerText = "";
+    if (current < 5) memADD.innerText = "";
 
     // animate going forward
     // initiates x
@@ -98,8 +98,8 @@ function updateHighlight() {
         animateToMemory(document.getElementById("val-y"), memY, "5");
     }
     // initiates add
-    if (current === 5 && memZ.innerText === "") {
-        animateToMemory(document.getElementById("val-add"), memZ, "18");
+    if (current === 5 && memADD.innerText === "") {
+        animateToMemory(document.getElementById("val-add"), memADD, "18");
     }
 
     // clear output when going backwards
