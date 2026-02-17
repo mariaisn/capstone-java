@@ -20,86 +20,78 @@
 
             <div class="cb bar">
             <pre id="high">
-package JC;
-
 public class Test {
 	
 	public static void main(String args[]) {
-		<span>int x</span> <span>= 13</span>;
-		<span>int y</span> <span>= 5</span>;
+		<span>int x</span> <span id="val-x">= 13</span>;
+		<span>int y</span> <span id="val-y">= 5</span>;
 		
 		<span>int add</span> <span>= x+y</span>;
 		<span>System.out.println(add)</span>;
 			
-		<span>int sub</span> <span>= x-y</span>;
+		<span>int sub</span> <span id="val-sub">= x-y</span>;
 		<span>System.out.println(sub)</span>;
 			
-		<span>int mul</span> <span>= x*y</span>;
+		<span>int mul</span> <span id="val-mul">= x*y</span>;
 		<span>System.out.println(mul)</span>;
 			
-		<span>int div</span> <span>= x/y</span>;
+		<span>int div</span> <span  id="val-div">= x/y</span>;
 		<span>System.out.println(div)</span>;
 		
-		<span>int rem</span> <span>=x%y</span>;
+		<span>int rem</span> <span id="val-rem">=x%y</span>;
 		<span>System.out.println(rem)</span>;
 		
-		<span>double x1</span> <span>= 13</span>;
-		<span>double y1</span> <span>= 5</span>;
+		<span>double x1</span> <span id="val-x1">= 13</span>;
+		<span>double y1</span> <span id="val-y1">= 5</span>;
 		
-		<span>double div2</span> <span>= x1/y1</span>;
+		<span>double div2</span> <span id="val-div2">= x1/y1</span>;
 		<span>System.out.println(div2)</span>;
 	}
-
-}
 
 }
             </pre>
 
             </div>
 
-            <div class="cc cent sticky">
-                <button id="back">Back</button>
+            <div class="cc cent">
+                <button id="back">Back</buttdiv with on>
                 <button id="next">Next</button>
             </div>
             
         </div>
 
         <!-- updated memory section - antonio -->
-        <div class="b2">
-            <div class="sectiontitle cent">
+        <div class="b2 viz">
+            <div class="sectiontitle cent ca">
                 Memory
             </div>
             
-            <div class="memory-content">
+            <div class="cb memory-content">
 
-                <div class="memory-content">
+                <div class="mVariable cent">
                     <div class="mem-item" id="mem-item-x">
                         <div class="mem-label">x</div>
-                        <div class="mem-square" id="mem-x"></div>
+                        <div class="mem-square cent" id="mem-x"></div>
                     </div>
-
-                    <div class="mem-operator" id="plus-op">+</div>
 
                     <div class="mem-item" id="mem-item-y">
                         <div class="mem-label">y</div>
-                        <div class="mem-square" id="mem-y"></div>
+                        <div class="mem-square cent" id="mem-y"></div>
                     </div>
-
-                    <div class="mem-operator" id="equal-op">=</div>
 
                     <div class="mem-item" id="mem-item-z">
                         <div class="mem-label">add</div>
-                        <div class="mem-square" id="mem-add"></div>
+                        <div class="mem-square cent" id="mem-add"></div>
                     </div>
 
                 </div>
 
-                <div class="memory-content">
-                    <div>13</div>
-                    <div class="mem-operator" id="plus-op">+</div>
-                    <div>5</div>
-                    <div class="mem-operator" id="equal-op">=</div>
-                    <div>18</div>
+                <div class="mVariable">
+                    <div class="mem-item memOut" id="mem-num-x">13</div>
+                    <div class="memOut cent" id="plus-op">+</div>
+                    <div class="mem-item memOut" id="mem-num-y">5</div>
+                    <div class="memOut cent" id="equal-op">=</div>
+                    <div class="mem-item memOut" id="val-add">18</div>
                 </div>
             </div>
 

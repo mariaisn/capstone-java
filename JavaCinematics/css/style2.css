@@ -1,12 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color:darkred;
+    margin: 0;
+    padding: 0;
+    width: 100%;      
+    height: 100%;     
+}
+
 .percent{
     width:100%;
     height:100%;
+}
+
+.fit {
+    height: 100%;
+}
+
+.highlight{
+    background-color:yellow;
+}
+
+#high{
+    font-family: Consolas, monospace;
 }
 
 .cent{
     display:flex;
     align-items:center;
     justify-content:center;
+}
+
+.bar{
+    overflow:auto;
+    width:100%;
+    height: auto;
 }
 
 .container{
@@ -22,10 +49,7 @@
 
 .a1 {grid-area:a1; background-color: darkred;}
 .b1 {grid-area:b1; background-color: white;}
-.b2 {grid-area:b2; background-color: white;
-    display: flex;
-    flex-direction: column;
-}
+.b2 {grid-area:b2; background-color: white;}
 .c1 {grid-area:c1; background-color: white;}
 
 .code{
@@ -33,50 +57,42 @@
     grid-template-rows: 5% 90% 5%;
 }
 
-.bar{
-    overflow:auto;
-    width:100%;
-    height: auto;
-}
-
-.sectiontitle {
-    background-color: rgb(255, 251, 6);
+.viz{
+    display:grid;
+    grid-template-rows:5% 95%;
 }
 
 .ca{grid-row:1;}
 .cb{grid-row:2;}
 .cc{grid-row:3;}
 
-.fit {
-    height: 100%;
+.sectiontitle {
+    background-color: rgb(255, 251, 6);
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color:darkred;
-    margin: 0;
-    padding: 0;
-    width: 100%;      
-    height: 100%;     
-}
-
-.highlight{
-    background-color:yellow;
-}
-
-#high{
-    font-family: Consolas, monospace;
-}
 
 /*
 added the following 6 classes - antonio
 */
 .memory-content {
-    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    flex-direction: column;
+}
+
+.mVariable{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.mem-item {
+    visibility:hidden;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 
 .mem-square {
@@ -84,20 +100,8 @@ added the following 6 classes - antonio
     height: 60px;
     border: 2px solid black;
     background-color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     font-family: Consolas, monospace;
     font-size: 18px;
-}
-
-.mem-item {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
 }
 
 .mem-label {
@@ -105,10 +109,7 @@ added the following 6 classes - antonio
     font-size: 18px;
 }
 
-.mem-operator {
-    display: flex;
-    align-items:center;
-    justify-content:center;
+.memOut{
     font-size: 36px;
     font-weight: bold;
     margin-top: 26px;
@@ -122,9 +123,4 @@ added the following 6 classes - antonio
     transition: all 0.8s ease-in-out;
     z-index: 1000;
     font-family: Consolas, monospace;
-}
-
-.sticky{
-    position: sticky;
-    bottom:0;
 }
