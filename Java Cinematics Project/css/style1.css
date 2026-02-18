@@ -76,7 +76,6 @@ body {
 }
 
 
-
 /*
 memory
 */
@@ -128,14 +127,4 @@ memory
     transition: all 0.8s ease-in-out;
     z-index: 1000;
     font-family: Consolas, monospace;
-}
-
-/* keep memory visuals contained */
-.viz .cb {
-  overflow: hidden;
-}
-
-/* output styling */
-.out-box > div {
-  font-family: Consolas, monospace;
 }
