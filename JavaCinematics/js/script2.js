@@ -8,16 +8,38 @@ const backBtn = document.getElementById("back");
 
 const memX = document.getElementById("mem-x");
 const memY = document.getElementById("mem-y");
+
+
+
 const memADD = document.getElementById("mem-add");
+const memSub = document.getElementById("mem-sub");
+const memMul = document.getElementById("mem-mul");
+const memDiv = document.getElementById("mem-div");
+const memRem = document.getElementById("mem-rem");
+
+
 const numX = document.getElementById("mem-num-x");
 const numY = document.getElementById("mem-num-y");
-const numADD = document.getElementById("val-add");
-const outAns = document.getElementById("ou1");
+const numSum = document.getElementById("val-sum");
+
+
+//output variables
+const out1 = document.getElementById("ou1");
+const out2 = document.getElementById("ou2");
+const out3 = document.getElementById("ou3");
+const out4 = document.getElementById("ou4");
+const out5 = document.getElementById("ou5");
+const out6 = document.getElementById("ou6");
 
 const memItems = document.querySelectorAll(".mem-item");
 
 //MATH SYMBOLS
 const plusOp = document.getElementById("plus-op");
+const minuOp = document.getElementById("minus-op");
+const multOp = document.getElementById("multi-op");
+const diviOp = document.getElementById("divi-op");
+const remOp = document.getElementById("rem-op");
+
 const equalOp = document.getElementById("equal-op");
 
 
@@ -110,84 +132,218 @@ function updateHighlight() {
         lines[hLine].classList.add("highlight");
     }
 
-    memItems.forEach(item => item.style.visibility="hidden");
-
+        memItems.forEach(item => item.style.display="none");
     // step 0 declares x
     if (current >= 0) {
-        memItems[0].style.visibility = "visible";
+        memItems[0].style.display = "flex";
     }
 
     // step 2 declares y
     if (current >= 2) {
-        memItems[1].style.visibility = "visible";
+        memItems[1].style.display = "flex";
     }
 
     // step 4 declares add
     if (current >= 4) {
-        memItems[2].style.visibility = "visible";
+        memItems[2].style.display = "flex";
+    }
+
+    //step 7
+
+    //step 9 declare sub
+    if(current >= 9){
+        memItems[3].style.display = "flex";
+    }
+    //step 14 declare mul
+    if(current >= 14){
+        memItems[4].style.display = "flex";
+    }
+    //step 19 declare div
+    if(current >= 19){
+        memItems[5].style.display = "flex";
+    }
+    //step 24 declare rem
+    if(current >= 24){
+        memItems[6].style.display = "flex";
     }
 
     //bring x and y down
     if ((current >=5 && current<=7)||
         (current >=10 && current <=12)||
-        (current >=14 && current <=16)){
-        numX.style.visibility = "visible";
-        numY.style.visibility = "visible";
+        (current >=15 && current <=17) ||
+        (current >=20 && current <=22) ||
+        (current >=25 && current <=27)){
+        numX.style.display = "flex";
+        numY.style.display = "flex";
     }
-
-    //step 7: add x and y
 
     // clears values when going backwards
     if (current < 1) memX.innerText = "";
     if (current < 3) memY.innerText = "";
-    if (current < 6) numADD.innerText = "";
-    if (current < 7) memADD.innerText = "";
-    if (current <8) outAns.innerText = "";
+    if (!((current >=5 && current <=7)||
+    (current >=10 && current <=12)||
+    (current >=15 && current <=17)||
+    (current >=20 && current <=22)||
+    (current >=25 && current <=27)
+    )){
+        numX.innerText="";
+        numY.innerText=""
+    }
+    if (current < 6) numSum.innerText = "";
 
+
+    if (current <7) memADD.innerText = "";
+    if (current <12) memSub.innerText = "";
+    if (current <17) memMul.innerText = "";
+    if (current <22) memDiv.innerText = "";
+    if (current <27) memRem.innerText = "";
+
+
+    if (current <8){
+        out1.style.display="none";
+        out1.innerText = "";
+    }
 
     // animate going forward
     // initiates x
-    if (current === 1 && memX.innerText === "") {
+    if (current === 1 && memX.innerText==="") {
         animateToMemory(document.getElementById("val-x"), memX, "13");
     }
     // initiates y
-    if (current === 3 && memY.innerText === "") {
+    if (current === 3 && memY.innerText==="") {
         animateToMemory(document.getElementById("val-y"), memY, "5");    
     }
-
-    if(current === 5 && numX.innerText === "" && numY.innerText ===""){   
+    //animate x and y down
+    if(((current === 5) ||
+        (current === 10)||
+        (current === 15)||
+        (current === 20)||
+        (current === 25)) && numX.innerText==="" && numY.innerText===""){   
         animateToMemory(memX, numX, "13");
         animateToMemory(memY, numY, "5");
     }
-    if (current == 6 && numADD.innerText === ""){
-        numADD.style.visibility="visible";
-        numADD.innerText="18";
-    }
-    // initiates add
-    if (current === 7 && memADD.innerText === "") {
-        animateToMemory(numADD, memADD, "18");
+
+
+
+    //show sum
+    if ((current >=6 && current<=7)){
+        numSum.style.display="flex";
+        numSum.innerText="18";
     }
 
-    if(current === 8 && outAns.innerText === ""){
-        outAns.style.visibility="visible";
-        outAns.innerText="18";
-        animateToMemory(memADD, outAns, "18");
+    if ((current >=11 && current<=12)){
+        numSum.style.display="flex";
+        numSum.innerText="8";
+    }
+
+     if ((current >=16 && current<=17)){
+        numSum.style.display="flex";
+        numSum.innerText="65";
+    }
+
+     if ((current >=21 && current<=22)){
+        numSum.style.display="flex";
+        numSum.innerText="2";
+    }
+
+     if ((current >=26 && current<=27)){
+        numSum.style.display="flex";
+        numSum.innerText="3";
+    }
+
+
+
+
+    // initiates add
+    if (current === 7 && memADD.innerText === "") {
+        animateToMemory(numSum, memADD, "18");
+    }
+    if (current === 12 && memSub.innerText === "") {
+        animateToMemory(numSum, memSub, "8");
+    }
+    if (current === 17 && memMul.innerText === "") {
+        animateToMemory(numSum, memMul, "65");
+    }
+    if (current === 22 && memDiv.innerText === "") {
+        animateToMemory(numSum, memDiv, "2");
+    }
+    if (current === 27 && memRem.innerText === "") {
+        animateToMemory(numSum, memRem, "3");
+    }
+
+
+
+    //animate add to console
+    if(current === 8 && out1.innerText===""){
+        numSum.style.display="none";
+        out1.style.display="flex";
+        out1.innerText="18";
+        animateToMemory(memADD, out1, "18");
+    }
+    if(current === 13 && out2.innerText===""){
+        numSum.style.display="none";
+        out2.style.display="flex";
+        out2.innerText="18";
+        animateToMemory(memADD, out2, "8");
+    }
+    if(current === 18 && out3.innerText===""){
+        numSum.style.display="none";
+        out3.style.display="flex";
+        out3.innerText="18";
+        animateToMemory(memADD, out3, "65");
+    }
+    if(current === 23 && out4.innerText===""){
+        numSum.style.display="none";
+        out4.style.display="flex";
+        out4.innerText="18";
+        animateToMemory(memADD, out4, "2");
+    }
+    if(current === 28 && out5.innerText===""){
+        numSum.style.display="none";
+        out5.style.display="flex";
+        out5.innerText="18";
+        animateToMemory(memADD, out5, "3");
     }
 
 
 
     // hide operators
-    plusOp.style.visibility = "hidden";
-    equalOp.style.visibility = "hidden";
+    plusOp.style.display="none";
+    minuOp.style.display="none"
+    multOp.style.display="none"
+    diviOp.style.display="none"
+    remOp.style.display="none"
+    
+    equalOp.style.display="none";
 
     // show addition visuals when calculating add
     // START EDITING HERE
     if (current >=5 && current<=7) {
-        plusOp.style.visibility="visible";
+        plusOp.style.display = "block";
     }
 
-    if (current >=6 && current<=7){
-        equalOp.style.visibility="visible";
+    if (current >=10 && current<=12) {
+        minuOp.style.display = "block";
+    }
+
+    if (current >=15 && current<=17) {
+        multOp.style.display = "block";
+    }
+
+    if (current >=20 && current<=22) {
+        diviOp.style.display = "block";
+    }
+
+    if (current >=25 && current<=27) {
+        remOp.style.display = "block";
+    }
+
+    if ((current >=6 && current<=7)||
+        (current >=11 && current <=12)||
+        (current >=16 && current <=17) ||
+        (current >=21 && current <=22) ||
+        (current >=26 && current <=27)){
+        equalOp.style.display = "flex";
     }
 
 

@@ -69,19 +69,39 @@ public class Test {
             <div class="cb memory-content">
 
                 <div class="mVariable cent">
-                    <div class="mem-item" id="mem-item-x">
+                    <div class="mem-item">
                         <div class="mem-label">x</div>
                         <div class="mem-square cent" id="mem-x"></div>
                     </div>
 
-                    <div class="mem-item" id="mem-item-y">
+                    <div class="mem-item">
                         <div class="mem-label">y</div>
                         <div class="mem-square cent" id="mem-y"></div>
                     </div>
 
-                    <div class="mem-item" id="mem-item-z">
+                    <div class="mem-item">
                         <div class="mem-label">add</div>
                         <div class="mem-square cent" id="mem-add"></div>
+                    </div>
+
+                    <div class="mem-item">
+                        <div class="mem-label">sub</div>
+                        <div class="mem-square cent" id="mem-sub"></div>
+                    </div>
+
+                    <div class="mem-item">
+                        <div class="mem-label">mul</div>
+                        <div class="mem-square cent" id="mem-mul"></div>
+                    </div>
+
+                    <div class="mem-item">
+                        <div class="mem-label">div</div>
+                        <div class="mem-square cent" id="mem-div"></div>
+                    </div>
+
+                    <div class="mem-item">
+                        <div class="mem-label">rem</div>
+                        <div class="mem-square cent" id="mem-rem"></div>
                     </div>
 
                 </div>
@@ -90,12 +110,17 @@ public class Test {
                     <div class="mem-item memOut" id="mem-num-x"></div>
 
                     <div class="memOut cent" id="plus-op">+</div>
+                    <div class="memOut cent" id="minus-op">-</div>
+                    <div class="memOut cent" id="multi-op">*</div>
+                    <div class="memOut cent" id="divi-op">/</div>
+                    <div class="memOut cent" id="rem-op">%</div>
+
 
                     <div class="mem-item memOut" id="mem-num-y"></div>
 
                     <div class="memOut cent" id="equal-op">=</div>
 
-                    <div class="mem-item memOut" id="val-add"></div>
+                    <div class="mem-item memOut" id="val-sum"></div>
                 </div>
             </div>
 
@@ -107,13 +132,14 @@ public class Test {
                 Output
             </div>
             
+            <!--18, 8, 65, 2, 3, 2.6-->>
             <div class="cb bar">
-                <div class="mem-item" id="ou1"></div>
-                <div class="mem-item" id="ou2">8</div>
-                <div class="mem-item" id="ou3">65</div>
-                <div class="mem-item" id="ou4">2</div>
-                <div class="mem-item" id="ou5">3</div>
-                <div class="mem-item" id="ou6">2.6</div>
+                <div id="ou1"></div>
+                <div id="ou2"></div>
+                <div id="ou3"></div>
+                <div id="ou4"></div>
+                <div id="ou5"></div>
+                <div id="ou6"></div>
             </div>
 
         </div>
