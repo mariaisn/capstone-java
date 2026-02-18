@@ -9,14 +9,16 @@ const backBtn = document.getElementById("back");
 const memX = document.getElementById("mem-x");
 const memY = document.getElementById("mem-y");
 const memADD = document.getElementById("mem-add");
+const numX = document.getElementById("mem-num-x");
+const numY = document.getElementById("mem-num-y");
+const numADD = document.getElementById("val-add");
+const outAns = document.getElementById("ou1");
 
 const memItems = document.querySelectorAll(".mem-item");
 
 //MATH SYMBOLS
 const plusOp = document.getElementById("plus-op");
 const equalOp = document.getElementById("equal-op");
-
-const outputSection = document.getElementById("output-section");
 
 
 //start page with nopthing highlighted
@@ -129,19 +131,19 @@ function updateHighlight() {
     if ((current >=5 && current<=7)||
         (current >=10 && current <=12)||
         (current >=14 && current <=16)){
-        memItems[3].style.visibility="visible";
-        memItems[4].style.visibility="visible";
+        numX.style.visibility = "visible";
+        numY.style.visibility = "visible";
     }
 
     //step 7: add x and y
-    if (current >=6 && current<=7){
-        memItems[5].style.visibility="visible";
-    }
 
     // clears values when going backwards
     if (current < 1) memX.innerText = "";
     if (current < 3) memY.innerText = "";
+    if (current < 6) numADD.innerText = "";
     if (current < 7) memADD.innerText = "";
+    if (current <8) outAns.innerText = "";
+
 
     // animate going forward
     // initiates x
@@ -150,22 +152,29 @@ function updateHighlight() {
     }
     // initiates y
     if (current === 3 && memY.innerText === "") {
-        animateToMemory(document.getElementById("val-y"), memY, "5");
+        animateToMemory(document.getElementById("val-y"), memY, "5");    
+    }
+
+    if(current === 5 && numX.innerText === "" && numY.innerText ===""){   
+        animateToMemory(memX, numX, "13");
+        animateToMemory(memY, numY, "5");
+    }
+    if (current == 6 && numADD.innerText === ""){
+        numADD.style.visibility="visible";
+        numADD.innerText="18";
     }
     // initiates add
     if (current === 7 && memADD.innerText === "") {
-        animateToMemory(document.getElementById("val-add"), memADD, "18");
+        animateToMemory(numADD, memADD, "18");
     }
 
-    // clear output when going backwards
-    if (current < 6) {
-        outputSection.innerText = "";
+    if(current === 8 && outAns.innerText === ""){
+        outAns.style.visibility="visible";
+        outAns.innerText="18";
+        animateToMemory(memADD, outAns, "18");
     }
 
-    // show output when reached println line
-    if (current === 6) {
-        outputSection.innerText = "18";
-    }
+
 
     // hide operators
     plusOp.style.visibility = "hidden";
