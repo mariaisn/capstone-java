@@ -8,13 +8,17 @@ const backBtn = document.getElementById("back");
 
 const memX = document.getElementById("mem-x");
 const memY = document.getElementById("mem-y");
-const memADD = document.getElementById("mem-add");
+const memC = document.getElementById("mem-c");
 const memD = document.getElementById("mem-d");
 const memE = document.getElementById("mem-e");
 const numX = document.getElementById("mem-num-x");
 const numY = document.getElementById("mem-num-y");
 const numADD = document.getElementById("val-add");
-const outAns = document.getElementById("ou1");
+const out1 = document.getElementById("ou1");
+const out2 = document.getElementById("ou2");
+const out3 = document.getElementById("ou3");
+const out4 = document.getElementById("ou4");
+const out5 = document.getElementById("ou5");
 
 const memItems = document.querySelectorAll(".mem-item");
 
@@ -24,7 +28,7 @@ const equalOp = document.getElementById("equal-op");
 
 
 //start page with nopthing highlighted
-const steps=38;
+const steps=15;
 let current = -1;
 
 
@@ -67,18 +71,9 @@ function getHLine(step){
    
 
     let temp = 0;
-    if (step > 7)
+    if (step > 15)
         temp = temp-2;
-    if (step >12)
-        temp = temp-2;
-    if (step >17)
-        temp=temp-2;
-    if (step> 22)
-        temp=temp-2;
-    if(step > 27)
-        temp=temp-2;
-    if(step>36)
-        temp=temp-2;
+  
 
     return step + temp;
 }
@@ -104,61 +99,57 @@ function updateHighlight() {
     }
 
     // step 2 declares y
-    if (current >= 2) {
+    if (current >= 3) {
         memItems[1].style.visibility = "visible";
     }
 
     // step 4 declares add
-    if (current >= 4) {
+    if (current >= 6) {
         memItems[2].style.visibility = "visible";
     }
-  if (current >= 6) {
+  if (current >= 9) {
         memItems[3].style.visibility = "visible";
     }
-   if (current >= 8) {
+   if (current >= 12) {
         memItems[4].style.visibility = "visible";
     }
 
     //bring x and y down
-    if ((current >=5 && current<=7)||
-        (current >=10 && current <=12)||
-        (current >=14 && current <=16)){
-        numX.style.visibility = "visible";
-        numY.style.visibility = "visible";
-    }
+ 
 
     //step 7: add x and y
 
     // clears values when going backwards
     if (current < 1) memX.innerText = "";
-    if (current < 3) memY.innerText = "";
-    if (current < 6) numADD.innerText = "";
-    if (current < 7) memADD.innerText = "";
-    if (current <8) outAns.innerText = "";
+    if (current < 2)  out1.innerText ="";
+    if (current < 4) memY.innerText = "";
+    if (current < 5)  out2.innerText ="";
+    if (current < 7) memC.innerText = "";
+    if (current < 8)  out3.innerText ="";
+    if (current < 10) memD.innerText = "";
+    if (current < 11)  out4.innerText ="";
+    if (current < 13) memE.innerText = "";
+    if (current < 14)  out5.innerText ="";
 
 
     // animate going forward
     // initiates x
-    if (current === 0 && memX.innerText === "") {
+    if (current === 1 && memX.innerText === "") {
         animateToMemory(document.getElementById("val-a"), memX, "68");
     }
     // initiates y
-    if (current === 2 && memY.innerText === "") {
+    if (current === 4 && memY.innerText === "") {
         animateToMemory(document.getElementById("val-b"), memY, "68.0");    
     }
 
-    //if (current == 6 && numADD.innerText === ""){
-        //numADD.style.visibility="visible";
-        //numADD.innerText="18";
-    //}
-    // initiates add
-    if (current === 4 && memADD.innerText === "") {
-        animateToMemory(document.getElementById("val-c"), memADD, "D");
+    
+    if (current === 7 && memC.innerText === "") {
+        animateToMemory(document.getElementById("val-c"), memC, "D");
     }
-    if (current === 6 && memADD.innerText === "") {
+    if (current === 10 && memD.innerText === "") {
         animateToMemory(document.getElementById("val-d"), memD, "Number 68");
     }
-      if (current === 8 && memADD.innerText === "") {
+      if (current === 13 && memE.innerText === "") {
         animateToMemory(document.getElementById("val-e"), memE, "True");
     }
 
@@ -169,6 +160,22 @@ function updateHighlight() {
         //animateToMemory(memADD, outAns, "D");
    // }
 
+    //fly from memory variable to output
+    if (current === 2 && out1.innerText === "") {
+        animateToMemory(memX, out1, "68");
+    }
+    if (current === 5 && out2.innerText === "") {
+        animateToMemory(memY, out2, "68.0");
+    }
+    if (current === 8 && out3.innerText === "") {
+        animateToMemory(memC, out3, "D");
+    }
+    if (current === 11 && out4.innerText === "") {
+        animateToMemory(memD, out4, "Number 68");
+    }
+        if (current === 14 && out5.innerText === "") {
+        animateToMemory(memD, out5, "true");
+    }
 
 
     // hide operators
