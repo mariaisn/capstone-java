@@ -31,16 +31,25 @@ const equalOp = document.getElementById("equal-op");
 let current = -1;
 let pressCount = 0;
 
-// Each index = how many presses that step requires
-const stepDurations = [
-    1,2,1,   // a
-    1,2,1,   // b
-    1,2,1,   // c
-    1,2,1,   // d
-    1,2,1    // e
-];
+// total number of logical steps in your animation
+const totalSteps = 15;
 
-const totalSteps = stepDurations.length;
+// 👇 EDIT THIS TO CONTROL WHICH STEPS HOLD
+// key = step number
+// value = number of presses required
+const holdSteps = {
+    1: 3,
+    2:2,
+    3:3,
+    4: 3,
+    7: 2,
+    14:3,
+};
+
+// returns how long a step should last
+function getStepDuration(step) {
+    return holdSteps[step] || 1;
+}
 
 
 // =======================
@@ -151,7 +160,7 @@ function updateHighlight() {
         animateToMemory(memE, out5, "true");
     }
 
-    // operators always visible (since no calculation phase now)
+    // operators visible
     plusOp.style.visibility = "visible";
     equalOp.style.visibility = "visible";
 
@@ -171,7 +180,7 @@ nextBtn.addEventListener("click", () => {
 
     pressCount++;
 
-    if (pressCount >= stepDurations[current + 1]) {
+    if (pressCount >= getStepDuration(current + 1)) {
         current++;
         pressCount = 0;
         updateHighlight();
@@ -188,7 +197,7 @@ backBtn.addEventListener("click", () => {
     if (pressCount < 0) {
         current--;
         if (current >= 0) {
-            pressCount = stepDurations[current] - 1;
+            pressCount = getStepDuration(current) - 1;
         } else {
             pressCount = 0;
         }
@@ -198,3 +207,4 @@ backBtn.addEventListener("click", () => {
 
 
 updateHighlight();
+
