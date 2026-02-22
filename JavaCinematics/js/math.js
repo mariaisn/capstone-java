@@ -177,20 +177,28 @@ function updateHighlight() {
         numY.style.display = "flex";
     }
 
+    if((current >=6 && current<=7)||
+        (current >=11 && current <=12)||
+        (current >=16 && current <=17) ||
+        (current >=21 && current <=22) ||
+        (current >=26 && current <=27)){
+            numX.innerText="13";
+            numY.innerText="5";
+        }
+
     // clears values when going backwards
     if (current < 1) memX.innerText = "";
     if (current < 3) memY.innerText = "";
-    if (!((current >=5 && current <=7)||
-    (current >=10 && current <=12)||
-    (current >=15 && current <=17)||
-    (current >=20 && current <=22)||
-    (current >=25 && current <=27)
-    )){
-        numX.innerText="";
-        numY.innerText=""
-    }
     if (current < 6) numSum.innerText = "";
 
+    if(!((current >=5 && current<=7)||
+        (current >=10 && current <=12)||
+        (current >=15 && current <=17) ||
+        (current >=20 && current <=22) ||
+        (current >=25 && current <=27))){
+            numX.innerText="";
+            numY.innerText="";
+        }
 
     if (current <7) memADD.innerText = "";
     if (current <12) memSub.innerText = "";
@@ -222,7 +230,6 @@ function updateHighlight() {
         animateToMemory(memX, numX, "13");
         animateToMemory(memY, numY, "5");
     }
-
 
 
     //show sum

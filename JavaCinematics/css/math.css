@@ -38,7 +38,7 @@ body {
 
 .container{
     display: grid;
-    row-gap: 10px;
+    row-gap:10px;
     column-gap: 10px;
     grid-template-rows: 15% 65% 20%;
     grid-template-columns: 30% 70%;
