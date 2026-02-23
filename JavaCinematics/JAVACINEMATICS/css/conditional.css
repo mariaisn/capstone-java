@@ -1,0 +1,170 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: darkred;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.percent {
+  width: 100%;
+  height: 100%;
+}
+
+.fit {
+  height: 100%;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+#high {
+  font-family: Consolas, monospace;
+}
+
+.cent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar {
+  overflow: auto;
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  display: grid;
+  row-gap: 10px;
+  column-gap: 10px;
+  grid-template-rows: 15% 65% 20%;
+  grid-template-columns: 30% 70%;
+  grid-template-areas:
+    "a1 a1"
+    "b1 b2"
+    "c1 c1";
+}
+
+.a1 {
+  grid-area: a1;
+  background-color: darkred;
+}
+.b1 {
+  grid-area: b1;
+  background-color: white;
+}
+.b2 {
+  grid-area: b2;
+  background-color: white;
+}
+.c1 {
+  grid-area: c1;
+  background-color: white;
+}
+
+.code {
+  display: grid;
+  grid-template-rows: 5% 90% 5%;
+}
+
+.viz {
+  display: grid;
+  grid-template-rows: 5% 95%;
+}
+
+.out {
+  display: grid;
+  grid-template-rows: 10% 90%;
+}
+
+.ca {
+  grid-row: 1;
+}
+.cb {
+  grid-row: 2;
+}
+.cc {
+  grid-row: 3;
+}
+
+.sectiontitle {
+  background-color: rgb(255, 251, 6);
+}
+
+/*
+memory
+*/
+.memory-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.mVariable {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.mem-item {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.mem-square {
+  width: 60px;
+  height: 60px;
+  border: 2px solid black;
+  background-color: white;
+  font-family: Consolas, monospace;
+  font-size: 18px;
+}
+
+.mem-label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.memOut {
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 26px;
+}
+
+.fly-value {
+  position: absolute;
+  background: yellow;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.8s ease-in-out;
+  z-index: 1000;
+  font-family: Consolas, monospace;
+}
+
+.memory-explanation {
+  background: #f8f8d8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  min-height: 40px;
+  font-size: 1.1em;
+  color: #333;
+  text-align: center;
+}
+
+/* keep memory visuals contained */
+.viz .cb {
+  overflow: hidden;
+}
+
+/* output styling */
+.out-box > div {
+  font-family: Consolas, monospace;
+}
