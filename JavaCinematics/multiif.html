@@ -21,16 +21,15 @@ public class Test {
 
 	public static void main(String args[]) {
 		<span>int x</span> <span id="val-x">= 7</span>;
-		<span>if( x==</span><span id="lit-7a">7</span><span> ) {</span>
-			<span>System.out.println(True)</span>;
-		<span>} else {
-      System.out.println(False)
+                <span>int y</span> <span id="val-y">= 8</span>;
+  <span>if(x>y)</span>{
+	  <span>System.out.println(x)</span>;}
+  <span> else if(x&lt;y) {</span>
+    <span> System.out.println(y)</span>;}
+  <span>else</span> <span>{
+    System.out.println("equal");}</span>
 
-    }</span>
-
-
-		
-
+}
 }
         </pre>
       </div>
@@ -72,7 +71,7 @@ public class Test {
           <div class="mem-item memOut" id="mem-num-x"></div>
           <div class="memOut cent" id="comp-op"></div>
           <div class="mem-item memOut" id="mem-num-y"></div>
-          <div class="memOut cent" id="eq-op">=</div>
+          <div class="memOut cent" id="eq-op"></div>
           <div class="mem-item memOut" id="val-result"></div>
         </div>
       </div>
@@ -82,7 +81,7 @@ public class Test {
       <div class="ca sectiontitle cent">Output</div>
 
       <div class="cb bar out-box">
-        <div id="ou1"></div>
+        <div id="ou1">  </div>
         <div id="ou2"></div>
         <div id="ou3"></div>
         <div id="ou4"></div>
@@ -92,3 +91,4 @@ public class Test {
     <script src="js/multiif.js"></script>
   </body>
 </html>
+
