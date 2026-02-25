@@ -165,7 +165,18 @@ function updateHighlight() {
     numY.innerText = "";
     valResult.innerText = "";
 }
+if (current === 13 || current ===8){
+    memY.innerText="";
+}
+if (current === 15 || current === 14 || current === 10 || current ===9){
+    memC1.innerText="";
+    out1.innerText="";
+}
+if (current === 14 || current === 9){
+numX.innerText = "";
+numY.innerText = "";
 
+}
     if (current < 7)  memC1.innerText = "";
     if (current < 11) memC2.innerText = "";
     if (current < 7) {
