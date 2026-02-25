@@ -187,7 +187,7 @@ if (current >8 && current < 12){
 if (current === 6){
     memC1.innerText = "8";
 }
-    if (current < 7) out1.innerText = "";
+    if (current < 7 || current === 15) out1.innerText = "";
     out2.innerText = "";
     out3.innerText = "";
     out4.innerText = "";
@@ -200,22 +200,22 @@ if (current >= 12) {
     document.getElementById("val-x").innerText = "= " + X_VAL;
 }
     // animate x and y from code to memory
-    if (current === 1 && memX.innerText === "") {
+    if (current === 1 ) {
         animateToMemory(document.getElementById("val-x"), memX, X_VAL);
     }
-    if (current === 7 && memX.innerText === "") {
+    if (current === 7 ) {
         animateToMemory(document.getElementById("val-x"), memX, X_VAL);
     }
-    if (current === 12 && memX.innerText === "") {
+    if (current === 12 ) {
         animateToMemory(document.getElementById("val-x"), memX, X_VAL);
     }
-    if (current === 3 && memY.innerText === "") {
+    if (current === 3) {
         animateToMemory(document.getElementById("val-y"), memY, Y_VAL);
     }
-     if (current === 8 && memY.innerText === "") {
+     if (current === 8 ) {
         animateToMemory(document.getElementById("val-y"), memY, Y_VAL);
     }
-      if (current === 13 && memY.innerText === "") {
+      if (current === 13) {
         animateToMemory(document.getElementById("val-y"), memY, Y_VAL);
     }
 
@@ -232,10 +232,10 @@ if (current >= 12) {
         numY.style.display = "flex";
 
         // if entering the window, animate them down
-        if (current === 4 && numX.innerText === "" && numY.innerText === "") {
+        if (current === 4 ) {
             animateToMemory(memX, numX, X_VAL);
             animateToMemory(memY, numY, Y_VAL);
-        } if (current === 9 && numX.innerText === "" && numY.innerText === "") {
+        } if (current === 9) {
             animateToMemory(memX, numX, X_VAL);
             animateToMemory(memY, numY, Y_VAL);
            
@@ -265,6 +265,13 @@ if (current >= 12) {
         numX.innerText = "";
         numY.innerText = "";
     }
+    if (current === 11){
+        numX.innerText ="8";
+        numY.innerText ="8";
+    }
+    if (current === 11){
+        memC1.innerText ="equal";
+    }
 
 
     // animate operator symbol in the window / show result
@@ -276,6 +283,7 @@ if (current >= 12) {
         compOp.style.display = "flex";
         compOp.innerText = "==";
     }
+
     if (current >= 14 && current <= 16) {
         compOp.style.display = "flex";
         compOp.innerText = ">";
@@ -348,6 +356,3 @@ backBtn.addEventListener("click", () => {
 });
 
 updateHighlight();
-
-
-
