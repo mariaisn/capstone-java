@@ -1,0 +1,103 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | Computing Area of a Circle (With Scanner)</title>
+    <link rel="stylesheet" href="css/circlescanner.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html" class="fit">
+        <img
+          src="images/java cinematics logo.png"
+          alt="Company Logo"
+          class="fit"
+        />
+      </a>
+    </header>
+
+    <div class="b1 div1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+import java.util.Scanner;
+
+public class CircleScanner {
+
+  public static void main(String[] args){
+    <span>double radius;</span>
+    <span>double area;</span>
+    <span>Scanner input = new Scanner(System.in);</span>
+
+    <span>System.out.print("Enter input here: ");</span>
+    <span>radius</span> <span id="val-radius">= input.nextInt();</span>
+
+    <span>area = radius * radius *</span> <span id="lit-pi">3.14159</span>;
+
+    <span>System.out.println("The area for the circle of radius " + radius + " is " + area);</span>
+  }
+}
+        </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="mVariable cent" id="mem-vars">
+          <div class="mem-item" id="item-radius">
+            <div class="mem-label">radius</div>
+            <div class="mem-square cent" id="mem-radius"></div>
+          </div>
+
+          <div class="mem-item" id="item-area">
+            <div class="mem-label">area</div>
+            <div class="mem-square cent" id="mem-area"></div>
+          </div>
+        </div>
+
+        <div class="mVariable" id="mem-calc">
+          <div class="mem-item memOut" id="mem-num-r1"></div>
+          <div class="memOut cent" id="mul-1">*</div>
+          <div class="mem-item memOut" id="mem-num-r2"></div>
+          <div class="memOut cent" id="mul-2">*</div>
+          <div class="mem-item memOut" id="mem-num-pi"></div>
+          <div class="memOut cent" id="eq-op">=</div>
+          <div class="mem-item memOut" id="val-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+
+      <div class="cb bar out-box">
+        <!-- JS will hide/show this row based on the current step -->
+        <div class="console-row" id="console-input-row">
+          <div id="prompt">Enter input here:</div>
+          <input
+            id="radius-input"
+            type="text"
+            inputmode="decimal"
+            placeholder="20"
+            autocomplete="off"
+          />
+        </div>
+
+        <div id="ou1"></div>
+        <div id="ou2"></div>
+        <div id="ou3"></div>
+        <div id="ou4"></div>
+      </div>
+    </div>
+
+    <script src="js/circlescanner.js"></script>
+  </body>
+</html>

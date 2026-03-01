@@ -94,9 +94,6 @@ body {
   background-color: rgb(255, 251, 6);
 }
 
-/*
-memory
-*/
 .memory-content {
   display: flex;
   justify-content: center;
@@ -157,14 +154,4 @@ memory
   font-size: 1.1em;
   color: #333;
   text-align: center;
-}
-
-/* keep memory visuals contained */
-.viz .cb {
-  overflow: hidden;
-}
-
-/* output styling */
-.out-box > div {
-  font-family: Consolas, monospace;
 }

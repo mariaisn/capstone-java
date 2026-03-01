@@ -99,9 +99,6 @@ body {
   background-color: rgb(255, 251, 6);
 }
 
-
-
-
 /* memory */
 .memory-content {
   display: flex;
@@ -153,6 +150,18 @@ body {
   font-family: Consolas, monospace;
 }
 
+.memory-explanation {
+  background: #f8f8d8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  min-height: 40px;
+  font-size: 1.1em;
+  color: #333;
+  text-align: center;
+}
+
 /* keep memory visuals contained */
 .viz .cb {
   overflow: hidden;
@@ -163,8 +172,8 @@ body {
   font-family: Consolas, monospace;
 }
 
-.blankspace{
+.blankspace {
   display: inline-block;
-  width: 60px;   /* adjust */
-  height: 18px;  /* adjust to match your code line height */
+  width: 60px;
+  height: 18px;
 }

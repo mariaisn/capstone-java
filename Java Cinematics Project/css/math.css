@@ -38,7 +38,7 @@ body {
 
 .container{
     display: grid;
-    row-gap: 10px;
+    row-gap:10px;
     column-gap: 10px;
     grid-template-rows: 15% 65% 20%;
     grid-template-columns: 30% 70%;
@@ -76,9 +76,8 @@ body {
 }
 
 
-
 /*
-memory
+added the following 6 classes - antonio
 */
 .memory-content {
     display: flex;
@@ -128,4 +127,16 @@ memory
     transition: all 0.8s ease-in-out;
     z-index: 1000;
     font-family: Consolas, monospace;
+}
+
+.memory-explanation {
+  background: #f8f8d8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  min-height: 40px;
+  font-size: 1.1em;
+  color: #333;
+  text-align: center;
 }

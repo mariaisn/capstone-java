@@ -52,14 +52,17 @@ body {
   grid-area: a1;
   background-color: darkred;
 }
+
 .b1 {
   grid-area: b1;
   background-color: white;
 }
+
 .b2 {
   grid-area: b2;
   background-color: white;
 }
+
 .c1 {
   grid-area: c1;
   background-color: white;
@@ -83,9 +86,11 @@ body {
 .ca {
   grid-row: 1;
 }
+
 .cb {
   grid-row: 2;
 }
+
 .cc {
   grid-row: 3;
 }
@@ -94,9 +99,6 @@ body {
   background-color: rgb(255, 251, 6);
 }
 
-/*
-memory
-*/
 .memory-content {
   display: flex;
   justify-content: center;
@@ -159,12 +161,16 @@ memory
   text-align: center;
 }
 
-/* keep memory visuals contained */
 .viz .cb {
   overflow: hidden;
 }
 
-/* output styling */
 .out-box > div {
   font-family: Consolas, monospace;
+}
+
+.blankspace {
+  display: inline-block;
+  width: 60px;
+  height: 18px;
 }

@@ -52,14 +52,17 @@ body {
   grid-area: a1;
   background-color: darkred;
 }
+
 .b1 {
   grid-area: b1;
   background-color: white;
 }
+
 .b2 {
   grid-area: b2;
   background-color: white;
 }
+
 .c1 {
   grid-area: c1;
   background-color: white;
@@ -83,9 +86,11 @@ body {
 .ca {
   grid-row: 1;
 }
+
 .cb {
   grid-row: 2;
 }
+
 .cc {
   grid-row: 3;
 }
@@ -94,9 +99,9 @@ body {
   background-color: rgb(255, 251, 6);
 }
 
-/*
-memory
-*/
+
+
+/* memory */
 .memory-content {
   display: flex;
   justify-content: center;
@@ -115,15 +120,44 @@ memory
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  display: none; /* IMPORTANT */
 }
 
-.mem-square {
+.mem-square{
   width: 60px;
   height: 60px;
   border: 2px solid black;
-  background-color: white;
+  background: #fff;
+
+  /* force proper centering inside the square */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* keep full number inside */
+  padding: 0 6px;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+
+  /* make long values shrink */
   font-family: Consolas, monospace;
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 16px;           /* base size */
+  line-height: 1;
+}
+
+
+#mem-area,
+#val-result{
+  width: auto;
+  min-width: 60px;
+  padding: 0 10px;
+}
+
+#mem-radius{
+  width: auto;
+  min-width: 60px; 
 }
 
 .mem-label {
@@ -147,24 +181,34 @@ memory
   font-family: Consolas, monospace;
 }
 
-.memory-explanation {
-  background: #f8f8d8;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 12px;
-  min-height: 40px;
-  font-size: 1.1em;
-  color: #333;
-  text-align: center;
-}
-
 /* keep memory visuals contained */
 .viz .cb {
   overflow: hidden;
 }
 
-/* output styling */
+/* output */
 .out-box > div {
+  font-family: Consolas, monospace;
+}
+
+.blankspace {
+  display: inline-block;
+  width: 60px;
+  height: 18px;
+}
+
+
+
+.console-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-family: Consolas, monospace;
+}
+
+.console-row input {
+  width: 140px;
+  padding: 6px 8px;
   font-family: Consolas, monospace;
 }
