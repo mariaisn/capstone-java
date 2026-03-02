@@ -31,22 +31,16 @@ const compOp = document.getElementById("comp-op");
 const eqOp = document.getElementById("eq-op");
 
 // steps
-const steps = 13;
+const steps = 6;
 let current = -1;
+
 const memoryExplanation = document.getElementById("memory-explanation");
 const stepMessages = [
   "Click Next to begin",
   "Declare int x and set x = 7",
-  "Move x's value (7) to box x",
+  "Move x's value (7) to  x",
   "Check condition: if x == 7",
-  "Store result (true) in cond1",
-  "Print x because condition is true",
-  "Done with first if block",
-  "Declare int y and set y = 3",
-  "Move y's value (3) to y",
-  "Check condition: if y == 7",
-  "Store result (false) in cond2",
-  "Else block: nothing printed because condition is false",
+  "Print 'True' because condition is true",
   "Done!",
 ];
 function updateMemoryExplanation() {
@@ -61,7 +55,7 @@ function updateMemoryExplanation() {
 
 const X_VAL = "7";
 const Y_VAL = "3";
-const CONST_7 = "7";
+const CONST_7 = "True";
 
 // animation
 function animateToMemory(sourceElement, targetElement, finalValue) {
@@ -244,8 +238,8 @@ function updateHighlight() {
   }
 
   //fly from memory variable to output
-  if (current === 6 && out1.innerText === "") {
-    animateToMemory(memX, out1, X_VAL);
+  if (current === 5 && out1.innerText === "") {
+    animateToMemory(memX, out1, "True");
   }
 
   backBtn.disabled = current <= 0;

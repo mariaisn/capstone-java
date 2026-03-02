@@ -140,3 +140,14 @@ added the following 6 classes - antonio
   color: #333;
   text-align: center;
 }
+
+
+
+.console-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#console-input{
+    display: none;
+}

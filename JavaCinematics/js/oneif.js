@@ -16,54 +16,61 @@ const out1 = document.getElementById("out1");
 
 const memItems = document.querySelectorAll(".mem-item");
 
-const steps = 6;
+const memoryExplanation = document.getElementById("memory-explanation");
+const stepMessages = [
+  "Declare x",
+  "Assign 7 to x",
+  "Check Condition",
+  "Condition is true",
+  "Move into statement",
+  "Print x",
+];
+
 let current = -1;
+const steps = stepMessages.length;
 
 function animateToMemory(sourceElement, targetElement, finalValue) {
+  const rectStart = sourceElement.getBoundingClientRect();
+  const rectEnd = targetElement.getBoundingClientRect();
 
-    const rectStart = sourceElement.getBoundingClientRect();
-    const rectEnd = targetElement.getBoundingClientRect();
+  const flying = document.createElement("div");
+  flying.className = "fly-value";
+  flying.innerText = finalValue;
 
-    const flying = document.createElement("div");
-    flying.className = "fly-value";
-    flying.innerText = finalValue;
+  document.body.appendChild(flying);
 
-    document.body.appendChild(flying);
+  // start at code
+  flying.style.left = rectStart.left + rectStart.width / 2 + "px";
+  flying.style.top = rectStart.top + rectStart.height / 2 + "px";
 
-    // start at code
-    flying.style.left = rectStart.left + rectStart.width / 2 + "px";
-    flying.style.top = rectStart.top + rectStart.height / 2 + "px";
+  requestAnimationFrame(() => {
+    // move to center of memory square
+    flying.style.left = rectEnd.left + rectEnd.width / 2 + "px";
+    flying.style.top = rectEnd.top + rectEnd.height / 2 + "px";
+  });
 
-    requestAnimationFrame(() => {
-
-        // move to center of memory square
-        flying.style.left = rectEnd.left + rectEnd.width / 2 + "px";
-        flying.style.top = rectEnd.top + rectEnd.height / 2 + "px";
-    });
-
-    flying.addEventListener("transitionend", () => {
-        targetElement.innerText = finalValue;
-        document.body.removeChild(flying);
-    });
+  flying.addEventListener("transitionend", () => {
+    targetElement.innerText = finalValue;
+    document.body.removeChild(flying);
+  });
 }
 
-function getHLine(step){
-    if (step<0) return -1;
+function getHLine(step) {
+  if (step < 0) return -1;
 
-    if(step>=2 && step <=4) 
-        return 2;
+  if (step >= 2 && step <= 4) return 2;
 
-    let temp = 0;
-    if (step > 4)
-        temp = temp-2;
+  let temp = 0;
+  if (step > 4) temp = temp - 2;
 
-    return step + temp;
+  return step + temp;
 }
 
 function updateHighlight() {
     lines.forEach(line => line.classList.remove("highlight"));
 
     memItems.forEach(item => item.style.display="none");
+    memoryExplanation.style.display ="none";
 
     //call to get proper line to highlight into hLine
     const hLine = getHLine(current);
@@ -101,6 +108,7 @@ function updateHighlight() {
     //step 0
     if (current >= 0){
         memItems[0].style.display = "flex";
+        memoryExplanation.style.display="flex";
     }
 
 
@@ -146,19 +154,31 @@ function updateHighlight() {
     nextBtn.disabled = current >= steps - 1;
 }
 
+function updateMemoryExplanation() {
+  if (current < 0) {
+    memoryExplanation.innerText = stepMessages[0];
+  } else if (current < stepMessages.length) {
+    memoryExplanation.innerText = stepMessages[current];
+  } else {
+    memoryExplanation.innerText = "Done!";
+  }
+}
+
 nextBtn.addEventListener("click", () => {
-    if (current < steps) {
-        current++;
-        updateHighlight();
-    }
+  if (current < steps - 1) {
+    current++;
+    updateMemoryExplanation();
+    updateHighlight();
+  }
 });
 
 backBtn.addEventListener("click", () => {
-    if (current > 0) {
-        current--;
-        updateHighlight();
-    }
+  if (current > 0) {
+    current--;
+    updateMemoryExplanation();
+    updateHighlight();
+  }
 });
 
-
+updateMemoryExplanation();
 updateHighlight();

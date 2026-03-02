@@ -17,6 +17,7 @@
 .b {
     grid-row: 2;
      background-color:white;
+    overflow-y: auto;     
 }
 
 .c {
