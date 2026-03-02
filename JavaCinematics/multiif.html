@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="percent">
   <head>
     <title>Java Cinematics Example</title>
@@ -8,7 +8,11 @@
   <body class="container percent">
     <header class="a1 cent">
       <a href="index.html" class="fit">
-        <img src="images/java cinematics logo.png" alt="Company Logo" class="fit" />
+        <img
+          src="images/java cinematics logo.png"
+          alt="Company Logo"
+          class="fit"
+        />
       </a>
     </header>
 
@@ -29,6 +33,8 @@ public class Test {
   <span>else</span> <span>{
     System.out.println("equal");}</span>
 
+
+		
 }
 }
         </pre>
@@ -44,6 +50,9 @@ public class Test {
       <div class="sectiontitle cent ca">Memory</div>
 
       <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation">
+          Click Next to begin
+        </div>
         <div class="mVariable cent" id="mem-vars">
           <div class="mem-item" id="item-x">
             <div class="mem-label">x</div>
@@ -64,14 +73,13 @@ public class Test {
             <div class="mem-label">cond2</div>
             <div class="mem-square cent" id="mem-c2"></div>
           </div>
-
         </div>
 
         <div class="mVariable" id="mem-calc">
           <div class="mem-item memOut" id="mem-num-x"></div>
           <div class="memOut cent" id="comp-op"></div>
           <div class="mem-item memOut" id="mem-num-y"></div>
-          <div class="memOut cent" id="eq-op"></div>
+          <div class="memOut cent" id="eq-op">=</div>
           <div class="mem-item memOut" id="val-result"></div>
         </div>
       </div>
@@ -81,7 +89,7 @@ public class Test {
       <div class="ca sectiontitle cent">Output</div>
 
       <div class="cb bar out-box">
-        <div id="ou1">  </div>
+        <div id="ou1"></div>
         <div id="ou2"></div>
         <div id="ou3"></div>
         <div id="ou4"></div>
@@ -91,4 +99,3 @@ public class Test {
     <script src="js/multiif.js"></script>
   </body>
 </html>
-
