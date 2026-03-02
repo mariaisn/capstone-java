@@ -168,7 +168,8 @@ conIn.addEventListener("keydown", function(e) {
 
     const value = conIn.value;
 
-    const source = addConsoleRow(value); // 👈 creates a new row
+    const source = addConsoleRow(value);
+    source.style.color="goldenrod";
 
     if (current === 1) {
         X_VAL = Number(value);
@@ -349,8 +350,8 @@ if (inputSteps.includes(current)) {
 
         // if entering the window, animate them down
         if (current===38) {
-            animateToMemory(memX, numX, X1_VAL);
-            animateToMemory(memY, numY, Y1_VAL);
+            animateToMemory(memX1, numX1, X1_VAL);
+            animateToMemory(memY1, numY1, Y1_VAL);
         }
         else {
             // keep them visible if already in window
@@ -522,7 +523,7 @@ if (current === 10) {
 
 
   backBtn.disabled = current <= 0;
-  nextBtn.disabled = current >= steps - 1;
+  nextBtn.disabled = (current >= steps - 1 || inputSteps.includes(current));
 }
 
 

@@ -150,4 +150,13 @@ added the following 6 classes - antonio
 
 #console-input{
     display: none;
+    color: goldenrod;
+    border:none;
+    outline:none;
+}
+
+#console-input::-webkit-outer-spin-button,
+#console-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
