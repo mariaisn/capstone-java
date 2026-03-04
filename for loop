@@ -1,0 +1,54 @@
+package JC;
+
+public class Test {
+	
+	public static void main(String args[]) {
+	//for is span 0
+	//int i is span 1
+	//=0 span 2
+	//i<3 is span 3
+	//i++ is span 4
+	//print is span 5
+		
+		for(int i =0; i<3; i++) {
+			System.out.println("Hello");
+		}//span 6
+			
+	}
+		
+}
+
+//step 0: Enter for loop {span 0}
+
+//step 1: declare i; {span 1}
+//step 2: assign 0; {span 2}
+
+//step 3: bring i down and 3 from comparison {span 3}
+//steep 4: if true proceed to step 5 if false go to step 9 {span 3}
+
+/* if (current === 4){
+        vBool.style.display = "flex";
+        boolVal = i < 3 ? "True" : "False";
+        vBool.innerText = boolVal;
+
+        if(boolVal === "True"){
+            current = 4;
+            loopCount++;
+        }
+        else {
+              current = 5
+            }
+    }*/
+
+//step 5: print "Hello" {span 5}
+		//current = 3
+
+//step 6: bring i down and add 1 from i++ {span 4}
+//step 7: calculate sum {span 4}
+//step 8: assign sum to i and set current to 2 {span 4}
+   //current == 2
+
+//step 9: exit {span 6}
+
+
+
