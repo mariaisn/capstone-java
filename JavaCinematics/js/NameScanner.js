@@ -7,6 +7,8 @@ const backBtn = document.getElementById("back");
 
 const memX = document.getElementById("mem-x");
 const memY = document.getElementById("mem-y");
+const memXChars = document.getElementById("mem-x-chars");
+const memYChars = document.getElementById("mem-y-chars");
 const memC = document.getElementById("mem-c");
 const memD = document.getElementById("mem-d");
 const memE = document.getElementById("mem-e");
@@ -33,6 +35,38 @@ let current = -1;
 
 
 
+function createCharDisplay(container, str) {
+    container.innerHTML = '';
+    
+    // Create index row (numbers)
+    const indexRow = document.createElement("div");
+    indexRow.className = "char-row";
+    
+    for (let i = 0; i < str.length; i++) {
+        const indexBox = document.createElement("div");
+        indexBox.className = "char-index";
+        indexBox.innerText = i;
+        indexRow.appendChild(indexBox);
+    }
+    
+    container.appendChild(indexRow);
+    
+    // Create character row
+    const charRow = document.createElement("div");
+    charRow.className = "char-row";
+    
+    for (let i = 0; i < str.length; i++) {
+        const charBox = document.createElement("div");
+        charBox.className = "char-box";
+        charBox.innerText = str[i];
+        charRow.appendChild(charBox);
+    }
+    
+    container.appendChild(charRow);
+}
+
+
+
 function animateToMemory(sourceElement, targetElement, finalValue) {
 
     const rectStart = sourceElement.getBoundingClientRect();
@@ -56,7 +90,16 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
     });
 
     flying.addEventListener("transitionend", () => {
-        targetElement.innerText = finalValue;
+        // Check if this is a string value (for firstname/lastname variables)
+        if (targetElement === memX) {
+            targetElement.innerText = finalValue;
+            createCharDisplay(memXChars, finalValue);
+        } else if (targetElement === memY) {
+            targetElement.innerText = finalValue;
+            createCharDisplay(memYChars, finalValue);
+        } else {
+            targetElement.innerText = finalValue;
+        }
         document.body.removeChild(flying);
     });
 }
@@ -180,6 +223,18 @@ function updateHighlight() {
     if (current < 8)  out5.innerText ="";
     // clear prompt output
 
+    // clear character displays when moving away from their display steps
+    if (current !== 4) memXChars.innerHTML = "";
+    if (current !== 8) memYChars.innerHTML = "";
+
+    // recreate character displays when returning to their steps if memory has content
+    if (current === 4 && memX.innerText !== "" && memXChars.innerHTML === "") {
+        createCharDisplay(memXChars, memX.innerText);
+    }
+    if (current === 8 && memY.innerText !== "" && memYChars.innerHTML === "") {
+        createCharDisplay(memYChars, memY.innerText);
+    }
+
 
 
     // animate going forward
@@ -241,7 +296,11 @@ let lastName = "";
 
 inputItems[0].addEventListener("keypress", (event) => {
     if (event.key === "Enter" && current === 3) {
-        firstName = inputItems[0].value.trim();
+        const enteredFirstName = inputItems[0].value.trim();
+        if (enteredFirstName === "") {
+            return;
+        }
+        firstName = enteredFirstName;
         animateToMemory(inputItems[0], memX, firstName);
     }
 });
@@ -249,13 +308,25 @@ inputItems[0].addEventListener("keypress", (event) => {
 inputItems[1].addEventListener("keypress", (event) => {
     // only accept last name when the input is visible at the correct step
     if (event.key === "Enter" && current === 7) {
-        lastName = inputItems[1].value.trim();
+        const enteredLastName = inputItems[1].value.trim();
+        if (enteredLastName === "") {
+            return;
+        }
+        lastName = enteredLastName;
         animateToMemory(inputItems[1], memY, lastName);
     }
 });
 
 
 nextBtn.addEventListener("click", () => {
+    if (current === 3 && firstName.trim() === "") {
+        return;
+    }
+
+    if (current === 7 && lastName.trim() === "") {
+        return;
+    }
+
     if (current < steps - 1) {
         current++;
         updateHighlight();

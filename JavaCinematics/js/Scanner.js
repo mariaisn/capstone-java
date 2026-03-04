@@ -11,6 +11,8 @@ const memY = document.getElementById("mem-y");
 const memC = document.getElementById("mem-c");
 const memD = document.getElementById("mem-d");
 const memE = document.getElementById("mem-e");
+const memCChars = document.getElementById("mem-c-chars");
+const memDChars = document.getElementById("mem-d-chars");
 const numX = document.getElementById("mem-num-x");
 const numY = document.getElementById("mem-num-y");
 const numADD = document.getElementById("val-add");
@@ -30,6 +32,38 @@ const equalOp = document.getElementById("equal-op");
 //start page with nopthing highlighted
 const steps=16;
 let current = -1;
+
+
+
+function createCharDisplay(container, str) {
+    container.innerHTML = '';
+    
+    // Create index row (numbers)
+    const indexRow = document.createElement("div");
+    indexRow.className = "char-row";
+    
+    for (let i = 0; i < str.length; i++) {
+        const indexBox = document.createElement("div");
+        indexBox.className = "char-index";
+        indexBox.innerText = i;
+        indexRow.appendChild(indexBox);
+    }
+    
+    container.appendChild(indexRow);
+    
+    // Create character row
+    const charRow = document.createElement("div");
+    charRow.className = "char-row";
+    
+    for (let i = 0; i < str.length; i++) {
+        const charBox = document.createElement("div");
+        charBox.className = "char-box";
+        charBox.innerText = str[i];
+        charRow.appendChild(charBox);
+    }
+    
+    container.appendChild(charRow);
+}
 
 
 
@@ -56,7 +90,16 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
     });
 
     flying.addEventListener("transitionend", () => {
-        targetElement.innerText = finalValue;
+        // Check if this is a string value (for C and D variables)
+        if (finalValue === "Hello" && targetElement === memC) {
+            targetElement.innerText = finalValue;
+            createCharDisplay(memCChars, finalValue);
+        } else if (finalValue === "Hello World" && targetElement === memD) {
+            targetElement.innerText = finalValue;
+            createCharDisplay(memDChars, finalValue);
+        } else {
+            targetElement.innerText = finalValue;
+        }
         document.body.removeChild(flying);
     });
 }
@@ -153,12 +196,30 @@ function updateHighlight() {
     if (current < 1)  out1.innerText ="";
     if (current < 5) memY.innerText = "";
     if (current < 4)  out2.innerText ="";
-    if (current < 8) memC.innerText = "";
+    if (current < 8) {
+        memC.innerText = "";
+        memCChars.innerHTML = "";
+    }
     if (current < 7)  out3.innerText ="";
-    if (current < 11) memD.innerText = "";
+    if (current < 11) {
+        memD.innerText = "";
+        memDChars.innerHTML = "";
+    }
     if (current < 10)  out4.innerText ="";
     if (current < 14) memE.innerText = "";
     if (current < 13)  out5.innerText ="";
+
+    // clear character displays when moving away from their display steps
+    if (current !== 9) memCChars.innerHTML = "";
+    if (current !== 12) memDChars.innerHTML = "";
+
+    // recreate character displays when returning to their steps if memory has content
+    if (current === 9 && memC.innerText !== "" && memCChars.innerHTML === "") {
+        createCharDisplay(memCChars, memC.innerText);
+    }
+    if (current === 12 && memD.innerText !== "" && memDChars.innerHTML === "") {
+        createCharDisplay(memDChars, memD.innerText);
+    }
 
 
     // animate going forward

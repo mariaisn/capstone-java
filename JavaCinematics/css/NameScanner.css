@@ -163,18 +163,3 @@ added the following 6 classes - antonio
     font-family: Consolas, monospace;
     font-size: 14px;
 }
-
-.input-row {
-    gap: 10px;
-    margin: 6px 0;
-}
-
-.num-input {
-    width: 80px;
-}
-
-.input-item {
-    visibility: hidden;
-    width: 120px;
-    margin: 4px 0;
-}
