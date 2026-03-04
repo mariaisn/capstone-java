@@ -80,6 +80,8 @@ function updateHighlight() {
         lines[hLine].classList.add("highlight");
     }
 
+
+    
     if(current < 1) memX.innerText = "";
 
     if(current >=2 && current <=4){

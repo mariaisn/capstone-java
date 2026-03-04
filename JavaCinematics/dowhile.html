@@ -1,13 +1,13 @@
 <html class="percent">
     <head>
-        <title>Structural | One Way If Statement</title>
-        <link rel="stylesheet" href="css/oneif.css">
+        <title>Structural | Do While Loop</title>
+        <link rel="stylesheet" href="css/dowhile.css">
     </head>
 
     <body class="container percent">
         <header class="a1 cent">
             <a href="index.html">
-        <img src="images/JavaCinematics Logo.png" alt="Company Logo">
+        <img src="" alt="Company Logo">
       </a>
         </header>  
         
@@ -21,20 +21,19 @@
 public class Test {
 	
 	public static void main(String args[]) {
-		
-	<span>int x</span> <span id="val-x">= 7</span>;
 
-	<span id="val-c">if(x == 7)</span> {
-	<span>System.out.println(x);</span>
-		}
+		<span>int x</span> <span id="val-x">=0</span>;
+		<span>do </span>{
+			<span id="val-print">System.out.println("Hello")</span>;
+			<span id="val-1">x++</span>;
+        }<span id="val-c">while(x < 3)</span>;<span> </span>
 	}
-
 }
             </pre>
             </div>
 
             <div class="cc cent">
-                <button id="back">Back</buttdiv with on>
+                <button id="back">Back</button>
                 <button id="next">Next</button>
             </div>
         </div>
@@ -51,23 +50,23 @@ public class Test {
                             <div class="mem-label">x</div>
                             <div class="mem-square cent" id="mem-x"></div>
                         </div>
-
-                        <div class="mem-item">
-                            <div class="mem-label">condition</div>
-                            <div class="mem-square cent" id="mem-c"></div>
-                        </div>
                     </div>
 
                     <div class="mVariable">
                         <div class="mem-item memOut" id="mem-num-x"></div>
+                        <div class="mem-item memOut" id="mem-num-x1"></div>
 
-                        <div class="memOut cent" id="dobEq-op">==</div>
+                        <div class="memOut cent" id="plus-op">+</div>
+                        <div class="memOut cent" id="less-op"><</div>
 
+
+                        <div class="mem-item memOut" id="mem-num-1"></div>
                         <div class="mem-item memOut" id="mem-num-c"></div>
 
                         <div class="memOut cent" id="equal-op">=</div>
 
                         <div class="mem-item memOut" id="val-sum"></div>
+                        <div class="mem-item memOut" id="val-bool"></div>
                     </div>
                 </div>
 
@@ -78,11 +77,11 @@ public class Test {
                 Output
             </div>
 
-            <div class="cb bar">
-                <div id="out1"></div>
+            <div class="console-wrapper bar">
+                <div id="console"></div>
             </div>
         </div>
 
-        <script src="js/oneif.js"></script>
+        <script src="js/dowhile.js"></script>
     </body>
 </html>
