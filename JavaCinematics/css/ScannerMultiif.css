@@ -178,3 +178,8 @@ added the following 6 classes - antonio
     width: 120px;
     margin: 4px 0;
 }
+
+.input-echo {
+    margin: 4px 0;
+    min-height: 20px;
+}
