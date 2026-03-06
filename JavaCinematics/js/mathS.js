@@ -514,7 +514,7 @@ function updateUI() {
   }
 
   //delete output
-  const delOut = [2, 5, 10, 15, 20, 25, 30, 33, 35, 41];
+  const delOut = [2, 5, 10, 15, 20, 25, 30, 33, 36, 41];
 
   delOut.forEach(row => {
     if(current < row && prev >= row) popOut();
