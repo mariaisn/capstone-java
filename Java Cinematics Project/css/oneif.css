@@ -1,6 +1,14 @@
+/* Gold logo styling for header */
+.logo-gold {
+  height: 70px;
+  vertical-align: middle;
+  margin-right: 24px;
+  filter: drop-shadow(0 0 10px gold);
+}
 body {
   font-family: Arial, sans-serif;
-  background-color: darkred;
+  background: linear-gradient(to bottom, darkred, black);
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -37,6 +45,12 @@ body {
 }
 
 .container {
+  /* Section background for header */
+  .a1 {
+    background: linear-gradient(to bottom, darkred, black);
+    grid-area: a1;
+    background: linear-gradient(to bottom, darkred, black);
+  }
   display: grid;
   row-gap: 10px;
   column-gap: 10px;
@@ -49,6 +63,8 @@ body {
 }
 
 .a1 {
+  background-color: darkred;
+  background-color: darkred;
   grid-area: a1;
   background-color: darkred;
 }

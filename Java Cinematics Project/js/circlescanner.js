@@ -1,3 +1,19 @@
+// memory explanation box
+const explanationBox = document.getElementById("memory-explanation");
+
+const explanations = [
+  "click next to begin",
+  "declare radius",
+  "declare area",
+  "create scanner",
+  "prompt user for input",
+  "read radius value from input",
+  "start compute",
+  "show result ",
+  "store area ",
+  "print output",
+];
+
 // select all lines
 const lines = document.querySelectorAll("#high span");
 
@@ -44,9 +60,8 @@ const PI_VAL = 3.14159;
 // 5  = start compute
 // 6  = show result
 // 7  = store area
-// 8  = println highlighted
-// 9  = print output
-const steps = 9;
+// 8  = highlight println line and print output
+const steps = 8;
 let current = -1;
 
 /**
@@ -69,9 +84,6 @@ function filterDecimalTyping() {
   radiusInput.value = v;
 }
 
-
-
-
 // enforce while typing/pasting
 radiusInput.addEventListener("input", filterDecimalTyping);
 radiusInput.addEventListener("paste", () => setTimeout(filterDecimalTyping, 0));
@@ -79,7 +91,10 @@ radiusInput.addEventListener("paste", () => setTimeout(filterDecimalTyping, 0));
 function getRadius() {
   filterDecimalTyping();
 
-  const raw = radiusInput.value !== "" ? radiusInput.value : radiusInput.placeholder || "20";
+  const raw =
+    radiusInput.value !== ""
+      ? radiusInput.value
+      : radiusInput.placeholder || "20";
 
   const f = parseFloat(raw);
   if (!Number.isFinite(f)) return 20;
@@ -88,18 +103,15 @@ function getRadius() {
   return Math.trunc(f);
 }
 
-
 function getArea(RADIUS_VAL) {
   return (RADIUS_VAL * RADIUS_VAL * PI_VAL).toFixed(3);
 }
-
 
 function setConsoleVisibility() {
   // show starting at prompt line and onward
   const shouldShow = current >= 3;
   consoleRow.style.display = shouldShow ? "flex" : "none";
 }
-
 
 function setInputLock() {
   // editable only at steps 3 only/when input box is available
@@ -108,9 +120,6 @@ function setInputLock() {
   radiusInput.readOnly = !editable;
   radiusInput.style.pointerEvents = editable ? "auto" : "none";
 }
-
-
-
 
 function animateToMemory(sourceElement, targetElement, finalValue) {
   const rectStart = sourceElement.getBoundingClientRect();
@@ -138,31 +147,27 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
   });
 }
 
-
-
-
 function getHLine(step) {
   if (step < 0) return -1;
 
-  if (step === 0) return 0; // 0: double radius;
-  if (step === 1) return 1; // 1: double area;
-  if (step === 2) return 2; // 2: Scanner input...
-  if (step === 3) return 3; // 3: System.out.print("Enter input here: ");
-  if (step === 4) return 4; // 4: radius = input.nextInt();
+  if (step === 0) return 0; // double radius;
+  if (step === 1) return 1; // double area;
+  if (step === 2) return 2; // Scanner input...
+  if (step === 3) return 3; // System.out.print(...)
+  if (step === 4) return 4; // radius = input.nextInt();
 
   // 5-7: compute and store area
   if (step >= 5 && step <= 7) return 6;
 
-  // 8-9: println
+  // 8: println
   if (step >= 8) return 8;
 
   return 8;
 }
 
-
-
-
 function updateHighlight() {
+  // Sync memory explanation box with current step
+  explanationBox.textContent = explanations[current + 1] || "";
   // show/hide console row and lock/unlock input based on step
   setConsoleVisibility();
   setInputLock();
@@ -175,15 +180,13 @@ function updateHighlight() {
   const hLine = getHLine(current);
   if (lines[hLine]) lines[hLine].classList.add("highlight");
 
-// keep "chunk" highlighted for assignment/expression
+  // keep "chunk" highlighted for assignment/expression
   if (hLine === 4) {
     if (lines[5]) lines[5].classList.add("highlight"); // "= input.nextInt();"
   }
   if (hLine === 6) {
     if (lines[7]) lines[7].classList.add("highlight"); // "3.14159"
   }
-
-
 
   // hide all memory items by default
   memItems.forEach((item) => (item.style.display = "none"));
@@ -194,7 +197,7 @@ function updateHighlight() {
   eqOp.style.display = "none";
 
   // clear output when going backwards
-  if (current < 9) out1.innerHTML = "";
+if (current < 8) out1.innerHTML = "";
 
   // show squares when declared
   if (current >= 0) memItems[0].style.display = "flex"; // radius
@@ -211,8 +214,6 @@ function updateHighlight() {
     numPi.innerText = "";
     valResult.innerText = "";
   }
-
-
 
   // step 4: "read" input (convert decimals into integer), then animate into memory
   if (current === 4 && memRadius.innerText === "") {
@@ -233,7 +234,12 @@ function updateHighlight() {
     mul2.style.display = "flex";
 
     // entering compute: animate values down once
-    if (current === 5 && numR1.innerText === "" && numR2.innerText === "" && numPi.innerText === "") {
+    if (
+      current === 5 &&
+      numR1.innerText === "" &&
+      numR2.innerText === "" &&
+      numPi.innerText === ""
+    ) {
       // ensure radius is present if user jumped weirdly
       if (memRadius.innerText === "") memRadius.innerText = String(RADIUS_VAL);
 
@@ -247,15 +253,12 @@ function updateHighlight() {
     }
   }
 
-
-
   // step 6: show result
   if (current === 6) {
     eqOp.style.display = "flex";
     valResult.style.display = "flex";
     valResult.innerText = AREA_VAL;
   }
-
 
   // step 7: store area into memory
   if (current === 7 && memArea.innerText === "") {
@@ -265,9 +268,8 @@ function updateHighlight() {
     animateToMemory(valResult, memArea, AREA_VAL);
   }
 
-
-  // step 9: print output
-  if (current === 9 && out1.innerHTML === "") {
+  // step 8: highlight println line and print output immediately
+  if (current === 8 && out1.innerHTML === "") {
     out1.innerHTML =
       'The area for the circle of radius <span id="out-radius"></span> is <span id="out-area"></span>';
 
@@ -286,7 +288,6 @@ function updateHighlight() {
   nextBtn.disabled = current >= steps;
 }
 
-
 nextBtn.addEventListener("click", () => {
   if (current < steps) {
     current++;
@@ -300,6 +301,5 @@ backBtn.addEventListener("click", () => {
     updateHighlight();
   }
 });
-
 
 updateHighlight();

@@ -23,28 +23,44 @@ const eqOp = document.getElementById("eq-op");
 // output
 const out1 = document.getElementById("ou1");
 
-// all memory items 
+// explanation box
+const explanationBox = document.getElementById("memory-explanation");
+
+const explanations = [
+  // steps
+  // -1 = before start
+  // 0  = declare radius
+  // 1  = declare area
+  // 2  = radius = 20
+  // 3  = start compute (move radius/radius/pi into calc row)
+  // 4  = show result in calc row
+  // 5  = store area into memory
+  // 6  = println line highlighted (no movement yet)
+  // 7  = print output (move radius + area into output)
+  "click next to begin",
+  "declare radius",
+  "declare area",
+  "radius = 20",
+  "start compute",
+  "show result in calc row",
+  "store area into memory",
+  "print line highlighted",
+  "print output",
+];
+
+function updateExplanation() {
+  explanationBox.textContent = explanations[current] || "";
+}
+
+// all memory items
 const memItems = document.querySelectorAll(".mem-item");
 
 const RADIUS_VAL = 20;
 const PI_VAL = 3.14159;
 const AREA_VAL = (RADIUS_VAL * RADIUS_VAL * PI_VAL).toFixed(3); // 1256.636
 
-// steps
-// -1 = before start
-// 0  = declare radius
-// 1  = declare area
-// 2  = radius = 20
-// 3  = start compute (move radius/radius/pi into calc row)
-// 4  = show result in calc row
-// 5  = store area into memory
-// 6  = println line highlighted (no movement yet)
-// 7  = print output (move radius + area into output)
 const steps = 7;
 let current = -1;
-
-
-
 
 function animateToMemory(sourceElement, targetElement, finalValue) {
   const rectStart = sourceElement.getBoundingClientRect();
@@ -72,9 +88,6 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
   });
 }
 
-
-
-
 function getHLine(step) {
   if (step < 0) return -1;
 
@@ -91,10 +104,9 @@ function getHLine(step) {
   return 6;
 }
 
-
-
-
 function updateHighlight() {
+  // Sync memory explanation box with current step
+  explanationBox.textContent = explanations[current + 1] || "";
   // highlight
   lines.forEach((line) => line.classList.remove("highlight"));
   const hLine = getHLine(current);
@@ -136,12 +148,13 @@ function updateHighlight() {
     valResult.innerText = "";
   }
 
-
-
-
   // step 2: animate 20 into radius
   if (current === 2 && memRadius.innerText === "") {
-    animateToMemory(document.getElementById("val-radius"), memRadius, String(RADIUS_VAL));
+    animateToMemory(
+      document.getElementById("val-radius"),
+      memRadius,
+      String(RADIUS_VAL),
+    );
   }
 
   // step 3-5: compute window
@@ -156,7 +169,12 @@ function updateHighlight() {
     mul2.style.display = "flex";
 
     // entering compute: animate values down once
-    if (current === 3 && numR1.innerText === "" && numR2.innerText === "" && numPi.innerText === "") {
+    if (
+      current === 3 &&
+      numR1.innerText === "" &&
+      numR2.innerText === "" &&
+      numPi.innerText === ""
+    ) {
       // ensure radius is present if user jumped weirdly
       if (memRadius.innerText === "") memRadius.innerText = String(RADIUS_VAL);
 
@@ -170,15 +188,12 @@ function updateHighlight() {
     }
   }
 
-
-
   // step 4: show result
   if (current === 4) {
     eqOp.style.display = "flex";
     valResult.style.display = "flex";
     valResult.innerText = AREA_VAL;
   }
-
 
   // step 5: store area into memory
   if (current === 5 && memArea.innerText === "") {
@@ -187,7 +202,6 @@ function updateHighlight() {
     valResult.innerText = AREA_VAL;
     animateToMemory(valResult, memArea, AREA_VAL);
   }
-
 
   // step 7: print output
   if (current === 7 && out1.innerHTML === "") {
@@ -205,10 +219,9 @@ function updateHighlight() {
     animateToMemory(memArea, outArea, AREA_VAL);
   }
 
-  backBtn.disabled = current <= 0;
+  backBtn.disabled = current <= -1;
   nextBtn.disabled = current >= steps;
 }
-
 
 nextBtn.addEventListener("click", () => {
   if (current < steps) {

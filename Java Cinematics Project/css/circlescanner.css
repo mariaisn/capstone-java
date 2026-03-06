@@ -1,6 +1,14 @@
+/* Gold logo styling for header */
+.logo-gold {
+  height: 70px;
+  vertical-align: middle;
+  margin-right: 24px;
+  filter: drop-shadow(0 0 10px gold);
+}
 body {
   font-family: Arial, sans-serif;
-  background-color: darkred;
+  background: linear-gradient(to bottom, darkred, black);
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -49,8 +57,10 @@ body {
 }
 
 .a1 {
+  background-color: darkred;
   grid-area: a1;
   background-color: darkred;
+  background: linear-gradient(to bottom, darkred, black);
 }
 
 .b1 {
@@ -99,8 +109,6 @@ body {
   background-color: rgb(255, 251, 6);
 }
 
-
-
 /* memory */
 .memory-content {
   display: flex;
@@ -123,7 +131,7 @@ body {
   display: none; /* IMPORTANT */
 }
 
-.mem-square{
+.mem-square {
   width: 60px;
   height: 60px;
   border: 2px solid black;
@@ -143,21 +151,20 @@ body {
   /* make long values shrink */
   font-family: Consolas, monospace;
   font-weight: 700;
-  font-size: 16px;           /* base size */
+  font-size: 16px; /* base size */
   line-height: 1;
 }
 
-
 #mem-area,
-#val-result{
+#val-result {
   width: auto;
   min-width: 60px;
   padding: 0 10px;
 }
 
-#mem-radius{
+#mem-radius {
   width: auto;
-  min-width: 60px; 
+  min-width: 60px;
 }
 
 .mem-label {
@@ -197,8 +204,6 @@ body {
   height: 18px;
 }
 
-
-
 .console-row {
   display: flex;
   align-items: center;
@@ -211,4 +216,16 @@ body {
   width: 140px;
   padding: 6px 8px;
   font-family: Consolas, monospace;
+}
+
+.memory-explanation {
+  background: #f8f8d8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  min-height: 40px;
+  font-size: 1.1em;
+  color: #333;
+  text-align: center;
 }

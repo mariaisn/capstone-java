@@ -1,4 +1,4 @@
-// select all lines
+// select all spans
 const lines = document.querySelectorAll("#high span");
 
 // button

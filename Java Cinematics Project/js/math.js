@@ -7,16 +7,22 @@ const backBtn = document.getElementById("back");
 
 const memX = document.getElementById("mem-x");
 const memY = document.getElementById("mem-y");
+const memX1 = document.getElementById("mem-x1");
+const memY1 = document.getElementById("mem-y1");
 
 const memADD = document.getElementById("mem-add");
 const memSub = document.getElementById("mem-sub");
 const memMul = document.getElementById("mem-mul");
 const memDiv = document.getElementById("mem-div");
 const memRem = document.getElementById("mem-rem");
+const memDiv2 = document.getElementById("mem-div2");
 
 const numX = document.getElementById("mem-num-x");
 const numY = document.getElementById("mem-num-y");
 const numSum = document.getElementById("val-sum");
+const numX1 = document.getElementById("mem-num-x1");
+const numY1 = document.getElementById("mem-num-y1");
+const numSum2 = document.getElementById("val-sum2");
 
 //output variables
 const out1 = document.getElementById("ou1");
@@ -34,12 +40,57 @@ const minuOp = document.getElementById("minus-op");
 const multOp = document.getElementById("multi-op");
 const diviOp = document.getElementById("divi-op");
 const remOp = document.getElementById("rem-op");
+const diviOp2 = document.getElementById("divi-op2");
 
 const equalOp = document.getElementById("equal-op");
+const equalOp2 = document.getElementById("equal-op2");
 
 //start page with nopthing highlighted
 const steps = 38;
 let current = -1;
+
+const memoryExplanation = document.getElementById("memory-explanation");
+const stepMessages = [
+  "Declare x",
+  "Assign 13 to x",
+  "Declare y",
+  "Assign 5 to y",
+  "Declare add",
+  "Add x and y",
+  "Calculate Sum",
+  "Assign 18 to add",
+  "Print add",
+  "Declare sub",
+  "Subtract x and y",
+  "Calculate Difference",
+  "Assign 8 to sub",
+  "Print sub",
+  "Declare mul",
+  "Multiply x and y",
+  "Calculate Multiplication",
+  "Assign 65 to mul",
+  "Print Mul",
+  "Declare div",
+  "Divide x and y",
+  "Calculate Division",
+  "Assign 2 to div",
+  "Print div",
+  "Declare rem",
+  "Get Remainder of x and y",
+  "Calculate Remainder",
+  "Assign 3 to rem",
+  "Print rem",
+  "Declare double x1",
+  "Assign 13.0 to x1",
+  "Declare double y1",
+  "Assign 5.0 to y1",
+  "Declare div2",
+  "Divide x1 and y1",
+  "Calculate Division",
+  "Assign 2.6 to div2",
+  "Print div2",
+  "Done!",
+];
 
 function animateToMemory(sourceElement, targetElement, finalValue) {
   const rectStart = sourceElement.getBoundingClientRect();
@@ -103,9 +154,12 @@ function updateHighlight() {
   }
 
   memItems.forEach((item) => (item.style.display = "none"));
+  memoryExplanation.style.display = "none";
+
   // step 0 declares x
   if (current >= 0) {
     memItems[0].style.display = "flex";
+    memoryExplanation.style.display = "flex";
   }
 
   // step 2 declares y
@@ -148,6 +202,11 @@ function updateHighlight() {
     numX.style.display = "flex";
     numY.style.display = "flex";
   }
+  //bring x1 and y1 down
+  if (current >= 34 && current <= 36) {
+    numX1.style.display = "flex";
+    numY1.style.display = "flex";
+  }
 
   if (
     (current >= 6 && current <= 7) ||
@@ -158,6 +217,11 @@ function updateHighlight() {
   ) {
     numX.innerText = "13";
     numY.innerText = "5";
+  }
+
+  if (current >= 35 && current <= 36) {
+    numX1.innerText = "13.0";
+    numY1.innerText = "5.0";
   }
 
   // clears values when going backwards
@@ -178,15 +242,29 @@ function updateHighlight() {
     numY.innerText = "";
   }
 
+  if (!(current >= 34 && current <= 36)) {
+    numX1.innerText = "";
+    numY1.innerText = "";
+  }
+
   if (current < 7) memADD.innerText = "";
   if (current < 12) memSub.innerText = "";
   if (current < 17) memMul.innerText = "";
   if (current < 22) memDiv.innerText = "";
   if (current < 27) memRem.innerText = "";
 
-  if (current < 8) {
-    out1.style.display = "none";
-    out1.innerText = "";
+  if (current < 36) memDiv2.innerText = "";
+
+  if (current >= 29) {
+    memItems[10].style.display = "flex";
+  }
+
+  if (current >= 31) {
+    memItems[11].style.display = "flex";
+  }
+
+  if (current >= 33) {
+    memItems[12].style.display = "flex";
   }
 
   // animate going forward
@@ -198,6 +276,15 @@ function updateHighlight() {
   if (current === 3 && memY.innerText === "") {
     animateToMemory(document.getElementById("val-y"), memY, "5");
   }
+  //initiate x1
+  if (current === 30 && memX1.innerText === "") {
+    animateToMemory(document.getElementById("val-x1"), memX1, "13.0");
+  }
+  //initiate y1
+  if (current === 32 && memY1.innerText === "") {
+    animateToMemory(document.getElementById("val-y1"), memY1, "5.0");
+  }
+
   //animate x and y down
   if (
     (current === 5 ||
@@ -210,6 +297,11 @@ function updateHighlight() {
   ) {
     animateToMemory(memX, numX, "13");
     animateToMemory(memY, numY, "5");
+  }
+
+  if (current === 34 && numX1.innerText === "" && numY1.innerText === "") {
+    animateToMemory(memX1, numX1, "13.0");
+    animateToMemory(memY1, numY1, "5.0");
   }
 
   //show sum
@@ -238,6 +330,11 @@ function updateHighlight() {
     numSum.innerText = "3";
   }
 
+  if (current >= 35 && current <= 36) {
+    numSum2.style.display = "flex";
+    numSum2.innerText = "2.6";
+  }
+
   // initiates add
   if (current === 7 && memADD.innerText === "") {
     animateToMemory(numSum, memADD, "18");
@@ -254,37 +351,65 @@ function updateHighlight() {
   if (current === 27 && memRem.innerText === "") {
     animateToMemory(numSum, memRem, "3");
   }
+  if (current == 36 && memDiv2.innerText === "") {
+    animateToMemory(numSum2, memDiv2, "2.6");
+  }
+
+  if (current < 8) {
+    out1.style.display = "none";
+    out1.innerText = "";
+  }
+  if (current < 13) {
+    out2.style.display = "none";
+    out2.innerText = "";
+  }
+  if (current < 18) {
+    out3.style.display = "none";
+    out3.innerText = "";
+  }
+  if (current < 23) {
+    out4.style.display = "none";
+    out4.innerText = "";
+  }
+  if (current < 28) {
+    out5.style.display = "none";
+    out5.innerText = "";
+  }
+  if (current < 37) {
+    out6.style.display = "none";
+    out6.innerText = "";
+  }
 
   //animate add to console
   if (current === 8 && out1.innerText === "") {
     numSum.style.display = "none";
     out1.style.display = "flex";
-    out1.innerText = "18";
     animateToMemory(memADD, out1, "18");
   }
   if (current === 13 && out2.innerText === "") {
     numSum.style.display = "none";
     out2.style.display = "flex";
-    out2.innerText = "18";
     animateToMemory(memADD, out2, "8");
   }
   if (current === 18 && out3.innerText === "") {
     numSum.style.display = "none";
     out3.style.display = "flex";
-    out3.innerText = "18";
     animateToMemory(memADD, out3, "65");
   }
   if (current === 23 && out4.innerText === "") {
     numSum.style.display = "none";
     out4.style.display = "flex";
-    out4.innerText = "18";
     animateToMemory(memADD, out4, "2");
   }
   if (current === 28 && out5.innerText === "") {
     numSum.style.display = "none";
     out5.style.display = "flex";
-    out5.innerText = "18";
     animateToMemory(memADD, out5, "3");
+  }
+  if (current === 37 && out6.innerText === "") {
+    numSum2.style.display = "none";
+    out6.style.display = "flex";
+    animateToMemory(memADD, out6, "2.6");
   }
 
   // hide operators
@@ -293,7 +418,9 @@ function updateHighlight() {
   multOp.style.display = "none";
   diviOp.style.display = "none";
   remOp.style.display = "none";
+  diviOp2.style.display = "none";
 
+  equalOp2.style.display = "none";
   equalOp.style.display = "none";
 
   // show addition visuals when calculating add
@@ -317,6 +444,9 @@ function updateHighlight() {
   if (current >= 25 && current <= 27) {
     remOp.style.display = "block";
   }
+  if (current >= 34 && current <= 36) {
+    diviOp2.style.display = "block";
+  }
 
   if (
     (current >= 6 && current <= 7) ||
@@ -326,6 +456,10 @@ function updateHighlight() {
     (current >= 26 && current <= 27)
   ) {
     equalOp.style.display = "flex";
+  }
+
+  if (current >= 35 && current <= 36) {
+    equalOp2.style.display = "flex";
   }
 
   backBtn.disabled = current <= 0;
@@ -349,49 +483,6 @@ backBtn.addEventListener("click", () => {
 });
 
 updateHighlight();
-
-const memoryExplanation = document.getElementById("memory-explanation");
-const stepMessages = [
-  "Start: Declare x",
-  "Declare x = 13",
-  "Declare y = 5",
-  "y is set",
-  "Add x + y",
-  "Sum calculated",
-  "Show sum",
-  "Sum stored",
-  "Print sum",
-  "Subtract y from x",
-  "Difference calculated",
-  "Show difference",
-  "Difference stored",
-  "Print difference",
-  "Multiply x * y",
-  "Product calculated",
-  "Show product",
-  "Product stored",
-  "Print product",
-  "Divide x / y",
-  "Quotient calculated",
-  "Show quotient",
-  "Quotient stored",
-  "Print quotient",
-  "Remainder x % y",
-  "Remainder calculated",
-  "Show remainder",
-  "Remainder stored",
-  "Print remainder",
-  "Declare double x1",
-  "x1 is set",
-  "Declare double y1",
-  "y1 is set",
-  "Divide x1 / y1",
-  "Double quotient calculated",
-  "Show double quotient",
-  "Double quotient stored",
-  "Print double quotient",
-  "Done!",
-];
 
 function updateMemoryExplanation() {
   if (current < 0) {

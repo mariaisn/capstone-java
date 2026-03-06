@@ -1,6 +1,14 @@
+/* Gold logo styling for header */
+.logo-gold {
+  height: 70px;
+  vertical-align: middle;
+  margin-right: 24px;
+  filter: drop-shadow(0 0 10px gold);
+}
 body {
   font-family: Arial, sans-serif;
-  background-color: darkred;
+  background: linear-gradient(to bottom, darkred, black);
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -37,6 +45,12 @@ body {
 }
 
 .container {
+  /* Section background for header */
+  .a1 {
+    background: linear-gradient(to bottom, darkred, black);
+    grid-area: a1;
+    background: linear-gradient(to bottom, darkred, black);
+  }
   display: grid;
   row-gap: 10px;
   column-gap: 10px;
@@ -49,20 +63,19 @@ body {
 }
 
 .a1 {
+  background-color: darkred;
+  background-color: darkred;
   grid-area: a1;
   background-color: darkred;
 }
-
 .b1 {
   grid-area: b1;
   background-color: white;
 }
-
 .b2 {
   grid-area: b2;
   background-color: white;
 }
-
 .c1 {
   grid-area: c1;
   background-color: white;
@@ -86,11 +99,9 @@ body {
 .ca {
   grid-row: 1;
 }
-
 .cb {
   grid-row: 2;
 }
-
 .cc {
   grid-row: 3;
 }
@@ -159,18 +170,4 @@ body {
   font-size: 1.1em;
   color: #333;
   text-align: center;
-}
-
-.viz .cb {
-  overflow: hidden;
-}
-
-.out-box > div {
-  font-family: Consolas, monospace;
-}
-
-.blankspace {
-  display: inline-block;
-  width: 60px;
-  height: 18px;
 }

@@ -1,4 +1,4 @@
-// select all lines
+// select all spans
 const lines = document.querySelectorAll("#high span");
 
 // buttons
@@ -35,32 +35,36 @@ const steps = 24;
 let current = -1;
 const memoryExplanation = document.getElementById("memory-explanation");
 const stepMessages = [
-  "Click Next to begin",
-  "Declare int x and set x = 5",
-  "Move x's value (5) to x",
-  "Declare int y and set y = 6",
-  "Move y's value (6) to y",
-  "Check condition: x == y",
-  "Show comparison result (false)",
-  "Store result in eql",
-  "Print eql (false)",
-  "Check condition: x <= y",
-  "Show comparison result (true)",
-  "Store result in lEql",
-  "Print lEql (true)",
-  "Check condition: x >= y",
-  "Show comparison result (false)",
-  "Store result in mEql",
-  "Print mEql (false)",
-  "Check condition: x != y",
-  "Show comparison result (true)",
-  "Store result in nEql",
-  "Print nEql (true)",
+  "declare x",
+  "assign x",
+  "declare y",
+  "assign y",
+  "declare and assign eql",
+  "compare x and y",
+  "compare x and y",
+  "store result in eql",
+  "print eql",
+  "declare and assign lEql",
+  "compare x and y",
+  "compare x and y",
+  "store result in lEql",
+  "print lEql",
+  "declare and assign mEql",
+  "compare x and y",
+  "compare x and y",
+  "store result in mEql",
+  "print mEql",
+  "declare and assign nEql",
+  "compare x and y",
+  "compare x and y",
+  "store result in nEql",
+  "print nEql",
   "Done!",
 ];
+
 function updateMemoryExplanation() {
   if (current < 0) {
-    memoryExplanation.innerText = stepMessages[0];
+    memoryExplanation.innerText = "Click Next to begin";
   } else if (current < stepMessages.length) {
     memoryExplanation.innerText = stepMessages[current];
   } else {

@@ -18,12 +18,12 @@ const memItems = document.querySelectorAll(".mem-item");
 
 const memoryExplanation = document.getElementById("memory-explanation");
 const stepMessages = [
-  "Click Next to begin",
-  "Declare int x and set x = 7",
-  "Move x's value (7) to  x",
-  "Check condition: if x == 7",
-  "Store result (True) in  'condition'",
-  "Print x because condition is True",
+  "Declare x",
+  "Assign 7 to x",
+  "Check Condition",
+  "Condition is true",
+  "Move into statement",
+  "Print x",
 ];
 
 let current = -1;
@@ -70,6 +70,7 @@ function updateHighlight() {
   lines.forEach((line) => line.classList.remove("highlight"));
 
   memItems.forEach((item) => (item.style.display = "none"));
+  memoryExplanation.style.display = "none";
 
   //call to get proper line to highlight into hLine
   const hLine = getHLine(current);
@@ -103,18 +104,22 @@ function updateHighlight() {
     numC.innerText = "";
   }
 
-  // Show memory items progressively
-  if (current >= 0)
-    memItems[0].style.display = "flex"; // x
-  else memItems[0].style.display = "none";
-  if (current >= 2)
-    memItems[1].style.display = "flex"; // c
-  else memItems[1].style.display = "none";
-  if (current >= 2)
-    memItems[1].style.display = "flex"; // c
-  else memItems[1].style.display = "none";
+  //step 0
+  if (current >= 0) {
+    memItems[0].style.display = "flex";
+    memoryExplanation.style.display = "flex";
+  }
+
+  if (current === 1 && memX.innerText === "") {
+    animateToMemory(document.getElementById("val-x"), memX, "7");
+  }
+
+  if (current >= 2) {
+    memItems[1].style.display = "flex";
+  }
   if (current === 2 && numC.innerText === "") {
-    animateToMemory(document.getElementById("val-c"), numC, "True");
+    animateToMemory(document.getElementById("val-c"), numC, "7");
+    animateToMemory(memX, numX, "7");
   }
 
   if (current >= 3 && current <= 4) {
