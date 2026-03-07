@@ -55,12 +55,12 @@ const PI_VAL = 3.14159;
 // 0  = declare radius
 // 1  = declare area
 // 2  = create Scanner
-// 3  = prompt (show console row here)
-// 4  = radius = input.nextInt() (convert decimals -> int here, then lock input after this step)
+// 3  = prompt
+// 4  = radius = input.nextInt()
 // 5  = start compute
 // 6  = show result
 // 7  = store area
-// 8  = highlight println line and print output
+// 8  = print output
 const steps = 8;
 let current = -1;
 
@@ -108,17 +108,24 @@ function getArea(RADIUS_VAL) {
 }
 
 function setConsoleVisibility() {
-  // show starting at prompt line and onward
-  const shouldShow = current >= 3;
-  consoleRow.style.display = shouldShow ? "flex" : "none";
+  // show prompt row starting at the prompt line
+  const shouldShowRow = current >= 3;
+  consoleRow.style.display = shouldShowRow ? "flex" : "none";
+
+  // show the input box only when reaching input.nextInt()
+  radiusInput.style.visibility = current >= 4 ? "visible" : "hidden";
 }
 
 function setInputLock() {
-  // editable only at steps 3 only/when input box is available
-  const editable = current === 3;
+  // editable only when input.nextInt() is highlighted
+  const editable = current === 4;
 
   radiusInput.readOnly = !editable;
   radiusInput.style.pointerEvents = editable ? "auto" : "none";
+
+  if (editable) {
+    radiusInput.focus();
+  }
 }
 
 function animateToMemory(sourceElement, targetElement, finalValue) {
@@ -168,6 +175,7 @@ function getHLine(step) {
 function updateHighlight() {
   // Sync memory explanation box with current step
   explanationBox.textContent = explanations[current + 1] || "";
+
   // show/hide console row and lock/unlock input based on step
   setConsoleVisibility();
   setInputLock();
@@ -197,7 +205,7 @@ function updateHighlight() {
   eqOp.style.display = "none";
 
   // clear output when going backwards
-if (current < 8) out1.innerHTML = "";
+  if (current < 8) out1.innerHTML = "";
 
   // show squares when declared
   if (current >= 0) memItems[0].style.display = "flex"; // radius
@@ -215,10 +223,14 @@ if (current < 8) out1.innerHTML = "";
     valResult.innerText = "";
   }
 
-  // step 4: "read" input (convert decimals into integer), then animate into memory
-  if (current === 4 && memRadius.innerText === "") {
-    const fixedInt = String(getRadius()); // 4.7 -> 4
-    radiusInput.value = fixedInt; // lock in what was read
+  // step 4: only move into memory if user actually typed something
+  if (
+    current === 4 &&
+    memRadius.innerText === "" &&
+    radiusInput.value.trim() !== ""
+  ) {
+    const fixedInt = String(getRadius());
+    radiusInput.value = fixedInt;
     animateToMemory(radiusInput, memRadius, fixedInt);
   }
 
@@ -240,7 +252,6 @@ if (current < 8) out1.innerHTML = "";
       numR2.innerText === "" &&
       numPi.innerText === ""
     ) {
-      // ensure radius is present if user jumped weirdly
       if (memRadius.innerText === "") memRadius.innerText = String(RADIUS_VAL);
 
       animateToMemory(memRadius, numR1, String(RADIUS_VAL));
@@ -276,7 +287,6 @@ if (current < 8) out1.innerHTML = "";
     const outRadius = document.getElementById("out-radius");
     const outArea = document.getElementById("out-area");
 
-    // ensure memory values exist
     if (memRadius.innerText === "") memRadius.innerText = String(RADIUS_VAL);
     if (memArea.innerText === "") memArea.innerText = AREA_VAL;
 

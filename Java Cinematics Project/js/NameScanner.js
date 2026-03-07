@@ -309,4 +309,5 @@ backBtn.addEventListener("click", () => {
   }
 });
 
+
 updateHighlight();
