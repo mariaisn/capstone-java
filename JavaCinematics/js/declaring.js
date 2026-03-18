@@ -10,6 +10,7 @@ const memY = document.getElementById("mem-y");
 const memC = document.getElementById("mem-c");
 const memD = document.getElementById("mem-d");
 const memE = document.getElementById("mem-e");
+const memDChars = document.getElementById("mem-d-chars");
 const numX = document.getElementById("mem-num-x");
 const numY = document.getElementById("mem-num-y");
 const numADD = document.getElementById("val-add");
@@ -20,6 +21,26 @@ const out4 = document.getElementById("ou4");
 const out5 = document.getElementById("ou5");
 
 const memItems = document.querySelectorAll(".mem-item");
+const memoryExplanation = document.getElementById("memory-explanation");
+const memDStoredValue = "Number 68";
+
+const stepMessages = [
+  "Declare int a",
+  "Assign 68 to a",
+  "Print a",
+  "Declare double b",
+  "Assign 68.0 to b",
+  "Print b",
+  "Declare char c",
+  "Assign D to c",
+  "Print c",
+  "Declare String d",
+  "Assign Number 68 to d",
+  "Print d",
+  "Declare boolean e",
+  "Assign true to e",
+  "Print e",
+];
 
 //MATH SYMBOLS
 const plusOp = document.getElementById("plus-op");
@@ -29,25 +50,39 @@ const equalOp = document.getElementById("equal-op");
 const steps = 15;
 let current = -1;
 
-const memoryExplanation = document.getElementById("memory-explanation");
-const stepMessages = [
-  "Click Next to begin",
-  "Declare integer variable a",
-  "Moving a's value (68) to memory",
-  "Print a's value (68)",
-  "Declare double variable b",
-  "Moving b's value (68.0) to memory",
-  "Print b's value (68.0)",
-  "Declare char variable c",
-  "Moving c's value ('68') to memory",
-  "Print c's value ('68')",
-  "Declare string variable d",
-  'Moving d\'s value ("Number 68") to memory',
-  'Print d\'s value ("Number 68")',
-  "Declare boolean variable e",
-  "Moving e's value (true) to memory",
-  "Print e's value (true)",
-];
+function createCharDisplay(container, str) {
+  container.innerHTML = "";
+
+  const indexRow = document.createElement("div");
+  indexRow.className = "char-row";
+
+  for (let i = 0; i < str.length; i++) {
+    const indexBox = document.createElement("div");
+    indexBox.className = "char-index";
+    indexBox.innerText = i;
+    indexRow.appendChild(indexBox);
+  }
+
+  container.appendChild(indexRow);
+
+  const charRow = document.createElement("div");
+  charRow.className = "char-row";
+
+  for (let i = 0; i < str.length; i++) {
+    const charBox = document.createElement("div");
+    charBox.className = "char-box";
+    charBox.innerText = str[i];
+    charRow.appendChild(charBox);
+  }
+
+  container.appendChild(charRow);
+}
+
+function setMemDValue(displayValue, storedValue) {
+  memD.innerText = displayValue;
+  memD.dataset.storedValue = storedValue;
+  createCharDisplay(memDChars, storedValue);
+}
 
 function animateToMemory(sourceElement, targetElement, finalValue) {
   const rectStart = sourceElement.getBoundingClientRect();
@@ -70,7 +105,11 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
   });
 
   flying.addEventListener("transitionend", () => {
-    targetElement.innerText = finalValue;
+    if (targetElement === memD) {
+      setMemDValue("Ref", finalValue);
+    } else {
+      targetElement.innerText = finalValue;
+    }
     document.body.removeChild(flying);
   });
 }
@@ -87,6 +126,18 @@ function getHLine(step) {
   return step + temp;
 }
 
+function updateMemoryExplanation() {
+  if (!memoryExplanation) return;
+
+  if (current < 0) {
+    memoryExplanation.innerText = "Click Next to begin!";
+  } else if (current < stepMessages.length) {
+    memoryExplanation.innerText = stepMessages[current];
+  } else {
+    memoryExplanation.innerText = "Done!";
+  }
+}
+
 function updateHighlight() {
   lines.forEach((line) => line.classList.remove("highlight"));
 
@@ -98,27 +149,27 @@ function updateHighlight() {
     lines[hLine].classList.add("highlight");
   }
 
-  memItems.forEach((item) => (item.style.display = "none"));
+  memItems.forEach((item) => (item.style.visibility = "hidden"));
 
   // step 0 declares x
   if (current >= 0) {
-    memItems[0].style.display = "flex";
+    memItems[0].style.visibility = "visible";
   }
 
   // step 2 declares y
   if (current >= 3) {
-    memItems[1].style.display = "flex";
+    memItems[1].style.visibility = "visible";
   }
 
-  // step 4 declares c
+  // step 4 declares add
   if (current >= 6) {
-    memItems[2].style.display = "flex";
+    memItems[2].style.visibility = "visible";
   }
   if (current >= 9) {
-    memItems[3].style.display = "flex";
+    memItems[3].style.visibility = "visible";
   }
   if (current >= 12) {
-    memItems[4].style.display = "flex";
+    memItems[4].style.visibility = "visible";
   }
 
   //bring x and y down
@@ -132,10 +183,20 @@ function updateHighlight() {
   if (current < 5) out2.innerText = "";
   if (current < 7) memC.innerText = "";
   if (current < 8) out3.innerText = "";
-  if (current < 10) memD.innerText = "";
+  if (current < 10) {
+    memD.innerText = "";
+    delete memD.dataset.storedValue;
+    memDChars.innerHTML = "";
+  }
   if (current < 11) out4.innerText = "";
   if (current < 13) memE.innerText = "";
   if (current < 14) out5.innerText = "";
+
+  // keep the numbered character boxes visible from the declaration step onward
+  if (current < 10) memDChars.innerHTML = "";
+  if (current >= 10 && memD.dataset.storedValue && memDChars.innerHTML === "") {
+    createCharDisplay(memDChars, memD.dataset.storedValue);
+  }
 
   // animate going forward
   // initiates x
@@ -151,7 +212,7 @@ function updateHighlight() {
     animateToMemory(document.getElementById("val-c"), memC, "D");
   }
   if (current === 10 && memD.innerText === "") {
-    animateToMemory(document.getElementById("val-d"), memD, "Number 68");
+    animateToMemory(document.getElementById("val-d"), memD, memDStoredValue);
   }
   if (current === 13 && memE.innerText === "") {
     animateToMemory(document.getElementById("val-e"), memE, "True");
@@ -174,10 +235,10 @@ function updateHighlight() {
     animateToMemory(memC, out3, "D");
   }
   if (current === 11 && out4.innerText === "") {
-    animateToMemory(memD, out4, "Number 68");
+    animateToMemory(memD, out4, memDStoredValue);
   }
   if (current === 14 && out5.innerText === "") {
-    animateToMemory(memD, out5, "true");
+    animateToMemory(memE, out5, "true");
   }
 
   // hide operators
@@ -196,23 +257,14 @@ function updateHighlight() {
 
   backBtn.disabled = current <= 0;
   nextBtn.disabled = current >= steps - 1;
-}
 
-function updateMemoryExplanation() {
-  if (current < 0) {
-    memoryExplanation.innerText = stepMessages[0];
-  } else if (current < stepMessages.length) {
-    memoryExplanation.innerText = stepMessages[current];
-  } else {
-    memoryExplanation.innerText = "Done!";
-  }
+  updateMemoryExplanation();
 }
 
 nextBtn.addEventListener("click", () => {
-  if (current < stepMessages.length - 1) {
+  if (current < steps - 1) {
     current++;
     updateHighlight();
-    updateMemoryExplanation();
   }
 });
 
@@ -220,8 +272,7 @@ backBtn.addEventListener("click", () => {
   if (current > 0) {
     current--;
     updateHighlight();
-    updateMemoryExplanation();
   }
 });
 
-updateMemoryExplanation();
+updateHighlight();

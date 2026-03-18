@@ -57,7 +57,7 @@ const outArr = [];
 
 
 
-const steps = 42;
+const steps = 44;
 
 //start page with nopthing highlighted
 //current is the step we are on
@@ -68,6 +68,8 @@ let prev = -1;
 
 const memoryExplanation = document.getElementById("memory-explanation");
 const stepMessages = [
+  "Importing the Scanner Class",
+  "Creating a Scanner Object called in",
   "Declare x",
   "Receive input from user",
   "Assign number to x",
@@ -147,16 +149,16 @@ function getHLine(step) {
 
   // operation highlight windows: [startStep, endStep, spanIndex]
   const ranges = [
-    [1, 2, 1],
-    [4,5,3],
-    [7,9,5],
-    [12,14,8],
-    [17,19,11],
-    [22,24,14],
-    [27,29,17],
-    [32,33,20],
-    [35,36,22],
-    [38,40,24]
+    [3, 4, 3],
+    [6,7,5],
+    [9,11,7],
+    [14,16,10],
+    [19,21,13],
+    [24,26,16],
+    [29,31,19],
+    [34,35,22],
+    [37,38,24],
+    [40,42,26]
   ];
 
     // if inside an operation window, freeze highlight
@@ -166,16 +168,16 @@ function getHLine(step) {
 
     //fix holds
   let temp = 0;
-  if (step > 2) temp = temp - 1;
-  if (step > 5) temp = temp - 1;
-  if (step > 9) temp = temp - 2;
-  if (step > 14) temp = temp - 2;
-  if (step > 19) temp = temp - 2;
-  if (step > 24) temp = temp - 2;
-  if (step > 29) temp = temp - 2;
-  if (step > 33) temp = temp - 1;
-  if (step > 36) temp = temp - 1;
-  if (step > 40) temp = temp - 2;
+  if (step > 4) temp = temp - 1;
+  if (step > 7) temp = temp - 1;
+  if (step > 11) temp = temp - 2;
+  if (step > 16) temp = temp - 2;
+  if (step > 21) temp = temp - 2;
+  if (step > 26) temp = temp - 2;
+  if (step > 31) temp = temp - 2;
+  if (step > 35) temp = temp - 1;
+  if (step > 38) temp = temp - 1;
+  if (step > 42) temp = temp - 2;
 
   return step + temp;
 }
@@ -188,22 +190,22 @@ conIn.addEventListener("keydown", function(e) {
   const source = pushOut(value);
   source.style.color="goldenrod";
 
-  if (current === 1) {
+  if (current === 3) {
     X_VAL = Number(value);
     animateToMemory(source,mem.x,X_VAL);
   }
 
-  if (current === 4) {
+  if (current === 6) {
     Y_VAL = Number(value);
     animateToMemory(source,mem.y,Y_VAL);
   }
 
-  if (current === 32) {
+  if (current === 34) {
     X1_VAL = Number(value);
     animateToMemory(source,mem.x1,X1_VAL);
   }   
 
-  if (current === 35) {
+  if (current === 37) {
     Y1_VAL = Number(value);
     animateToMemory(source,mem.y1,Y1_VAL);
   }
@@ -274,29 +276,45 @@ function updateUI() {
   let tRem= X_VAL%Y_VAL;
   let tDiv2= X1_VAL/Y1_VAL;
 
+   if(current >=0){
+     memoryExplanation.style.display="flex";
+  }
 
-  const inputSteps = [1, 4, 32, 35];
+
+
+  const inputSteps = [3, 6, 34, 37];
 
   if (inputSteps.includes(current)) {
     conIn.style.display = "block";
-    conIn.focus();
+    
+    if (document.activeElement !== conIn) {
+        conIn.focus();
+    }
+
+    conIn.onblur = () => {
+        if (inputSteps.includes(current)) {
+            conIn.focus();
+        }
+    };
   } else {
-    conIn.style.display = "none";
+      conIn.style.display = "none";
+      conIn.onblur = null;
   }
+
 
 
   //delete numbers from variables
   const clVar = [
-    {step: 2, value: mem.x},
-    {step: 5, value: mem.y},
-    {step: 9, value: mem.add},
-    {step: 14, value: mem.sub},
-    {step: 19, value: mem.mul},
-    {step: 24, value: mem.div},
-    {step: 29, value: mem.rem},
-    {step: 33, value: mem.x1},
-    {step: 36, value: mem.y1},
-    {step: 40, value: mem.div2}
+    {step: 4, value: mem.x},
+    {step: 7, value: mem.y},
+    {step: 11, value: mem.add},
+    {step: 16, value: mem.sub},
+    {step: 21, value: mem.mul},
+    {step: 26, value: mem.div},
+    {step: 31, value: mem.rem},
+    {step: 35, value: mem.x1},
+    {step: 38, value: mem.y1},
+    {step: 42, value: mem.div2}
   ];
 
   clVar.forEach(({step, value}) => {
@@ -304,20 +322,18 @@ function updateUI() {
   })
 
 
-
-
   //declare variables
   const declVar = [
-    [0, 0], //x
-    [3,1], //y
-    [6,2], //add
-    [11,3], //sub
-    [16,4], //mul
-    [21,5], //div
-    [26,6], //rem
-    [31,10], //x1
-    [34,11], //y1
-    [37,12] //div2
+    [2, 0], //x
+    [5,1], //y
+    [8,2], //add
+    [13,3], //sub
+    [18,4], //mul
+    [23,5], //div
+    [28,6], //rem
+    [33,10], //x1
+    [36,11], //y1
+    [39,12] //div2
   ]
 
   declVar.forEach(([step, i]) => {
@@ -332,11 +348,11 @@ function updateUI() {
 
   //range by steps where math is happening for x and y
   const mtRanges = [
-    {start: 7, end: 9},
-    {start: 12,end: 14},
-    {start: 17,end: 19},
-    {start: 22,end: 24},
-    {start: 27,end: 29}
+    {start: 9, end: 11},
+    {start: 14,end: 16},
+    {start: 19,end: 21},
+    {start: 24,end: 26},
+    {start: 29,end: 31}
   ];
 
   //check which math range we are in
@@ -373,18 +389,18 @@ function updateUI() {
 
   //bring x1 and y1 down
 
-  if (current >=38 && current <=40) {
+  if (current >=40 && current <=42) {
     num.x1.style.display = "flex";
     num.y1.style.display = "flex";
 
     // if entering the window, animate them down
-    if (current===38) {
+    if (current===40) {
       animateToMemory(mem.x1, num.x1, X1_VAL);
       animateToMemory(mem.y1, num.y1, Y1_VAL);
     }
     else {
       // keep them visible if already in window
-      if (current >= 39 && current <= 40) {
+      if (current >= 41 && current <= 42) {
         num.x1.innerText = X1_VAL;
         num.y1.innerText = Y1_VAL;
       }
@@ -402,11 +418,11 @@ function updateUI() {
 
   //show sum
   const sRanges = [
-    {start: 8, end: 9, cal: tAdd},
-    {start: 13, end: 14, cal: tSub},
-    {start: 18, end: 19, cal: tMul},
-    {start: 23, end: 24, cal: tDiv},
-    {start: 28, end: 29, cal: tRem}
+    {start: 10, end: 11, cal: tAdd},
+    {start: 15, end: 16, cal: tSub},
+    {start: 20, end: 21, cal: tMul},
+    {start: 25, end: 26, cal: tDiv},
+    {start: 30, end: 31, cal: tRem}
   ];
 
   sRanges.forEach(({start, end, cal}) =>{
@@ -416,7 +432,7 @@ function updateUI() {
     }
   })
 
-  if (current >=39 && current <=40){
+  if (current >=41 && current <=42){
     num.sum2.style.display = "flex";
     num.sum2.innerText = tDiv2;
   }
@@ -426,11 +442,11 @@ function updateUI() {
 
   //assign sum to variables
   const asVar = [
-    {step: 9, to: "add", value: tAdd},
-    {step: 14, to: "sub", value: tSub},
-    {step: 19, to: "mul", value: tMul},
-    {step: 24, to: "div", value: tDiv},
-    {step: 29, to: "rem", value: tRem}
+    {step: 11, to: "add", value: tAdd},
+    {step: 16, to: "sub", value: tSub},
+    {step: 21, to: "mul", value: tMul},
+    {step: 26, to: "div", value: tDiv},
+    {step: 31, to: "rem", value: tRem}
   ];
 
   asVar.forEach(({step, to, value}) => {
@@ -440,7 +456,7 @@ function updateUI() {
     }
   })
 
-  if (current === 40 && mem.div2.innerText === "") {
+  if (current === 42 && mem.div2.innerText === "") {
     animateToMemory(num.sum2, mem.div2, tDiv2);
   };
 
@@ -452,12 +468,12 @@ function updateUI() {
 
   // show math operators
   const mOpp = [
-    {start: 7, end: 9, sign:"plus"},
-    {start: 12, end: 14, sign:"min"},
-    {start: 17, end: 19, sign:"mul"},
-    {start: 22, end: 24, sign:"divi"},
-    {start: 27, end: 29, sign:"rem"},
-    {start:38, end:40, sign:"divi2"}
+    {start: 9, end: 11, sign:"plus"},
+    {start: 14, end: 16, sign:"min"},
+    {start: 19, end: 21, sign:"mul"},
+    {start: 24, end: 26, sign:"divi"},
+    {start: 29, end: 31, sign:"rem"},
+    {start: 40, end: 42, sign:"divi2"}
   ];
 
   mOpp.forEach(({start, end, sign}) => {
@@ -467,16 +483,16 @@ function updateUI() {
   });
 
   if (
-    (current >= 8 && current <= 9) ||
-    (current >= 13 && current <= 14) ||
-    (current >= 18 && current <= 19) ||
-    (current >= 23 && current <= 24) ||
-    (current >= 28 && current <= 29)
+    (current >= 10 && current <= 11) ||
+    (current >= 15 && current <= 16) ||
+    (current >= 20 && current <= 21) ||
+    (current >= 25 && current <= 26) ||
+    (current >= 30 && current <= 31)
   ) {
     opp.equal.style.display = "flex";
   }
 
-  if(current >= 39 && current <= 40){
+  if(current >= 41 && current <= 42){
     opp.equal2.style.display="flex";
   }
 
@@ -485,15 +501,15 @@ function updateUI() {
 
   //output
 
-  // step 1 x pushed to output
-  // step 4 y pushed to output
+  // step 3 x pushed to output
+  // step 6 y pushed to output
 
   const outPrint = [
-    {step: 10, value: tAdd, from: "add"},
-    {step: 15, value: tSub, from: "sub"},
-    {step: 20, value: tMul, from: "mul"},
-    {step: 25, value: tDiv, from: "div"},
-    {step: 30, value: tRem, from: "rem"}
+    {step: 12, value: tAdd, from: "add"},
+    {step: 17, value: tSub, from: "sub"},
+    {step: 22, value: tMul, from: "mul"},
+    {step: 27, value: tDiv, from: "div"},
+    {step: 32, value: tRem, from: "rem"}
   ];
 
   outPrint.forEach(({step, value, from}) => {
@@ -504,17 +520,17 @@ function updateUI() {
     }
   })
 
-  //step 32 x1 pushed to output
-  //step 35 y1 pushed to output
+  //step 34 x1 pushed to output
+  //step 37 y1 pushed to output
 
-  if (current === 41 && prev<41) {
+  if (current === 43 && prev<43) {
     num.sum2.style.display = "none";
     const x = pushOut(tDiv2)
     animateToMemory(mem.div2, x, tDiv2);
   }
 
   //delete output
-  const delOut = [2, 5, 10, 15, 20, 25, 30, 33, 36, 41];
+  const delOut = [4, 7, 12, 17, 22, 27, 32, 35, 38, 43];
 
   delOut.forEach(row => {
     if(current < row && prev >= row) popOut();

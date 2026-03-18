@@ -35,35 +35,42 @@ const steps = 24;
 let current = -1;
 const memoryExplanation = document.getElementById("memory-explanation");
 const stepMessages = [
-  "Click Next to begin",
-  "Declare int x and set x = 5",
-  "Move x's value (5) to x",
-  "Declare int y and set y = 6",
-  "Move y's value (6) to y",
-  "Check condition: x == y",
-  "Show comparison result (false)",
-  "Store result in eql",
-  "Print eql (false)",
-  "Check condition: x <= y",
-  "Show comparison result (true)",
-  "Store result in lEql",
-  "Print lEql (true)",
-  "Check condition: x >= y",
-  "Show comparison result (false)",
-  "Store result in mEql",
-  "Print mEql (false)",
-  "Check condition: x != y",
-  "Show comparison result (true)",
-  "Store result in nEql",
-  "Print nEql (true)",
-  "Done!",
+  "Declare int x",
+  "Assign 5 to x",
+  "Declare int y",
+  "Assign 6 to y",
+  "Declare boolean eql",
+  "Compare x == y",
+  "Result of x == y is false",
+  "Store false in eql",
+  "Print eql",
+  "Declare boolean lEql",
+  "Compare x <= y",
+  "Result of x <= y is true",
+  "Store true in lEql",
+  "Print lEql",
+  "Declare boolean mEql",
+  "Compare x >= y",
+  "Result of x >= y is false",
+  "Store false in mEql",
+  "Print mEql",
+  "Declare boolean nEql",
+  "Compare x != y",
+  "Result of x != y is true",
+  "Store true in nEql",
+  "Print nEql",
 ];
 function updateMemoryExplanation() {
+  if (!memoryExplanation) return;
+
   if (current < 0) {
-    memoryExplanation.innerText = stepMessages[0];
+    memoryExplanation.style.display = "none";
+    memoryExplanation.innerText = "";
   } else if (current < stepMessages.length) {
+    memoryExplanation.style.display = "flex";
     memoryExplanation.innerText = stepMessages[current];
   } else {
+    memoryExplanation.style.display = "flex";
     memoryExplanation.innerText = "Done!";
   }
 }
@@ -280,13 +287,13 @@ function updateHighlight() {
 
   backBtn.disabled = current <= 0;
   nextBtn.disabled = current >= steps - 1;
+  updateMemoryExplanation();
 }
 
 nextBtn.addEventListener("click", () => {
   if (current < steps - 1) {
     current++;
     updateHighlight();
-    updateMemoryExplanation();
   }
 });
 
@@ -294,9 +301,7 @@ backBtn.addEventListener("click", () => {
   if (current > 0) {
     current--;
     updateHighlight();
-    updateMemoryExplanation();
   }
 });
 
 updateHighlight();
-updateMemoryExplanation();

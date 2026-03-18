@@ -67,93 +67,89 @@ function getHLine(step) {
 }
 
 function updateHighlight() {
-    lines.forEach(line => line.classList.remove("highlight"));
+  lines.forEach((line) => line.classList.remove("highlight"));
 
-    memItems.forEach(item => item.style.display="none");
-    memoryExplanation.style.display ="none";
+  memItems.forEach((item) => (item.style.display = "none"));
+  memoryExplanation.style.display = "none";
 
-    //call to get proper line to highlight into hLine
-    const hLine = getHLine(current);
+  //call to get proper line to highlight into hLine
+  const hLine = getHLine(current);
 
-    //highlights the line
-    if(lines[hLine]){
-        lines[hLine].classList.add("highlight");
-    }
+  //highlights the line
+  if (lines[hLine]) {
+    lines[hLine].classList.add("highlight");
+  }
 
+  if (current < 1) memX.innerText = "";
 
-    
-    if(current < 1) memX.innerText = "";
+  if (current >= 2 && current <= 4) {
+    numC.style.display = "flex";
+    numX.style.display = "flex";
+  }
 
-    if(current >=2 && current <=4){
-        numC.style.display = "flex";
-        numX.style.display = "flex";
-    }
+  if (current >= 3 && current <= 4) {
+    numC.innerText = "7";
+    numX.innerText = "7";
+  }
 
-    if(current >=3 && current <=4){
-        numC.innerText="7";
-        numX.innerText="7";
-    }
+  if (current < 4) memC.innerText = "";
 
-    if(current <4) memC.innerText = "";
+  if (current < 5) {
+    out1.style.display = "none";
+    out1.innerText = "";
+  }
 
+  if (!(current >= 2 && current <= 4)) {
+    numX.innerText = "";
+    numC.innerText = "";
+  }
 
-    if (current <5){
-        out1.style.display="none";
-        out1.innerText = "";
-    }
+  //step 0
+  if (current >= 0) {
+    memItems[0].style.display = "flex";
+    memoryExplanation.style.display = "flex";
+  }
 
-    if(!((current >=2 && current<=4))){
-            numX.innerText="";
-            numC.innerText="";
-        }
+  if (current === 1 && memX.innerText === "") {
+    animateToMemory(document.getElementById("val-x"), memX, "7");
+  }
 
-    //step 0
-    if (current >= 0){
-        memItems[0].style.display = "flex";
-        memoryExplanation.style.display="flex";
-    }
+  if (current >= 2) {
+    memItems[1].style.display = "flex";
+  }
+  if (current === 2 && numC.innerText === "") {
+    animateToMemory(document.getElementById("val-c"), numC, "7");
+    animateToMemory(memX, numX, "7");
+  }
 
+  if (current >= 3 && current <= 4) {
+    vSum.style.display = "flex";
+    vSum.innerText = "True";
+  }
 
-    if (current === 1 && memX.innerText===""){
-        animateToMemory(document.getElementById("val-x"), memX, "7");
-    }
+  if (current === 4 && memC.innerText === "") {
+    animateToMemory(vSum, memC, "True");
+  }
 
-    if(current >=2){
-        memItems[1].style.display = "flex";
-    }
-    if (current === 2 && numC.innerText===""){
-        animateToMemory(document.getElementById("val-c"),numC,"7");
-        animateToMemory(memX,numX,"7");
-    }
+  if (current === 5 && out1.innerText === "") {
+    out1.style.display = "flex";
+    out1.innerText = "7";
+    animateToMemory(memX, out1, "7");
+  }
 
-    if(current >=3 && current <=4){
-        vSum.style.display="flex";
-        vSum.innerText="True";
-    }
+  dobE.style.display = "none";
+  eqOp.style.display = "none";
 
-    if(current === 4 && memC.innerText===""){
-        animateToMemory(vSum,memC,"True");
-    }
+  if (current >= 2 && current <= 4) {
+    dobE.style.display = "block";
+  }
 
-    if(current === 5 && out1.innerText===""){
-        out1.style.display="flex";
-        out1.innerText="7";
-        animateToMemory(memX, out1, "7");
-    }
+  if (current >= 3 && current <= 4) {
+    eqOp.style.display = "block";
+  }
 
-    dobE.style.display="none";
-    eqOp.style.display="none";
-
-    if (current >=2 && current<=4) {
-        dobE.style.display = "block";
-    }
-
-    if (current >=3 && current<=4) {
-        eqOp.style.display = "block";
-    }
-
-     backBtn.disabled = current <= 0;
-    nextBtn.disabled = current >= steps - 1;
+  backBtn.disabled = current <= 0;
+  nextBtn.disabled = current >= steps - 1;
 }
 
 function updateMemoryExplanation() {

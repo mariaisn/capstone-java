@@ -154,12 +154,12 @@ function updateHighlight() {
   }
 
   memItems.forEach((item) => (item.style.display = "none"));
-  memoryExplanation.style.display ="none";
+  memoryExplanation.style.display = "none";
 
   // step 0 declares x
   if (current >= 0) {
     memItems[0].style.display = "flex";
-    memoryExplanation.style.display="flex";
+    memoryExplanation.style.display = "flex";
   }
 
   // step 2 declares y
@@ -191,8 +191,6 @@ function updateHighlight() {
     memItems[6].style.display = "flex";
   }
 
-
-
   //bring x and y down
   if (
     (current >= 5 && current <= 7) ||
@@ -205,12 +203,10 @@ function updateHighlight() {
     numY.style.display = "flex";
   }
   //bring x1 and y1 down
-  if(current >=34 && current <=36){
+  if (current >= 34 && current <= 36) {
     numX1.style.display = "flex";
     numY1.style.display = "flex";
   }
-
-
 
   if (
     (current >= 6 && current <= 7) ||
@@ -223,7 +219,7 @@ function updateHighlight() {
     numY.innerText = "5";
   }
 
-  if(current >= 35 && current <= 36){
+  if (current >= 35 && current <= 36) {
     numX1.innerText = "13.0";
     numY1.innerText = "5.0";
   }
@@ -246,7 +242,7 @@ function updateHighlight() {
     numY.innerText = "";
   }
 
-  if(!(current >=34 && current <=36)){
+  if (!(current >= 34 && current <= 36)) {
     numX1.innerText = "";
     numY1.innerText = "";
   }
@@ -257,22 +253,19 @@ function updateHighlight() {
   if (current < 22) memDiv.innerText = "";
   if (current < 27) memRem.innerText = "";
 
-  if (current <36) memDiv2.innerText = "";
-
-
+  if (current < 36) memDiv2.innerText = "";
 
   if (current >= 29) {
     memItems[10].style.display = "flex";
   }
 
-  if(current>= 31){
-   memItems[11].style.display = "flex";
+  if (current >= 31) {
+    memItems[11].style.display = "flex";
   }
 
-  if(current>=33){
+  if (current >= 33) {
     memItems[12].style.display = "flex";
   }
-
 
   // animate going forward
   // initiates x
@@ -292,7 +285,6 @@ function updateHighlight() {
     animateToMemory(document.getElementById("val-y1"), memY1, "5.0");
   }
 
-
   //animate x and y down
   if (
     (current === 5 ||
@@ -307,7 +299,7 @@ function updateHighlight() {
     animateToMemory(memY, numY, "5");
   }
 
-  if(current === 34 && numX1.innerText ==="" && numY1.innerText===""){
+  if (current === 34 && numX1.innerText === "" && numY1.innerText === "") {
     animateToMemory(memX1, numX1, "13.0");
     animateToMemory(memY1, numY1, "5.0");
   }
@@ -338,7 +330,7 @@ function updateHighlight() {
     numSum.innerText = "3";
   }
 
-  if (current >=35 && current <=36){
+  if (current >= 35 && current <= 36) {
     numSum2.style.display = "flex";
     numSum2.innerText = "2.6";
   }
@@ -359,10 +351,9 @@ function updateHighlight() {
   if (current === 27 && memRem.innerText === "") {
     animateToMemory(numSum, memRem, "3");
   }
-  if(current == 36 && memDiv2.innerText=== ""){
+  if (current == 36 && memDiv2.innerText === "") {
     animateToMemory(numSum2, memDiv2, "2.6");
   }
-
 
   if (current < 8) {
     out1.style.display = "none";
@@ -388,7 +379,6 @@ function updateHighlight() {
     out6.style.display = "none";
     out6.innerText = "";
   }
-
 
   //animate add to console
   if (current === 8 && out1.innerText === "") {
@@ -429,8 +419,8 @@ function updateHighlight() {
   diviOp.style.display = "none";
   remOp.style.display = "none";
   diviOp2.style.display = "none";
-  
-  equalOp2.style.display = 'none';
+
+  equalOp2.style.display = "none";
   equalOp.style.display = "none";
 
   // show addition visuals when calculating add
@@ -454,7 +444,7 @@ function updateHighlight() {
   if (current >= 25 && current <= 27) {
     remOp.style.display = "block";
   }
-  if (current >=34 && current <=36){
+  if (current >= 34 && current <= 36) {
     diviOp2.style.display = "block";
   }
 
@@ -468,8 +458,8 @@ function updateHighlight() {
     equalOp.style.display = "flex";
   }
 
-  if(current >= 35 && current <= 36){
-    equalOp2.style.display="flex";
+  if (current >= 35 && current <= 36) {
+    equalOp2.style.display = "flex";
   }
 
   backBtn.disabled = current <= 0;
@@ -493,7 +483,6 @@ backBtn.addEventListener("click", () => {
 });
 
 updateHighlight();
-
 
 function updateMemoryExplanation() {
   if (current < 0) {
