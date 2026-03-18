@@ -40,18 +40,27 @@ const explanations = [
   "End of class.",
 ];
 
-let current = 0;
+let current = -1;
 const steps = explanations.length;
 
 function updateHighlight() {
-  lines.forEach((line, idx) => {
-    line.classList.remove("highlight");
-    if (idx === current) line.classList.add("highlight");
-  });
-  
+  lines.forEach((line) => line.classList.remove("highlight"));
+
+  if (current < 0) {
+    explanationBox.style.display = "none";
+    explanationBox.textContent = "";
+    out1.textContent = "";
+    backBtn.disabled = true;
+    nextBtn.disabled = false;
+    return;
+  }
+
+  lines[current].classList.add("highlight");
+
+  explanationBox.style.display = "flex";
   explanationBox.textContent = explanations[current];
+
   if (current === 2) {
-    
     const codeLine = lines[2];
     animateToOutput(codeLine, out1, "Hello, World!");
   } else if (current > 2) {
@@ -59,6 +68,7 @@ function updateHighlight() {
   } else {
     out1.textContent = "";
   }
+
   backBtn.disabled = current <= 0;
   nextBtn.disabled = current >= steps - 1;
 }

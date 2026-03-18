@@ -318,8 +318,6 @@ function updateHighlight() {
   nextBtn.disabled = current >= steps;
 }
 
-
-
 nextBtn.addEventListener("click", () => {
   if (current === 5 && !inputCaptured) {
     inputCaptured = true;

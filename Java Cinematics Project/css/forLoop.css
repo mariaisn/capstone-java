@@ -22,10 +22,22 @@
   color: #f3dada;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
 }
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 2vw;
+  height: 100%;
+}
+
+.logo-left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, darkred, black);
-  min-height: 100vh;
+  background-color: darkred;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -43,11 +55,6 @@ body {
 
 .highlight {
   background-color: yellow;
-}
-.a1 {
-  background: linear-gradient(to bottom, darkred, black);
-  grid-area: a1;
-  background: linear-gradient(to bottom, darkred, black);
 }
 
 #high {
@@ -80,8 +87,10 @@ body {
 
 .a1 {
   background: linear-gradient(to bottom, darkred, black);
+  background-color: darkred;
   grid-area: a1;
   background-color: darkred;
+  background: linear-gradient(to bottom, darkred, black);
 }
 .b1 {
   grid-area: b1;
@@ -126,7 +135,7 @@ body {
 }
 
 /*
-memory
+added the following 6 classes - antonio
 */
 .memory-content {
   display: flex;
@@ -146,6 +155,7 @@ memory
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  display: none;
 }
 
 .mem-square {
@@ -177,7 +187,7 @@ memory
   z-index: 1000;
   font-family: Consolas, monospace;
 }
-
+/* comment box */
 .memory-explanation {
   background: #f8f8d8;
   border: 1px solid #ccc;
@@ -190,12 +200,21 @@ memory
   text-align: center;
 }
 
-/* keep memory visuals contained */
-.viz .cb {
-  overflow: hidden;
+.console-wrapper {
+  grid-row: 2;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  padding: 8px 12px;
 }
 
-/* output styling */
-.out-box > div {
-  font-family: Consolas, monospace;
+#console {
+  min-height: 100%;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #111;
+}
+
+.console-row {
+  min-height: 22px;
+  line-height: 22px;
 }

@@ -59,6 +59,20 @@ body {
   background: linear-gradient(to bottom, darkred, black);
   grid-area: a1;
   background: linear-gradient(to bottom, darkred, black);
+  flex-direction: column;
+  gap: 6px;
+}
+
+.example-title-box {
+  background: rgba(120, 34, 34, 0.22);
+  border: 1px solid #6b1f1f;
+  border-radius: 2px;
+  padding: 4px 9px;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #f3dada;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
 }
 .b1 {
   grid-area: b1;

@@ -107,6 +107,35 @@ function jValueAt(step) {
   return 0;
 }
 
+function updateMemoryExplanation() {
+  const explanationBox = document.getElementById("memory-explanation");
+  const messages = [
+    "Declare j",
+    "Check j < 3",
+    "j < 3 is true",
+    "Print World",
+    "Increment j to 1",
+    "Check j < 3",
+    "j < 3 is true",
+    "Print World",
+    "Increment j to 2",
+    "Check j < 3",
+    "j < 3 is true",
+    "Print World",
+    "Increment j to 3",
+    "Check j < 3",
+    "j < 3 is false",
+    "Exit loop",
+  ];
+
+  if (current >= 0 && current < messages.length) {
+    explanationBox.innerText = messages[current];
+    explanationBox.style.display = "block";
+  } else {
+    explanationBox.style.display = "none";
+  }
+}
+
 function clearCalcRow() {
   numJ.innerText = "";
   numLimit.innerText = "";
@@ -199,7 +228,11 @@ function updateHighlight() {
 
     if (goingForward) {
       animateToMemory(memJ, numJ, String(jVal));
-      animateToMemory(document.getElementById("lit-3"), numLimit, String(LIMIT));
+      animateToMemory(
+        document.getElementById("lit-3"),
+        numLimit,
+        String(LIMIT),
+      );
     }
   }
 
@@ -242,6 +275,7 @@ function updateHighlight() {
   backBtn.disabled = current <= 0;
   nextBtn.disabled = current >= steps - 1;
 
+  updateMemoryExplanation();
   prevStep = current;
 }
 

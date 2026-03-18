@@ -5,44 +5,37 @@ const lines = document.querySelectorAll("#high span");
 const nextBtn = document.getElementById("next");
 const backBtn = document.getElementById("back");
 
+const memX = document.getElementById("mem-x");
+const memY = document.getElementById("mem-y");
+const memX1 = document.getElementById("mem-x1");
+const memY1 = document.getElementById("mem-y1");
+
+const memADD = document.getElementById("mem-add");
+const memSub = document.getElementById("mem-sub");
+const memMul = document.getElementById("mem-mul");
+const memDiv = document.getElementById("mem-div");
+const memRem = document.getElementById("mem-rem");
+const memDiv2 = document.getElementById("mem-div2");
+
+const numX = document.getElementById("mem-num-x");
+const numY = document.getElementById("mem-num-y");
+const numSum = document.getElementById("val-sum");
+const numX1 = document.getElementById("mem-num-x1");
+const numY1 = document.getElementById("mem-num-y1");
+const numSum2 = document.getElementById("val-sum2");
 
 const memItems = document.querySelectorAll(".mem-item");
 
-
-const mem = {
-  x: document.getElementById("mem-x"),
-  y: document.getElementById("mem-y"),
-  x1: document.getElementById("mem-x1"),
-  y1: document.getElementById("mem-y1"),
-  add: document.getElementById("mem-add"),
-  sub: document.getElementById("mem-sub"),
-  mul: document.getElementById("mem-mul"),
-  div: document.getElementById("mem-div"),
-  rem: document.getElementById("mem-rem"),
-  div2: document.getElementById("mem-div2")
-};
-
-
-const num = {
-  x: document.getElementById("mem-num-x"),
-  y: document.getElementById("mem-num-y"),
-  sum:document.getElementById("val-sum"),
-  x1: document.getElementById("mem-num-x1"),
-  y1: document.getElementById("mem-num-y1"),
-  sum2: document.getElementById("val-sum2")
-};
-
 //MATH SYMBOLS
-const opp = {
-  plus: document.getElementById("plus-op"),
-  min: document.getElementById("minus-op"),
-  mul: document.getElementById("multi-op"),
-  divi: document.getElementById("divi-op"),
-  rem: document.getElementById("rem-op"),
-  divi2: document.getElementById("divi-op2"),
-  equal: equalOp = document.getElementById("equal-op"),
-  equal2: document.getElementById("equal-op2")
-};
+const plusOp = document.getElementById("plus-op");
+const minuOp = document.getElementById("minus-op");
+const multOp = document.getElementById("multi-op");
+const diviOp = document.getElementById("divi-op");
+const remOp = document.getElementById("rem-op");
+const diviOp2 = document.getElementById("divi-op2");
+
+const equalOp = document.getElementById("equal-op");
+const equalOp2 = document.getElementById("equal-op2");
 
 //console
 const conIn = document.getElementById("console-input");
@@ -53,62 +46,49 @@ let Y_VAL;
 let X1_VAL;
 let Y1_VAL;
 
-const outArr = [];
-
-
-
-const steps = 42;
-
 //start page with nopthing highlighted
-//current is the step we are on
+const steps = 42;
 let current = -1;
-
-//prev will let our system know when it's going backwards
-let prev = -1;
 
 const memoryExplanation = document.getElementById("memory-explanation");
 const stepMessages = [
   "Declare x",
-  "Receive input from user",
-  "Assign number to x",
+  "Assign 13 to x",
   "Declare y",
-  "Receive input from user",
-  "Assign number to y",
+  "Assign 5 to y",
   "Declare add",
   "Add x and y",
   "Calculate Sum",
-  "Assign sum to add",
+  "Assign 18 to add",
   "Print add",
   "Declare sub",
   "Subtract x and y",
   "Calculate Difference",
-  "Assign difference to sub",
+  "Assign 8 to sub",
   "Print sub",
   "Declare mul",
   "Multiply x and y",
   "Calculate Multiplication",
-  "Assign multiplication to mul",
+  "Assign 65 to mul",
   "Print Mul",
   "Declare div",
   "Divide x and y",
   "Calculate Division",
-  "Assign division to div",
+  "Assign 2 to div",
   "Print div",
   "Declare rem",
   "Get Remainder of x and y",
   "Calculate Remainder",
-  "Assign remainder to rem",
+  "Assign 3 to rem",
   "Print rem",
   "Declare double x1",
-  "Receive input from user",
-  "Assign number to x1",
+  "Assign 13.0 to x1",
   "Declare double y1",
-  "Receive input from user",
-  "Assign number to y1",
+  "Assign 5.0 to y1",
   "Declare div2",
   "Divide x1 and y1",
   "Calculate Division",
-  "Assign division to div2",
+  "Assign 2.6 to div2",
   "Print div2",
   "Done!",
 ];
@@ -148,23 +128,21 @@ function getHLine(step) {
   // operation highlight windows: [startStep, endStep, spanIndex]
   const ranges = [
     [1, 2, 1],
-    [4,5,3],
-    [7,9,5],
-    [12,14,8],
-    [17,19,11],
-    [22,24,14],
-    [27,29,17],
-    [32,33,20],
-    [35,36,22],
-    [38,40,24]
+    [4, 5, 3],
+    [7, 9, 5],
+    [12, 14, 8],
+    [17, 19, 11],
+    [22, 24, 14],
+    [27, 29, 17],
+    [32, 33, 20],
+    [35, 36, 22],
+    [38, 40, 24],
   ];
 
-    // if inside an operation window, freeze highlight
+  // if inside an operation window, freeze highlight
   for (const [start, end, line] of ranges) {
     if (step >= start && step <= end) return line;
   }
-
-    //fix holds
   let temp = 0;
   if (step > 2) temp = temp - 1;
   if (step > 5) temp = temp - 1;
@@ -180,45 +158,42 @@ function getHLine(step) {
   return step + temp;
 }
 
-conIn.addEventListener("keydown", function(e) {
+conIn.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
+    const value = conIn.value;
 
-  const value = conIn.value;
+    const source = addConsoleRow(value);
+    source.style.color = "goldenrod";
 
-  const source = pushOut(value);
-  source.style.color="goldenrod";
+    if (current === 1) {
+      X_VAL = Number(value);
+      animateToMemory(source, memX, X_VAL);
+    }
 
-  if (current === 1) {
-    X_VAL = Number(value);
-    animateToMemory(source,mem.x,X_VAL);
-  }
+    if (current === 4) {
+      Y_VAL = Number(value);
+      animateToMemory(source, memY, Y_VAL);
+    }
 
-  if (current === 4) {
-    Y_VAL = Number(value);
-    animateToMemory(source,mem.y,Y_VAL);
-  }
+    if (current === 32) {
+      X1_VAL = Number(value);
+      animateToMemory(source, memX1, X1_VAL);
+    }
 
-  if (current === 32) {
-    X1_VAL = Number(value);
-    animateToMemory(source,mem.x1,X1_VAL);
-  }   
-
-  if (current === 35) {
-    Y1_VAL = Number(value);
-    animateToMemory(source,mem.y1,Y1_VAL);
-  }
+    if (current === 35) {
+      Y1_VAL = Number(value);
+      animateToMemory(source, memY1, Y1_VAL);
+    }
 
     conIn.value = "";
     conIn.style.display = "none";
     current++;
-    updateUI();
+    updateHighlight();
     updateMemoryExplanation();
   }
 });
 
-
-//add output row
-function addOutRow(text) {
+function addConsoleRow(text) {
   const row = document.createElement("div");
   row.className = "console-row";
 
@@ -228,29 +203,10 @@ function addOutRow(text) {
   row.appendChild(span);
   conBox.appendChild(row);
 
-  return row;
+  return span;
 }
 
-//add output row, add the row into array, and to return row number
-function pushOut(text){
-  const row = addOutRow(text);
-  outArr.push(row);
-
-  return row;
-}
-
-//delete last row from output and from array
-function popOut(){
-  const row = outArr.pop();
-  if (row) {
-    row.remove();
-  }
-}
-
-
-
-function updateUI() {
-
+function updateHighlight() {
   lines.forEach((line) => line.classList.remove("highlight"));
 
   //call to get proper line to highlight into hLine
@@ -262,18 +218,14 @@ function updateUI() {
   }
 
   memItems.forEach((item) => (item.style.display = "none"));
-  memoryExplanation.style.display ="none";
+  memoryExplanation.style.display = "none";
 
-  // hide math operators
-  Object.values(opp).forEach(op => op.style.display="none");
-
-  let tAdd= X_VAL+Y_VAL;
-  let tSub= X_VAL-Y_VAL;
-  let tMul= X_VAL*Y_VAL;
-  let tDiv= X_VAL/Y_VAL;
-  let tRem= X_VAL%Y_VAL;
-  let tDiv2= X1_VAL/Y1_VAL;
-
+  let tAdd = X_VAL + Y_VAL;
+  let tSub = X_VAL - Y_VAL;
+  let tMul = X_VAL * Y_VAL;
+  let tDiv = X_VAL / Y_VAL;
+  let tRem = X_VAL % Y_VAL;
+  let tDiv2 = X1_VAL / Y1_VAL;
 
   const inputSteps = [1, 4, 32, 35];
 
@@ -284,187 +236,209 @@ function updateUI() {
     conIn.style.display = "none";
   }
 
+  // step 0 declares x
+  if (current >= 0) {
+    memItems[0].style.display = "flex";
+    memoryExplanation.style.display = "flex";
+  }
 
-  //delete numbers from variables
-  const clVar = [
-    {step: 2, value: mem.x},
-    {step: 5, value: mem.y},
-    {step: 9, value: mem.add},
-    {step: 14, value: mem.sub},
-    {step: 19, value: mem.mul},
-    {step: 24, value: mem.div},
-    {step: 29, value: mem.rem},
-    {step: 33, value: mem.x1},
-    {step: 36, value: mem.y1},
-    {step: 40, value: mem.div2}
-  ];
+  // step 3 declares y
+  if (current >= 3) {
+    memItems[1].style.display = "flex";
+  }
 
-  clVar.forEach(({step, value}) => {
-    if(current < step) value.innerText="";
-  })
+  // step 4 declares add
+  if (current >= 6) {
+    memItems[2].style.display = "flex";
+  }
 
+  //step 7
 
+  //step 9 declare sub
+  if (current >= 11) {
+    memItems[3].style.display = "flex";
+  }
+  //step 14 declare mul
+  if (current >= 16) {
+    memItems[4].style.display = "flex";
+  }
+  //step 19 declare div
+  if (current >= 21) {
+    memItems[5].style.display = "flex";
+  }
+  //step 26 declare rem
+  if (current >= 26) {
+    memItems[6].style.display = "flex";
+  }
 
+  if (current >= 31) {
+    memItems[10].style.display = "flex";
+  }
 
-  //declare variables
-  const declVar = [
-    [0, 0], //x
-    [3,1], //y
-    [6,2], //add
-    [11,3], //sub
-    [16,4], //mul
-    [21,5], //div
-    [26,6], //rem
-    [31,10], //x1
-    [34,11], //y1
-    [37,12] //div2
-  ]
+  if (current >= 34) {
+    memItems[11].style.display = "flex";
+  }
 
-  declVar.forEach(([step, i]) => {
-    if (current >= step) {
-    memItems[i].style.display = "flex";
-    memoryExplanation.style.display="flex";
-    }
-  })
+  if (current >= 37) {
+    memItems[12].style.display = "flex";
+  }
 
+  //bring x and y down
+  const inAnyOp =
+    (current >= 7 && current <= 9) ||
+    (current >= 12 && current <= 14) ||
+    (current >= 17 && current <= 19) ||
+    (current >= 22 && current <= 24) ||
+    (current >= 27 && current <= 29);
 
-
-
-  //range by steps where math is happening for x and y
-  const mtRanges = [
-    {start: 7, end: 9},
-    {start: 12,end: 14},
-    {start: 17,end: 19},
-    {start: 22,end: 24},
-    {start: 27,end: 29}
-  ];
-
-  //check which math range we are in
-  const acRange = mtRanges.find(f => current >=f.start && current <= f.end);
-
-  //check if we are currently inside math steps
-  const mtSteps = !!acRange;
-
-  //check if we are currently at the beginning of a math step
-  const mtStart = acRange && current === acRange.start;
-  if (mtSteps) {
-    num.x.style.display = "flex";
-    num.y.style.display = "flex";
-
-    
-  // if entering the window, animate them down
-    if (mtStart) {
-      animateToMemory(mem.x, num.x, X_VAL);
-      animateToMemory(mem.y, num.y, Y_VAL);
-    }
-    else {
-      num.x.innerText = X_VAL;
-      num.y.innerText = Y_VAL;
-    }
-    
-    } else {
-        // clear when not in window
-        num.x.innerText = "";
-        num.y.innerText = "";
-    }
-
-
-
-
-  //bring x1 and y1 down
-
-  if (current >=38 && current <=40) {
-    num.x1.style.display = "flex";
-    num.y1.style.display = "flex";
+  if (inAnyOp) {
+    numX.style.display = "flex";
+    numY.style.display = "flex";
 
     // if entering the window, animate them down
-    if (current===38) {
-      animateToMemory(mem.x1, num.x1, X1_VAL);
-      animateToMemory(mem.y1, num.y1, Y1_VAL);
-    }
-    else {
+    if (
+      current === 7 ||
+      current === 12 ||
+      current === 17 ||
+      current === 22 ||
+      current === 27
+    ) {
+      animateToMemory(memX, numX, X_VAL);
+      animateToMemory(memY, numY, Y_VAL);
+    } else {
       // keep them visible if already in window
-      if (current >= 39 && current <= 40) {
-        num.x1.innerText = X1_VAL;
-        num.y1.innerText = Y1_VAL;
+      if (
+        (current >= 8 && current <= 9) ||
+        (current >= 13 && current <= 14) ||
+        (current >= 18 && current <= 19) ||
+        (current >= 23 && current <= 24) ||
+        (current >= 28 && current <= 29)
+      ) {
+        numX.innerText = X_VAL;
+        numY.innerText = Y_VAL;
       }
     }
   } else {
     // clear when not in window
-    num.x1.innerText = "";
-    num.y1.innerText = "";
+    numX.innerText = "";
+    numY.innerText = "";
   }
 
+  //bring x1 and y1 down
 
+  if (current >= 38 && current <= 40) {
+    numX1.style.display = "flex";
+    numY1.style.display = "flex";
 
+    // if entering the window, animate them down
+    if (current === 38) {
+      animateToMemory(memX1, numX1, X1_VAL);
+      animateToMemory(memY1, numY1, Y1_VAL);
+    } else {
+      // keep them visible if already in window
+      if (current >= 39 && current <= 40) {
+        numX1.innerText = X1_VAL;
+        numY1.innerText = Y1_VAL;
+      }
+    }
+  } else {
+    // clear when not in window
+    numX1.innerText = "";
+    numY1.innerText = "";
+  }
 
-
+  if (current < 9) memADD.innerText = "";
+  if (current < 14) memSub.innerText = "";
+  if (current < 19) memMul.innerText = "";
+  if (current < 24) memDiv.innerText = "";
+  if (current < 29) memRem.innerText = "";
+  if (current < 40) memDiv2.innerText = "";
 
   //show sum
-  const sRanges = [
-    {start: 8, end: 9, cal: tAdd},
-    {start: 13, end: 14, cal: tSub},
-    {start: 18, end: 19, cal: tMul},
-    {start: 23, end: 24, cal: tDiv},
-    {start: 28, end: 29, cal: tRem}
-  ];
-
-  sRanges.forEach(({start, end, cal}) =>{
-    if(current >=start && current<=end){
-      num.sum.style.display = "flex";
-      num.sum.innerText = cal;
-    }
-  })
-
-  if (current >=39 && current <=40){
-    num.sum2.style.display = "flex";
-    num.sum2.innerText = tDiv2;
+  if (current >= 8 && current <= 9) {
+    numSum.style.display = "flex";
+    numSum.innerText = tAdd;
   }
 
+  if (current >= 13 && current <= 14) {
+    numSum.style.display = "flex";
+    numSum.innerText = tSub;
+  }
 
+  if (current >= 18 && current <= 19) {
+    numSum.style.display = "flex";
+    numSum.innerText = tMul;
+  }
 
+  if (current >= 23 && current <= 24) {
+    numSum.style.display = "flex";
+    numSum.innerText = tDiv;
+  }
 
-  //assign sum to variables
-  const asVar = [
-    {step: 9, to: "add", value: tAdd},
-    {step: 14, to: "sub", value: tSub},
-    {step: 19, to: "mul", value: tMul},
-    {step: 24, to: "div", value: tDiv},
-    {step: 29, to: "rem", value: tRem}
-  ];
+  if (current >= 28 && current <= 29) {
+    numSum.style.display = "flex";
+    numSum.innerText = tRem;
+  }
 
-  asVar.forEach(({step, to, value}) => {
-    if(current === step && mem[to].innerText === ""){
-      
-      animateToMemory(num.sum, mem[to], value);
-    }
-  })
+  if (current >= 39 && current <= 40) {
+    numSum2.style.display = "flex";
+    numSum2.innerText = tDiv2;
+  }
 
-  if (current === 40 && mem.div2.innerText === "") {
-    animateToMemory(num.sum2, mem.div2, tDiv2);
-  };
+  // initiates add
+  if (current === 9 && memADD.innerText === "") {
+    animateToMemory(numSum, memADD, tAdd);
+  }
+  if (current === 14 && memSub.innerText === "") {
+    animateToMemory(numSum, memSub, tSub);
+  }
+  if (current === 19 && memMul.innerText === "") {
+    animateToMemory(numSum, memMul, tMul);
+  }
+  if (current === 24 && memDiv.innerText === "") {
+    animateToMemory(numSum, memDiv, tDiv);
+  }
+  if (current === 29 && memRem.innerText === "") {
+    animateToMemory(numSum, memRem, tRem);
+  }
+  if (current == 40 && memDiv2.innerText === "") {
+    animateToMemory(numSum2, memDiv2, tDiv2);
+  }
 
+  // hide operators
+  plusOp.style.display = "none";
+  minuOp.style.display = "none";
+  multOp.style.display = "none";
+  diviOp.style.display = "none";
+  remOp.style.display = "none";
+  diviOp2.style.display = "none";
 
-
-  
-
-
+  equalOp2.style.display = "none";
+  equalOp.style.display = "none";
 
   // show math operators
-  const mOpp = [
-    {start: 7, end: 9, sign:"plus"},
-    {start: 12, end: 14, sign:"min"},
-    {start: 17, end: 19, sign:"mul"},
-    {start: 22, end: 24, sign:"divi"},
-    {start: 27, end: 29, sign:"rem"},
-    {start:38, end:40, sign:"divi2"}
-  ];
+  if (current >= 7 && current <= 9) {
+    plusOp.style.display = "block";
+  }
 
-  mOpp.forEach(({start, end, sign}) => {
-    if (current >= start && current <= end) {
-      opp[sign].style.display = "block";
-    }
-  });
+  if (current >= 12 && current <= 14) {
+    minuOp.style.display = "block";
+  }
+
+  if (current >= 17 && current <= 19) {
+    multOp.style.display = "block";
+  }
+
+  if (current >= 22 && current <= 24) {
+    diviOp.style.display = "block";
+  }
+
+  if (current >= 27 && current <= 29) {
+    remOp.style.display = "block";
+  }
+  if (current >= 38 && current <= 40) {
+    diviOp2.style.display = "block";
+  }
 
   if (
     (current >= 8 && current <= 9) ||
@@ -473,68 +447,52 @@ function updateUI() {
     (current >= 23 && current <= 24) ||
     (current >= 28 && current <= 29)
   ) {
-    opp.equal.style.display = "flex";
+    equalOp.style.display = "flex";
   }
 
-  if(current >= 39 && current <= 40){
-    opp.equal2.style.display="flex";
+  if (current >= 39 && current <= 40) {
+    equalOp2.style.display = "flex";
   }
 
-
-
-
-  //output
-
-  // step 1 x pushed to output
-  // step 4 y pushed to output
-
-  const outPrint = [
-    {step: 10, value: tAdd, from: "add"},
-    {step: 15, value: tSub, from: "sub"},
-    {step: 20, value: tMul, from: "mul"},
-    {step: 25, value: tDiv, from: "div"},
-    {step: 30, value: tRem, from: "rem"}
-  ];
-
-  outPrint.forEach(({step, value, from}) => {
-    if(current === step && prev<step){
-      num.sum.display = "none";
-      const x = pushOut(value);
-      animateToMemory(mem[from], x, value);
-    }
-  })
-
-  //step 32 x1 pushed to output
-  //step 35 y1 pushed to output
-
-  if (current === 41 && prev<41) {
-    num.sum2.style.display = "none";
-    const x = pushOut(tDiv2)
-    animateToMemory(mem.div2, x, tDiv2);
+  if (current === 10) {
+    numSum.style.display = "none";
+    const x = addConsoleRow(tAdd);
+    animateToMemory(memADD, x, tAdd);
   }
-
-  //delete output
-  const delOut = [2, 5, 10, 15, 20, 25, 30, 33, 36, 41];
-
-  delOut.forEach(row => {
-    if(current < row && prev >= row) popOut();
-  })
-
-
-
+  if (current === 15) {
+    numSum.style.display = "none";
+    const x = addConsoleRow(tSub);
+    animateToMemory(memSub, x, tSub);
+  }
+  if (current === 20) {
+    numSum.style.display = "none";
+    const x = addConsoleRow(tMul);
+    animateToMemory(memMul, x, tMul);
+  }
+  if (current === 25) {
+    numSum.style.display = "none";
+    const x = addConsoleRow(tDiv);
+    animateToMemory(memDiv, x, tDiv);
+  }
+  if (current === 30) {
+    numSum.style.display = "none";
+    const x = addConsoleRow(tRem);
+    animateToMemory(memRem, x, tRem);
+  }
+  if (current === 41) {
+    numSum2.style.display = "none";
+    const x = addConsoleRow(tDiv2);
+    animateToMemory(memDiv2, x, tDiv2);
+  }
 
   backBtn.disabled = current <= 0;
-  nextBtn.disabled = (current >= steps - 1 || inputSteps.includes(current));
-
-  //update previous to match current
-  prev=current;
+  nextBtn.disabled = current >= steps - 1 || inputSteps.includes(current);
 }
-
 
 nextBtn.addEventListener("click", () => {
   if (current < steps - 1) {
     current++;
-    updateUI();
+    updateHighlight();
     updateMemoryExplanation();
   }
 });
@@ -542,13 +500,12 @@ nextBtn.addEventListener("click", () => {
 backBtn.addEventListener("click", () => {
   if (current > 0) {
     current--;
-    updateUI();
+    updateHighlight();
     updateMemoryExplanation();
   }
 });
 
-updateUI();
-
+updateHighlight();
 
 function updateMemoryExplanation() {
   if (current < 0) {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="percent">
   <head>
     <title>Java Cinematics Example</title>
@@ -7,9 +7,10 @@
 
   <body class="container percent">
     <header class="a1 cent">
-      <a href="index.html" class="fit">
-        <img src="images/java cinematics logo.png" alt="Company Logo" class="fit" />
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
       </a>
+      <div class="example-title-box">Multi-Way If Statement</div>
     </header>
 
     <div class="b1 div1 code">
@@ -44,6 +45,10 @@ public class Test {
       <div class="sectiontitle cent ca">Memory</div>
 
       <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation">
+          Click Next to begin
+        </div>
+
         <div class="mVariable cent" id="mem-vars">
           <div class="mem-item" id="item-x">
             <div class="mem-label">x</div>
@@ -55,11 +60,15 @@ public class Test {
             <div class="mem-square cent" id="mem-y"></div>
           </div>
 
+          <div class="mem-item" id="item-eql">
+            <div class="mem-label">condition</div>
+            <div class="mem-square cent" id="mem-c1"></div>
+          </div>
+
           <div class="mem-item" id="item-lEql">
             <div class="mem-label">cond2</div>
             <div class="mem-square cent" id="mem-c2"></div>
           </div>
-
         </div>
 
         <div class="mVariable" id="mem-calc">
@@ -76,7 +85,7 @@ public class Test {
       <div class="ca sectiontitle cent">Output</div>
 
       <div class="cb bar out-box">
-        <div id="ou1">  </div>
+        <div id="ou1"></div>
         <div id="ou2"></div>
         <div id="ou3"></div>
         <div id="ou4"></div>

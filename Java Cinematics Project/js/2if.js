@@ -85,7 +85,7 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
       targetElement.innerText = finalValue;
       document.body.removeChild(flying);
     },
-    { once: true }
+    { once: true },
   );
 }
 
@@ -229,7 +229,6 @@ function updateHighlight() {
   backBtn.disabled = current <= 0;
   nextBtn.disabled = current >= steps - 1;
 }
-
 
 nextBtn.addEventListener("click", () => {
   if (current < steps - 1) {
