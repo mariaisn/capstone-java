@@ -27,20 +27,10 @@ const out1 = document.getElementById("ou1");
 const explanationBox = document.getElementById("memory-explanation");
 
 const explanations = [
-  // steps
-  // -1 = before start
-  // 0  = declare radius
-  // 1  = declare area
-  // 2  = radius = 20
-  // 3  = start compute (move radius/radius/pi into calc row)
-  // 4  = show result in calc row
-  // 5  = store area into memory
-  // 6  = println line highlighted (no movement yet)
-  // 7  = print output (move radius + area into output)
   "click next to begin",
   "declare radius",
   "declare area",
-  "radius = 20",
+  "radius = 20.0",
   "start compute",
   "show result in calc row",
   "store area into memory",
@@ -48,15 +38,13 @@ const explanations = [
   "print output",
 ];
 
-function updateExplanation() {
-  explanationBox.textContent = explanations[current] || "";
-}
-
 // all memory items
 const memItems = document.querySelectorAll(".mem-item");
 
-const RADIUS_VAL = 20;
+const RADIUS_VAL = 20.0;
+const RADIUS_TEXT = "20.0";
 const PI_VAL = 3.14159;
+const PI_TEXT = "3.14159";
 const AREA_VAL = (RADIUS_VAL * RADIUS_VAL * PI_VAL).toFixed(3); // 1256.636
 
 const steps = 7;
@@ -91,34 +79,37 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
 function getHLine(step) {
   if (step < 0) return -1;
 
-  if (step === 0) return 0; // 0: double radius;
-  if (step === 1) return 1; // 1: double area;
-  if (step === 2) return 2; // 2: radius = 20;
+  if (step === 0) return 0; // double radius;
+  if (step === 1) return 1; // double area;
+  if (step === 2) return 2; // radius
 
-  // 3-5: compute and store area
-  if (step >= 3 && step <= 5) return 4;
+  // 3-5: expression only
+  if (step >= 3 && step <= 5) return 5; // radius * radius *
 
   // 6-7: println
-  if (step >= 6) return 6;
+  if (step >= 6) return 7;
 
-  return 6;
+  return 7;
 }
 
 function updateHighlight() {
-  // Sync memory explanation box with current step
   explanationBox.textContent = explanations[current + 1] || "";
-  // highlight
+
+  // clear all highlights first
   lines.forEach((line) => line.classList.remove("highlight"));
+
   const hLine = getHLine(current);
 
   if (lines[hLine]) lines[hLine].classList.add("highlight");
 
-  // keep "chunk" highlighted for assignment/expression
+  // keep assignment chunk highlighted for radius = 20.0
   if (hLine === 2) {
-    if (lines[3]) lines[3].classList.add("highlight"); // "= 20"
+    if (lines[3]) lines[3].classList.add("highlight");
   }
-  if (hLine === 4) {
-    if (lines[5]) lines[5].classList.add("highlight"); // "3.14159"
+
+  // keep the full expression highlighted, but not "area ="
+  if (hLine === 5) {
+    if (lines[6]) lines[6].classList.add("highlight");
   }
 
   // hide all memory items by default
@@ -128,6 +119,7 @@ function updateHighlight() {
   mul1.style.display = "none";
   mul2.style.display = "none";
   eqOp.style.display = "none";
+  valResult.style.display = "none";
 
   // clear output when going backwards
   if (current < 7) out1.innerHTML = "";
@@ -148,19 +140,18 @@ function updateHighlight() {
     valResult.innerText = "";
   }
 
-  // step 2: animate 20 into radius
+  // step 2: animate 20.0 into radius
   if (current === 2 && memRadius.innerText === "") {
     animateToMemory(
       document.getElementById("val-radius"),
       memRadius,
-      String(RADIUS_VAL),
+      RADIUS_TEXT,
     );
   }
 
   // step 3-5: compute window
   const inCompute = current >= 3 && current <= 5;
   if (inCompute) {
-    // show calc row value boxes
     numR1.style.display = "flex";
     numR2.style.display = "flex";
     numPi.style.display = "flex";
@@ -168,23 +159,21 @@ function updateHighlight() {
     mul1.style.display = "flex";
     mul2.style.display = "flex";
 
-    // entering compute: animate values down once
     if (
       current === 3 &&
       numR1.innerText === "" &&
       numR2.innerText === "" &&
       numPi.innerText === ""
     ) {
-      // ensure radius is present if user jumped weirdly
-      if (memRadius.innerText === "") memRadius.innerText = String(RADIUS_VAL);
+      if (memRadius.innerText === "") memRadius.innerText = RADIUS_TEXT;
 
-      animateToMemory(memRadius, numR1, String(RADIUS_VAL));
-      animateToMemory(memRadius, numR2, String(RADIUS_VAL));
-      animateToMemory(document.getElementById("lit-pi"), numPi, String(PI_VAL));
+      animateToMemory(memRadius, numR1, RADIUS_TEXT);
+      animateToMemory(memRadius, numR2, RADIUS_TEXT);
+      animateToMemory(document.getElementById("lit-pi"), numPi, PI_TEXT);
     } else {
-      numR1.innerText = String(RADIUS_VAL);
-      numR2.innerText = String(RADIUS_VAL);
-      numPi.innerText = String(PI_VAL);
+      numR1.innerText = RADIUS_TEXT;
+      numR2.innerText = RADIUS_TEXT;
+      numPi.innerText = PI_TEXT;
     }
   }
 
@@ -211,11 +200,10 @@ function updateHighlight() {
     const outRadius = document.getElementById("out-radius");
     const outArea = document.getElementById("out-area");
 
-    // ensure memory values exist
-    if (memRadius.innerText === "") memRadius.innerText = String(RADIUS_VAL);
+    if (memRadius.innerText === "") memRadius.innerText = RADIUS_TEXT;
     if (memArea.innerText === "") memArea.innerText = AREA_VAL;
 
-    animateToMemory(memRadius, outRadius, String(RADIUS_VAL));
+    animateToMemory(memRadius, outRadius, RADIUS_TEXT);
     animateToMemory(memArea, outArea, AREA_VAL);
   }
 
