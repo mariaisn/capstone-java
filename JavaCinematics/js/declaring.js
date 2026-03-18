@@ -22,6 +22,7 @@ const out4 = document.getElementById("ou4");
 const out5 = document.getElementById("ou5");
 
 const memItems = document.querySelectorAll(".mem-item");
+const memDStoredValue = "Number 68";
 
 //MATH SYMBOLS
 const plusOp = document.getElementById("plus-op");
@@ -61,6 +62,12 @@ function createCharDisplay(container, str) {
     container.appendChild(charRow);
 }
 
+function setMemDValue(displayValue, storedValue) {
+    memD.innerText = displayValue;
+    memD.dataset.storedValue = storedValue;
+    createCharDisplay(memDChars, storedValue);
+}
+
 
 
 function animateToMemory(sourceElement, targetElement, finalValue) {
@@ -87,8 +94,7 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
 
     flying.addEventListener("transitionend", () => {
         if (targetElement === memD) {
-            targetElement.innerText = finalValue;
-            createCharDisplay(memDChars, finalValue);
+            setMemDValue("Ref", finalValue);
         } else {
             targetElement.innerText = finalValue;
         }
@@ -163,16 +169,17 @@ function updateHighlight() {
     if (current < 8)  out3.innerText ="";
     if (current < 10) {
         memD.innerText = "";
+        delete memD.dataset.storedValue;
         memDChars.innerHTML = "";
     }
     if (current < 11)  out4.innerText ="";
     if (current < 13) memE.innerText = "";
     if (current < 14)  out5.innerText ="";
 
-    // show numbered character boxes only on the declaring step, and rebuild when stepping back
-    if (current !== 10) memDChars.innerHTML = "";
-    if (current === 10 && memD.innerText !== "" && memDChars.innerHTML === "") {
-        createCharDisplay(memDChars, memD.innerText);
+    // keep the numbered character boxes visible from the declaration step onward
+    if (current < 10) memDChars.innerHTML = "";
+    if (current >= 10 && memD.dataset.storedValue && memDChars.innerHTML === "") {
+        createCharDisplay(memDChars, memD.dataset.storedValue);
     }
 
 
@@ -191,7 +198,7 @@ function updateHighlight() {
         animateToMemory(document.getElementById("val-c"), memC, "D");
     }
     if (current === 10 && memD.innerText === "") {
-        animateToMemory(document.getElementById("val-d"), memD, "Number 68");
+        animateToMemory(document.getElementById("val-d"), memD, memDStoredValue);
     }
       if (current === 13 && memE.innerText === "") {
         animateToMemory(document.getElementById("val-e"), memE, "True");
@@ -215,10 +222,10 @@ function updateHighlight() {
         animateToMemory(memC, out3, "D");
     }
     if (current === 11 && out4.innerText === "") {
-        animateToMemory(memD, out4, "Number 68");
+        animateToMemory(memD, out4, memDStoredValue);
     }
         if (current === 14 && out5.innerText === "") {
-        animateToMemory(memD, out5, "true");
+        animateToMemory(memE, out5, "true");
     }
 
 

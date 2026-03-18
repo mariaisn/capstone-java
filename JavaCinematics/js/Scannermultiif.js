@@ -7,19 +7,16 @@ const inputItems = document.querySelectorAll(".input-item");
 
 const memX = document.getElementById("mem-x");
 const memY = document.getElementById("mem-y");
-const memC1 = document.getElementById("mem-c1");
-const memC2 = document.getElementById("mem-c2");
 
 const itemX = document.getElementById("item-x");
 const itemY = document.getElementById("item-y");
-const itemC1 = document.getElementById("item-eql");
-const itemC2 = document.getElementById("item-lEql");
 
 const numX = document.getElementById("mem-num-x");
 const numY = document.getElementById("mem-num-y");
 const compOp = document.getElementById("comp-op");
 const eqOp = document.getElementById("eq-op");
 const valResult = document.getElementById("val-result");
+const RESULT_POP_DELAY_MS = 850;
 
 const out1 = document.getElementById("ou1");
 const out2 = document.getElementById("ou2");
@@ -28,7 +25,7 @@ const out4 = document.getElementById("ou4");
 const echoX = document.getElementById("echo-x");
 const echoY = document.getElementById("echo-y");
 
-let current = 0;
+let current = -1;
 let xValue = null;
 let yValue = null;
 const history = [];
@@ -98,22 +95,38 @@ function showCompare(opText, resultText) {
     valResult.innerText = resultText;
 }
 
+function revealResultAfterAnimation(step, value) {
+    valResult.innerText = "";
+
+    setTimeout(() => {
+        if (current === step) {
+            valResult.innerText = value;
+        }
+    }, RESULT_POP_DELAY_MS);
+}
+
 function getHLine(step) {
+    if (step < 0) return -1;
     if (step === 0) return 0;
-    if (step === 1) return 1;
-    if (step === 2) return 2;
-    if (step === 3) return 3;
-    if (step === 4) return 4;
-    if (step === 5) return 5;
-    if (step === 6) return 6;
-    if (step === 7) return isGreater() ? 7 : -1;
-    if (step === 8) return 8;
-    if (step === 9) return isLess() ? 9 : 11;
-    if (step === 10) return 10;
-    return 11;
+
+    let line = 0;
+    if (step === 1) line = 1;
+    else if (step === 2) line = 2;
+    else if (step === 3) line = 3;
+    else if (step === 4) line = 4;
+    else if (step === 5) line = 5;
+    else if (step === 6) line = 6;
+    else if (step === 7) line = isGreater() ? 7 : -1;
+    else if (step === 8 || step === 9) line = 8;
+    else if (step === 10) line = isLess() ? 9 : 11;
+    else if (step === 11) line = 10;
+    else line = 11;
+
+    return line === -1 ? -1 : line + 1;
 }
 
 function getNextStep(step) {
+    if (step < 0) return 0;
     if (step === 0) return 1;
     if (step === 1) return 2;
     if (step === 2) return 3;
@@ -121,15 +134,17 @@ function getNextStep(step) {
     if (step === 4) return 5;
     if (step === 5) return 6;
     if (step === 6) return 7;
-    if (step === 7) return isGreater() ? 8 : 9;
-    if (step === 8) return 8;
-    if (step === 9) return isLess() ? 10 : 11;
-    if (step === 10) return 10;
-    return 11;
+    if (step === 7) return isGreater() ? 8 : 10;
+    if (step === 8) return 9;
+    if (step === 9) return 9;
+    if (step === 10) return isLess() ? 11 : 12;
+    if (step === 11) return 11;
+    if (step === 12) return 13;
+    return 13;
 }
 
 function isTerminalStep(step) {
-    return step === 8 || step === 10 || step === 11;
+    return step === 9 || step === 11 || step === 13;
 }
 
 function updateHighlight() {
@@ -137,7 +152,7 @@ function updateHighlight() {
 
     const hLine = getHLine(current);
     if (lines[hLine]) lines[hLine].classList.add("highlight");
-    if (hLine === 11 && lines[12]) lines[12].classList.add("highlight");
+    if (hLine === 12 && lines[13]) lines[13].classList.add("highlight");
 
     inputItems.forEach((item) => {
         item.style.visibility = "hidden";
@@ -170,8 +185,6 @@ function updateHighlight() {
 
     itemX.style.display = current >= 2 ? "flex" : "none";
     itemY.style.display = current >= 5 ? "flex" : "none";
-    itemC1.style.display = current >= 7 && isGreater() ? "flex" : "none";
-    itemC2.style.display = current >= 9 && isLess() ? "flex" : "none";
 
     out3.innerText = "";
 
@@ -187,9 +200,6 @@ function updateHighlight() {
         inputItems[1].value = "";
     }
 
-    if (current < 7) memC1.innerText = "";
-    if (current < 9) memC2.innerText = "";
-
     clearCalcRow();
 
     if (current === 2 && hasX() && memX.innerText === "") {
@@ -200,40 +210,68 @@ function updateHighlight() {
         animateToMemory(inputItems[1], memY, String(yValue));
     }
 
-    if (current === 7 && isGreater()) {
-        const compareResult = "true";
-        showCompare(">", compareResult);
-        if (memC1.innerText === "") {
-            animateToMemory(valResult, memC1, compareResult);
-        }
+    if (current === 8 && isGreater()) {
+        numX.style.display = "flex";
+        numY.style.display = "flex";
+        compOp.style.display = "flex";
+        eqOp.style.display = "flex";
+        valResult.style.display = "flex";
+        compOp.innerText = ">";
+        eqOp.innerText = "=";
+        revealResultAfterAnimation(8, String(xValue));
+        animateToMemory(memX, numX, String(xValue));
+        animateToMemory(memY, numY, String(yValue));
+    }
+    if (current === 9 && isGreater()) {
+        showCompare(">", String(xValue));
     }
 
-    if (current > 7 && isGreater() && memC1.innerText === "") {
-        memC1.innerText = "true";
+    if (current === 10 && isLess()) {
+        const compareResult2 = String(yValue);
+        numX.style.display = "flex";
+        numY.style.display = "flex";
+        compOp.style.display = "flex";
+        eqOp.style.display = "flex";
+        valResult.style.display = "flex";
+        compOp.innerText = "<";
+        eqOp.innerText = "=";
+        revealResultAfterAnimation(10, compareResult2);
+        animateToMemory(memX, numX, String(xValue));
+        animateToMemory(memY, numY, String(yValue));
     }
-
-    if (current === 9 && isLess()) {
-        const compareResult2 = "true";
+    if (current === 11 && isLess()) {
+        const compareResult2 = String(yValue);
         showCompare("<", compareResult2);
-        if (memC2.innerText === "") {
-            animateToMemory(valResult, memC2, compareResult2);
-        }
     }
 
-    if (current > 9 && isLess() && memC2.innerText === "") {
-        memC2.innerText = "true";
+    // equal-case calculation row (matches multiif style)
+    if (current === 12 && hasX() && hasY() && !isLess() && !isGreater()) {
+        numX.style.display = "flex";
+        numY.style.display = "flex";
+        compOp.style.display = "flex";
+        eqOp.style.display = "flex";
+        valResult.style.display = "flex";
+
+        compOp.innerText = "==";
+        eqOp.innerText = "=";
+        revealResultAfterAnimation(12, String(xValue));
+        animateToMemory(memX, numX, String(xValue));
+        animateToMemory(memY, numY, String(yValue));
+    }
+    if (current === 13 && hasX() && hasY() && !isLess() && !isGreater()) {
+        showCompare("==", String(xValue));
     }
 
-    if (current === 8 && out3.innerText === "") {
+    if (current === 9 && out3.innerText === "") {
         animateToMemory(memX, out3, String(xValue));
     }
 
-    if (current === 10 && out3.innerText === "") {
+    if (current === 11 && out3.innerText === "") {
         animateToMemory(memY, out3, String(yValue));
     }
 
-    if (current === 11 && out3.innerText === "") {
-        animateToMemory(lines[12], out3, "equal");
+    if (current === 13 && out3.innerText === "") {
+        animateToMemory(memX, out3, String(xValue));
     }
 
     backBtn.disabled = current <= 0;
@@ -250,8 +288,6 @@ inputItems[0].addEventListener("keypress", (event) => {
 
         xValue = parsed;
         memX.innerText = "";
-        memC1.innerText = "";
-        memC2.innerText = "";
         out4.innerText = "";
         echoX.innerText = String(xValue);
         animateToMemory(inputItems[0], memX, String(xValue));
@@ -269,8 +305,6 @@ inputItems[1].addEventListener("keypress", (event) => {
 
         yValue = parsed;
         memY.innerText = "";
-        memC1.innerText = "";
-        memC2.innerText = "";
         out4.innerText = "";
         echoY.innerText = String(yValue);
         animateToMemory(inputItems[1], memY, String(yValue));

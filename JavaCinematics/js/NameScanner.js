@@ -17,9 +17,15 @@ const out6 = document.getElementById("ou6");
 
 const inputItems = document.querySelectorAll(".input-item");
 
-let current = 0;
+let current = -1;
 let firstName = "";
 let lastName = "";
+
+function setReferenceValue(targetElement, charsElement, storedValue) {
+    targetElement.innerText = "Ref";
+    targetElement.dataset.storedValue = storedValue;
+    createCharDisplay(charsElement, storedValue);
+}
 
 function createCharDisplay(container, str) {
     container.innerHTML = "";
@@ -68,13 +74,12 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
     });
 
     flying.addEventListener("transitionend", () => {
-        targetElement.innerText = finalValue;
-
         if (targetElement === memX) {
-            createCharDisplay(memXChars, finalValue);
-        }
-        if (targetElement === memY) {
-            createCharDisplay(memYChars, finalValue);
+            setReferenceValue(memX, memXChars, finalValue);
+        } else if (targetElement === memY) {
+            setReferenceValue(memY, memYChars, finalValue);
+        } else {
+            targetElement.innerText = finalValue;
         }
 
         document.body.removeChild(flying);
@@ -82,6 +87,7 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
 }
 
 function getHLine(step) {
+    if (step < 0) return -1;
     if (step === 0) return 0;
     if (step === 1) return 1;
     if (step === 2) return 2;
@@ -90,7 +96,8 @@ function getHLine(step) {
     if (step === 5) return 5;
     if (step === 6) return 6;
     if (step === 7) return 7;
-    return 8;
+    if (step === 8) return 8;
+    return 9;
 }
 
 function updateHighlight() {
@@ -103,68 +110,70 @@ function updateHighlight() {
         item.style.visibility = "hidden";
     });
 
-    if (current === 3) {
+    if (current === 4) {
         inputItems[0].style.visibility = "visible";
         inputItems[0].value = firstName;
     }
 
-    if (current === 7) {
+    if (current === 8) {
         inputItems[1].style.visibility = "visible";
         inputItems[1].value = lastName;
     }
 
-    out1.innerText = current >= 1 ? "Enter your firstname:" : "";
-    out2.innerText = current >= 1 && current !== 3 && firstName !== "" ? firstName : "";
+    out1.innerText = current >= 2 ? "Enter your firstname:" : "";
+    out2.innerText = current >= 2 && current !== 4 && firstName !== "" ? firstName : "";
 
     out3.innerText = "";
-    if (current >= 4 && firstName !== "") {
+    if (current >= 5 && firstName !== "") {
         out3.innerText = `Hello ${firstName}`;
     }
 
-    out4.innerText = current >= 5 ? "Enter your lastname:" : "";
+    out4.innerText = current >= 6 ? "Enter your lastname:" : "";
 
-    out5.innerText = current >= 5 && current !== 7 && lastName !== ""
+    out5.innerText = current >= 6 && current !== 8 && lastName !== ""
         ? lastName
         : "";
 
-    out6.innerText = current === 8 && firstName !== "" && lastName !== ""
+    out6.innerText = current === 9 && firstName !== "" && lastName !== ""
         ? `Hello ${firstName} ${lastName}`
         : "";
 
-    const showFirstMem = current >= 2;
-    const showLastMem = current >= 6;
+    const showFirstMem = current >= 3;
+    const showLastMem = current >= 7;
 
     document.getElementById("mem-item-x").style.visibility = showFirstMem ? "visible" : "hidden";
     document.getElementById("mem-item-y").style.visibility = showLastMem ? "visible" : "hidden";
 
-    if (current < 2) {
+    if (current < 3) {
         memX.innerText = "";
+        delete memX.dataset.storedValue;
         memXChars.innerHTML = "";
     }
 
-    if (current < 6) {
+    if (current < 7) {
         memY.innerText = "";
+        delete memY.dataset.storedValue;
         memYChars.innerHTML = "";
     }
 
-    if (current !== 3) {
+    if (current < 4) {
         memXChars.innerHTML = "";
-    } else if (memX.innerText !== "" && memXChars.innerHTML === "") {
-        createCharDisplay(memXChars, memX.innerText);
+    } else if (memX.dataset.storedValue && memXChars.innerHTML === "") {
+        createCharDisplay(memXChars, memX.dataset.storedValue);
     }
 
-    if (current !== 7) {
+    if (current < 8) {
         memYChars.innerHTML = "";
-    } else if (memY.innerText !== "" && memYChars.innerHTML === "") {
-        createCharDisplay(memYChars, memY.innerText);
+    } else if (memY.dataset.storedValue && memYChars.innerHTML === "") {
+        createCharDisplay(memYChars, memY.dataset.storedValue);
     }
 
     backBtn.disabled = current <= 0;
-    nextBtn.disabled = current >= 8;
+    nextBtn.disabled = current >= 9;
 }
 
 inputItems[0].addEventListener("keypress", (event) => {
-    if (event.key === "Enter" && current === 3) {
+    if (event.key === "Enter" && current === 4) {
         const enteredFirstName = inputItems[0].value.trim();
         if (enteredFirstName === "") return;
 
@@ -180,7 +189,7 @@ inputItems[0].addEventListener("keypress", (event) => {
 });
 
 inputItems[1].addEventListener("keypress", (event) => {
-    if (event.key === "Enter" && current === 7) {
+    if (event.key === "Enter" && current === 8) {
         const enteredLastName = inputItems[1].value.trim();
         if (enteredLastName === "") return;
 
@@ -196,9 +205,9 @@ inputItems[1].addEventListener("keypress", (event) => {
 });
 
 nextBtn.addEventListener("click", () => {
-    if (current === 3 && firstName === "") return;
-    if (current === 7 && lastName === "") return;
-    if (current >= 8) return;
+    if (current === 4 && firstName === "") return;
+    if (current === 8 && lastName === "") return;
+    if (current >= 9) return;
 
     current++;
     updateHighlight();
@@ -209,16 +218,18 @@ backBtn.addEventListener("click", () => {
 
     current--;
 
-    if (current === 3) {
+    if (current === 4) {
         firstName = "";
         memX.innerText = "";
+        delete memX.dataset.storedValue;
         memXChars.innerHTML = "";
         inputItems[0].value = "";
     }
 
-    if (current === 7) {
+    if (current === 8) {
         lastName = "";
         memY.innerText = "";
+        delete memY.dataset.storedValue;
         memYChars.innerHTML = "";
         inputItems[1].value = "";
     }

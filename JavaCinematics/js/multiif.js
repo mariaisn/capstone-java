@@ -9,7 +9,6 @@ const backBtn = document.getElementById("back");
 const memX = document.getElementById("mem-x");
 const memY = document.getElementById("mem-y");
 
-const memC1  = document.getElementById("mem-c1");
 const memC2  = document.getElementById("mem-c2");
 
 
@@ -33,7 +32,7 @@ const memItems = document.querySelectorAll(".mem-item");
 // operator symbols
 const compOp = document.getElementById("comp-op");
 const eqOp   = document.getElementById("eq-op");
-
+const RESULT_POP_DELAY_MS = 850;
 
 
 // steps
@@ -72,6 +71,19 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
 }
 
 
+
+function revealResultAfterAnimation(step, value) {
+    eqOp.style.display = "flex";
+    eqOp.innerText = "=";
+    valResult.style.display = "flex";
+    valResult.innerText = "";
+
+    setTimeout(() => {
+        if (current === step) {
+            valResult.innerText = value;
+        }
+    }, RESULT_POP_DELAY_MS);
+}
 
 function getHLine(step) {
     if (step < 0) return -1;
@@ -139,7 +151,6 @@ function updateHighlight() {
     // 0:x, 1:y, 2:cond1, 3:cond2, then template boxes
     if (current >= 0)  memItems[0].style.display = "flex"; // x
     if (current >= 2)  memItems[1].style.display = "flex"; // y
-    if (current >= 5)  memItems[2].style.display = "flex"; // cond1
 
 
 
@@ -158,7 +169,6 @@ function updateHighlight() {
     if (current === 7 || current === 12) {
     memX.innerText = "";
     memY.innerText = "";
-    memC1.innerText = "";
     out1.innerText = "";
 
     numX.innerText = "";
@@ -169,7 +179,6 @@ if (current === 13 || current ===8){
     memY.innerText="";
 }
 if (current === 15 || current === 14 || current === 10 || current ===9){
-    memC1.innerText="";
     out1.innerText="";
 }
 if (current === 14 || current === 9){
@@ -177,7 +186,6 @@ numX.innerText = "";
 numY.innerText = "";
 
 }
-    if (current < 7)  memC1.innerText = "";
     if (current < 11) memC2.innerText = "";
     if (current < 7) {
     X_VAL = "7";
@@ -194,9 +202,6 @@ if (current >4 && current < 7){
 }
 if (current >8 && current < 12){
     memY.innerText = "8";
-}
-if (current === 6){
-    memC1.innerText = "8";
 }
     if (current < 7 || current === 15) out1.innerText = "";
     out2.innerText = "";
@@ -280,9 +285,6 @@ if (current >= 12) {
         numX.innerText ="8";
         numY.innerText ="8";
     }
-    if (current === 11){
-        memC1.innerText ="equal";
-    }
 
 
     // animate operator symbol in the window / show result
@@ -301,11 +303,6 @@ if (current >= 12) {
     }
 
     // show "=" and result (middle step of each window)
-    if (current === 3) {
-        eqOp.style.display = "flex";
-        valResult.style.display = "flex";
-        valResult.innerText = "";
-    }
     if (current === 10) {
         eqOp.style.display = "flex";
         valResult.style.display = "flex";
@@ -315,35 +312,46 @@ if (current >= 12) {
 
 
 
-    // store to variable 
-    if (current === 5 && memC1.innerText === "") {
-        // ensure result is present as source
-        valResult.innerText = "";
-        valResult.style.display = "flex";
-        animateToMemory(valResult, memC1, "8");
+    // store numeric result text after fly animation completes
+    if (current === 5) {
+        revealResultAfterAnimation(5, "8");
     }
-    if (current === 10 && memC1.innerText === "") {
-        valResult.innerText = "";
+    if (current === 6) {
+        eqOp.style.display = "flex";
+        eqOp.innerText = "=";
+        valResult.innerText = "8";
         valResult.style.display = "flex";
-        animateToMemory(valResult, memC1, "equal");
     }
-    if (current === 15 && memC1.innerText === "") {
-        valResult.innerText = "";
+    if (current === 10) {
+        revealResultAfterAnimation(10, "8");
+    }
+    if (current === 11) {
+        eqOp.style.display = "flex";
+        eqOp.innerText = "=";
+        valResult.innerText = "8";
         valResult.style.display = "flex";
-        animateToMemory(valResult, memC1, "9");
+    }
+    if (current === 15) {
+        revealResultAfterAnimation(15, "9");
+    }
+    if (current === 16) {
+        eqOp.style.display = "flex";
+        eqOp.innerText = "=";
+        valResult.innerText = "9";
+        valResult.style.display = "flex";
     }
     
 
 
-    //fly from memory variable to output
+    // fly outputs from memory boxes to output
     if (current === 6 && out1.innerText === "") {
-        animateToMemory(memC1, out1, "8");
+        animateToMemory(memY, out1, "8");
     }
-     if (current === 11) {
-        animateToMemory(memC1, out1, "equal");
+      if (current === 11) {
+          animateToMemory(memX, out1, "8");
     }
     if (current === 16) {
-        animateToMemory(memC1, out1, "9");
+        animateToMemory(memX, out1, "9");
     }
 
     backBtn.disabled = current <= 0;

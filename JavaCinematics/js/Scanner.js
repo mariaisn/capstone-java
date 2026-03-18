@@ -30,10 +30,16 @@ const equalOp = document.getElementById("equal-op");
 
 
 //start page with nopthing highlighted
-const steps=16;
+const steps=17;
 let current = -1;
 
 
+
+function setReferenceValue(targetElement, charsElement, storedValue) {
+    targetElement.innerText = "Ref";
+    targetElement.dataset.storedValue = storedValue;
+    createCharDisplay(charsElement, storedValue);
+}
 
 function createCharDisplay(container, str) {
     container.innerHTML = '';
@@ -90,13 +96,10 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
     });
 
     flying.addEventListener("transitionend", () => {
-        // Check if this is a string value (for C and D variables)
-        if (finalValue === "Hello" && targetElement === memC) {
-            targetElement.innerText = finalValue;
-            createCharDisplay(memCChars, finalValue);
-        } else if (finalValue === "Hello World" && targetElement === memD) {
-            targetElement.innerText = finalValue;
-            createCharDisplay(memDChars, finalValue);
+        if (targetElement === memC) {
+            setReferenceValue(memC, memCChars, finalValue);
+        } else if (targetElement === memD) {
+            setReferenceValue(memD, memDChars, finalValue);
         } else {
             targetElement.innerText = finalValue;
         }
@@ -110,17 +113,17 @@ function getHLine(step) {
     if (step < 0) return -1;
 
     // operation highlight windows: [startStep, endStep, spanIndex]
+    // all ranges shifted +1 to account for the new Import span at index 0
     const ranges = [
-        [2,3,2],
-        [4,4,3],
-        [5,6,4],
-        [7,7,5],
-        [8,9,6],
-        [10,10,7],
-        [11,12,8],
-        [13,13,9],
-        [14,15,10]
-
+        [3,4,3],
+        [5,5,4],
+        [6,7,5],
+        [8,8,6],
+        [9,10,7],
+        [11,11,8],
+        [12,13,9],
+        [14,14,10],
+        [15,16,11]
     ];
 
     // if inside an operation window, freeze highlight
@@ -128,16 +131,8 @@ function getHLine(step) {
         if (step >= start && step <= end) return line;
     }
 
-    // keep the print line highlighted for the fly-to-output step
-    if (step === 3) return 5;
-
-    // otherwise shift step based on how many lines are skipped
-    // (we don't step through braces/else lines as separate highlights)
-    let shift = 0;
-    if (step === 3) shift = 1;   // jump over first if-block braces
-    if (step >= 12) shift = 3;  // jump to the blank else-body highlight
-
-    return step - shift;
+    // steps 0, 1, 2 fall through here
+    return step;
 }
 
 
@@ -165,24 +160,24 @@ function updateHighlight() {
 
     memItems.forEach(item => item.style.visibility="hidden");
 
-    // step 0 declares x
-    if (current >= 1) {
+    // step 1 declares x (shifted +1 for import line)
+    if (current >= 2) {
         memItems[0].style.visibility = "visible";
     }
 
-    // step 2 declares y
-    if (current >= 4) {
+    // step 3 declares y
+    if (current >= 5) {
         memItems[1].style.visibility = "visible";
     }
 
-    // step 4 declares add
-    if (current >= 7) {
+    // step 5 declares add
+    if (current >= 8) {
         memItems[2].style.visibility = "visible";
     }
-  if (current >= 10) {
+  if (current >= 11) {
         memItems[3].style.visibility = "visible";
     }
-   if (current >= 13) {
+   if (current >= 14) {
         memItems[4].style.visibility = "visible";
     }
 
@@ -192,52 +187,54 @@ function updateHighlight() {
     //step 7: add x and y
 
     // clears values when going backwards
-    if (current < 2) memX.innerText = "";
-    if (current < 1)  out1.innerText ="";
-    if (current < 5) memY.innerText = "";
-    if (current < 4)  out2.innerText ="";
-    if (current < 8) {
+    if (current < 3) memX.innerText = "";
+    if (current < 2)  out1.innerText ="";
+    if (current < 6) memY.innerText = "";
+    if (current < 5)  out2.innerText ="";
+    if (current < 9) {
         memC.innerText = "";
+        delete memC.dataset.storedValue;
         memCChars.innerHTML = "";
     }
-    if (current < 7)  out3.innerText ="";
-    if (current < 11) {
+    if (current < 8)  out3.innerText ="";
+    if (current < 12) {
         memD.innerText = "";
+        delete memD.dataset.storedValue;
         memDChars.innerHTML = "";
     }
-    if (current < 10)  out4.innerText ="";
-    if (current < 14) memE.innerText = "";
-    if (current < 13)  out5.innerText ="";
+    if (current < 11)  out4.innerText ="";
+    if (current < 15) memE.innerText = "";
+    if (current < 14)  out5.innerText ="";
 
-    // clear character displays when moving away from their display steps
-    if (current !== 9) memCChars.innerHTML = "";
-    if (current !== 12) memDChars.innerHTML = "";
+    // keep counting squares visible from declaration step onward
+    if (current < 10) memCChars.innerHTML = "";
+    if (current < 13) memDChars.innerHTML = "";
 
-    // recreate character displays when returning to their steps if memory has content
-    if (current === 9 && memC.innerText !== "" && memCChars.innerHTML === "") {
-        createCharDisplay(memCChars, memC.innerText);
+    // recreate character displays when stepping back if memory has content
+    if (current >= 10 && memC.dataset.storedValue && memCChars.innerHTML === "") {
+        createCharDisplay(memCChars, memC.dataset.storedValue);
     }
-    if (current === 12 && memD.innerText !== "" && memDChars.innerHTML === "") {
-        createCharDisplay(memDChars, memD.innerText);
+    if (current >= 13 && memD.dataset.storedValue && memDChars.innerHTML === "") {
+        createCharDisplay(memDChars, memD.dataset.storedValue);
     }
 
 
     // animate going forward
     // initiates x
   
-     if (current === 2 && out1.innerText=== ""){
+     if (current === 3 && out1.innerText=== ""){
     out1.innerText = "8";
    }
-    if (current === 5 && out2.innerText=== ""){
+    if (current === 6 && out2.innerText=== ""){
     out2.innerText = "8.0";
    }
-    if (current === 8 && out3.innerText=== ""){
+    if (current === 9 && out3.innerText=== ""){
     out3.innerText = 'Hello World';
    }
-     if (current === 11 && out4.innerText=== ""){
+     if (current === 12 && out4.innerText=== ""){
     out4.innerText = 'Hello World';
    }
-        if (current === 14 && out5.innerText=== ""){
+        if (current === 15 && out5.innerText=== ""){
     out5.innerText = 'H';
    }
 
@@ -253,19 +250,19 @@ function updateHighlight() {
 
 
     //fly from memory variable to output
-    if (current === 3 && memX.innerText === "") {
+    if (current === 4 && memX.innerText === "") {
         animateToMemory(out1, memX, "8");
     }
-    if (current === 6 && memY.innerText === "") {
+    if (current === 7 && memY.innerText === "") {
         animateToMemory(out2, memY, "8.0");
     }
-    if (current === 9 && memC.innerText === "") {
+    if (current === 10 && memC.innerText === "") {
         animateToMemory(out3, memC, "Hello");
     }
-    if (current === 12 && memD.innerText === "") {
+    if (current === 13 && memD.innerText === "") {
         animateToMemory(out4, memD, "Hello World");
     }
-        if (current === 15 && memE.innerText === "") {
+        if (current === 16 && memE.innerText === "") {
         animateToMemory(out5, memE, "H");
     }
 
