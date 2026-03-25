@@ -235,7 +235,7 @@ nextBtn.addEventListener("click", () => {
   }
 
   if (current === 6) {
-    current = 2;
+    current = 3;
     updateUI();
     return;
   }

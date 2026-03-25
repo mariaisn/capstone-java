@@ -34,18 +34,19 @@ const history = [];
 function updateMemoryExplanation() {
   if (!memoryExplanation) return;
 
-  memoryExplanation.style.display = "flex";
-
   if (current < 0) {
-    memoryExplanation.innerText = "Click Next to begin";
+    memoryExplanation.style.display = "none";
+    memoryExplanation.innerText = "";
     return;
   }
+
+  memoryExplanation.style.display = "flex";
 
   let message = "";
 
   if (current === 0) message = "Import Scanner";
   else if (current === 1) message = "Create Scanner input";
-  else if (current === 2) message = "Print Enter x prompt";
+  else if (current === 2) message = "Declare x";
   else if (current === 3) message = hasX() ? "x stored" : "Input x";
   else if (current === 4) message = "Print Enter y prompt";
   else if (current === 5) message = "Declare y";

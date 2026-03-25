@@ -22,10 +22,10 @@
   color: #f3dada;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
 }
+
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(to bottom, darkred, black);
-  min-height: 100vh;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -34,10 +34,6 @@ body {
 
 .percent {
   width: 100%;
-  height: 100%;
-}
-
-.fit {
   height: 100%;
 }
 
@@ -62,12 +58,6 @@ body {
 }
 
 .container {
-  /* Section background for header */
-  .a1 {
-    background: linear-gradient(to bottom, darkred, black);
-    grid-area: a1;
-    background: linear-gradient(to bottom, darkred, black);
-  }
   display: grid;
   row-gap: 10px;
   column-gap: 10px;
@@ -81,7 +71,7 @@ body {
 
 .a1 {
   grid-area: a1;
-  background-color: darkred;
+  background: linear-gradient(to bottom, darkred, black);
 }
 .b1 {
   grid-area: b1;
@@ -125,9 +115,6 @@ body {
   background-color: rgb(255, 251, 6);
 }
 
-/*
-added the following 6 classes - antonio
-*/
 .memory-content {
   display: flex;
   justify-content: center;
@@ -143,7 +130,6 @@ added the following 6 classes - antonio
 }
 
 .mem-item {
-  display: none;
   flex-direction: column;
   align-items: center;
   gap: 8px;
@@ -164,10 +150,9 @@ added the following 6 classes - antonio
 }
 
 .memOut {
-  display: none;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: bold;
-  margin-top: 26px;
+  margin-top: 18px;
 }
 
 .fly-value {
@@ -181,7 +166,6 @@ added the following 6 classes - antonio
 }
 
 .memory-explanation {
-  display: none;
   background: #f8f8d8;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -193,21 +177,32 @@ added the following 6 classes - antonio
   text-align: center;
 }
 
-.console-wrapper {
+#out-box {
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
+  padding: 8px;
 }
 
-#console-input {
-  display: none;
-  color: goldenrod;
-  border: none;
-  outline: none;
-  
+#output-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-#console-input::-webkit-outer-spin-button,
-#console-input::-webkit-inner-spin-button {
+.input-item {
+  visibility: hidden;
+  width: 260px;
+  margin-top: 8px;
+}
+
+.input-item[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.input-item[type="number"]::-webkit-outer-spin-button,
+.input-item[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

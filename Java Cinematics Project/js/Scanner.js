@@ -1,4 +1,3 @@
-
 //select all lines
 const lines = document.querySelectorAll("#high span");
 
@@ -27,7 +26,7 @@ const memoryExplanation = document.getElementById("memory-explanation");
 
 const stepMessages = [
   "Import the Scanner class",
-  "Create a Scanner object to read input",
+  "The statement creates an object for performing console input and assigns the object to the reference variable named input",
   "Declare int a",
   "Scanner reads an integer from input",
   "Assign value to a",

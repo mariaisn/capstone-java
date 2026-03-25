@@ -188,7 +188,7 @@ function updateHighlight() {
   }
 
   backBtn.disabled = current <= 0;
-  nextBtn.disabled = current >= 9;
+  nextBtn.disabled = current >= 9 ;
 
   updateMemoryExplanation();
 }

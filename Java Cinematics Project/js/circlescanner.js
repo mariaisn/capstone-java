@@ -2,11 +2,11 @@
 const explanationBox = document.getElementById("memory-explanation");
 
 const explanations = [
-  "click next to begin",
-  "declare radius",
-  "declare area",
-  "import scanner",
-  "create scanner",
+  "",
+  "Import the Scanner class",
+  "Declare radius",
+  "Declare area",
+  "The statement creates an object for performing console input and assigns the object to the reference variable named input",
   "prompt user for input",
   "read radius value from input",
   "start compute",
@@ -53,9 +53,9 @@ const PI_VAL = 3.14159;
 
 // steps
 // -1 = before start
-// 0  = declare radius
-// 1  = declare area
-// 2  = import Scanner
+// 0  = import Scanner
+// 1  = declare radius
+// 2  = declare area
 // 3  = create Scanner
 // 4  = prompt
 // 5  = radius = input.nextDouble()
@@ -171,9 +171,9 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
 function getHLine(step) {
   if (step < 0) return -1;
 
-  if (step === 0) return 1; // double radius;
-  if (step === 1) return 2; // double area;
-  if (step === 2) return 0; // import java.util.Scanner;
+  if (step === 0) return 0; // import java.util.Scanner;
+  if (step === 1) return 1; // double radius;
+  if (step === 2) return 2; // double area;
   if (step === 3) return 3; // Scanner input...
   if (step === 4) return 4; // System.out.print(...)
   if (step === 5) return 5; // radius = input.nextDouble();
@@ -189,7 +189,13 @@ function getHLine(step) {
 
 function updateHighlight() {
   // Sync memory explanation box with current step
-  explanationBox.textContent = explanations[current + 1] || "";
+  if (current < 0) {
+    explanationBox.style.display = "none";
+    explanationBox.textContent = "";
+  } else {
+    explanationBox.style.display = "flex";
+    explanationBox.textContent = explanations[current + 1] || "";
+  }
 
   // show/hide console row and lock/unlock input based on step
   setConsoleVisibility();
@@ -225,8 +231,8 @@ function updateHighlight() {
   if (current < 9) out1.innerHTML = "";
 
   // show squares when declared
-  if (current >= 0) memItems[0].style.display = "flex"; // radius
-  if (current >= 1) memItems[1].style.display = "flex"; // area
+  if (current >= 1) memItems[0].style.display = "flex"; // radius
+  if (current >= 2) memItems[1].style.display = "flex"; // area
 
   // clear values when going backwards
   if (current < 5) memRadius.innerText = "";

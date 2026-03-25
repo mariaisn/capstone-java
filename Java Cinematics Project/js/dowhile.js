@@ -33,12 +33,16 @@ const stepMessages = [
   "Calulate sum",
   "Assign sum to x",
   "Check Condition",
-  "Condition is false",
+  "Condition is",
   "Exit Loop",
 ];
 
 let current = -1;
+let prev = -1;
 const steps = 10;
+
+const outArr = [];
+let history = [];
 
 let x = 0;
 let loopCount = 0;
@@ -89,7 +93,7 @@ function getHLine(step) {
   return step + temp;
 }
 
-function addConsoleRow(text) {
+function addOutRow(text) {
   const row = document.createElement("div");
   row.className = "console-row";
 
@@ -99,7 +103,23 @@ function addConsoleRow(text) {
   row.appendChild(span);
   conBox.appendChild(row);
 
-  return span;
+  return row;
+}
+
+//add output row, add the row into array, and to return row number
+function pushOut(text) {
+  const row = addOutRow(text);
+  outArr.push(row);
+
+  return row;
+}
+
+//delete last row from output and from array
+function popOut() {
+  const row = outArr.pop();
+  if (row) {
+    row.remove();
+  }
 }
 
 function updateUI() {
@@ -110,6 +130,13 @@ function updateUI() {
   plusOp.style.display = "none";
   lessOp.style.display = "none";
   eqOp.style.display = "none";
+  boolVal = x < 3 ? "True" : "False";
+
+  if (boolVal === "True") {
+    stepMessages[8] = "Condition is True";
+  } else {
+    stepMessages[8] = "Condition is False";
+  }
 
   //call to get proper line to highlight into hLine
   const hLine = getHLine(current);
@@ -121,26 +148,43 @@ function updateUI() {
 
   if (current < 1) memX.innerText = "";
 
+  if (current === 6 && prev >= 6) {
+    x--;
+  }
+
   if (current >= 0) {
     memItems[0].style.display = "flex";
     memoryExplanation.style.display = "flex";
   }
 
-  if (current === 1 && memX.innerText === "") {
+  if (current === 1 && prev < 1) {
     animateToMemory(vX, memX, x);
   }
 
+  // delete output when going back
+  if (current === 2 && prev > 2) {
+    popOut();
+  }
+
+  // printing output
   if (current === 3) {
-    const y = addConsoleRow("Hello");
-    animateToMemory(vPrint, y, "Hello");
+    if (prev < 3) {
+      const y = pushOut("Hello");
+      animateToMemory(vPrint, y, "Hello");
+    }
+
+    if (prev >= 3) {
+      popOut;
+    }
   }
 
   if (current >= 4 && current <= 6) {
     numX.style.display = "flex";
     num1.style.display = "flex";
+    plusOp.style.display = "flex";
 
     // if entering the window, animate them down
-    if (current === 4) {
+    if (current === 4 && prev < 4) {
       animateToMemory(memX, numX, x);
       animateToMemory(v1, num1, 1);
       plusOp.style.display = "flex";
@@ -151,38 +195,45 @@ function updateUI() {
         num1.innerText = 1;
         plusOp.style.display = "flex";
         eqOp.style.display = "flex";
+
+        if (prev >= 5) {
+          memX.innerText = x;
+        }
       } else if (current === 6) {
         numX.innerText = x;
         num1.innerText = 1;
         plusOp.style.display = "flex";
         eqOp.style.display = "flex";
-      } else {
-        // clear when not in window
-        numX.style.display = "none";
-        num1.style.display = "none";
-        numX.innerText = "";
-        num1.innerText = "";
       }
     }
+  } else {
+    // clear when not in window
+    numX.style.display = "none";
+    num1.style.display = "none";
+    numX.innerText = "";
+    num1.innerText = "";
   }
 
   if (current >= 5 && current <= 6) {
-    if (current === 5) {
-      vSum.style.display = "flex";
-      vSum.innerText = x++;
-    } else if (current === 6) {
-      vSum.style.display = "flex";
-      vSum.innerText = x;
-      animateToMemory(vSum, memX, x);
+    vSum.style.display = "flex";
+    vSum.innerText = x + 1;
+
+    if (current === 6 && prev < 6) {
+      animateToMemory(vSum, memX, x + 1);
     }
+  }
+
+  if (current === 7 && prev < 7) {
+    x++;
   }
 
   if (current >= 7 && current <= 8) {
     numX1.style.display = "flex";
     numC.style.display = "flex";
+    lessOp.style.display = "flex";
 
     // if entering the window, animate them down
-    if (current === 7) {
+    if (current === 7 && prev < 7) {
       animateToMemory(memX, numX1, x);
       animateToMemory(vC, numC, 3);
     } else {
@@ -198,41 +249,46 @@ function updateUI() {
     numC.innerText = "";
   }
 
-  if (current >= 7 && current <= 8) {
-    lessOp.style.display = "flex";
-  }
-
   if (current === 8) {
     vBool.style.display = "flex";
-    boolVal = x < 3 ? "True" : "False";
     vBool.innerText = boolVal;
-
-    if (boolVal === "True") {
-      current = 1;
-      loopCount++;
-      if (loopCount > 0) {
-        stepMessages[1] = "Condition is True";
-      } else {
-        stepMessages[1] = "Assign 0 to x";
-      }
-    }
   }
 
   backBtn.disabled = current <= 0;
   nextBtn.disabled = current >= steps - 1;
+
+  prev = current;
 }
 
 nextBtn.addEventListener("click", () => {
-  if (current < steps - 1) {
+  if (current === 8) {
+    if (x < 3) {
+      loopCount++;
+      history.push(current);
+      current = 2;
+      prev = current;
+    } else {
+      history.push(current);
+      current++;
+    }
+  } else if (current < steps - 1) {
+    history.push(current);
     current++;
-    updateUI();
-    updateMemoryExplanation();
   }
+
+  updateUI();
+  updateMemoryExplanation();
 });
 
 backBtn.addEventListener("click", () => {
-  if (current > 0) {
-    current--;
+  if (history.length > 0) {
+    const prevStep = history.pop();
+
+    if (prevStep === 2 && current === 8) {
+      loopCount--;
+    }
+
+    current = prevStep;
     updateUI();
     updateMemoryExplanation();
   }

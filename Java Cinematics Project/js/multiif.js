@@ -355,12 +355,14 @@ function updateHighlight() {
 function updateMemoryExplanation() {
   if (!memoryExplanation) return;
 
-  memoryExplanation.style.display = "flex";
   if (current < 0) {
-    memoryExplanation.innerText = "Click Next to begin";
+    memoryExplanation.style.display = "none";
+    memoryExplanation.innerText = "";
   } else if (current < stepMessages.length) {
+    memoryExplanation.style.display = "flex";
     memoryExplanation.innerText = stepMessages[current];
   } else {
+    memoryExplanation.style.display = "flex";
     memoryExplanation.innerText = "Done!";
   }
 }
