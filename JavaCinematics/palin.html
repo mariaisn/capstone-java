@@ -33,14 +33,14 @@ public class Palindrome{
     
     <span>Scanner in= new Scanner(System.in)</span>;
     
-    <span>System.out.print("Enter a string: ")</span>;
+    <span id="print-E">System.out.print("Enter a string: ")</span>;
     <span>String s</span> = <span>in.nextLine()</span>;
     
-    <span>int low</span> <span>= 0</span>;
+    <span>int low</span> <span id="ini-low">= 0</span>;
     
-    <span>int high</span> <span>= s.length() - 1</span>;
+    <span>int high</span> <span id="ini-high">= s.length() - 1</span>;
     
-    <span>boolean isPalindrome</span> <span>= true</span>;
+    <span>boolean isPalindrome</span> <span id="ini-isP">= true</span>;
     
     <span>while</span><span>(low < high)</span>{
       <span>if(s.charAt(low) != s.charAt(high))</span>{
@@ -48,16 +48,16 @@ public class Palindrome{
         <span>break</span>;
       }
       
-      <span>low++</span>;
-      <span>high--</span>;
+      <span id="ini-plus">low++</span>;
+      <span id="ini-minus">high--</span>;
     }<span> </span>
     
     <span>if(isPalindrome)</span>{
-      <span>System.out.println(s + " is a palindrome")</span>;
+      <span id="print-is">System.out.println(s + " is a palindrome")</span>;
     }
-    else{
-      <span>System.out.println(s + " is not a palindrome")</span>;
-    }
+    <span>else</span>{
+      <span id="print-not">System.out.println(s + " is not a palindrome")</span>;
+    }<span> </span>
   }
 }
             </pre>
@@ -136,6 +136,7 @@ public class Palindrome{
 
 
                     <div class="mem-item memOut" id="num-sum"></div>
+                    <div class="mem-item memOut" id="num-bool"></div>
                 </div>
             </div>
 
