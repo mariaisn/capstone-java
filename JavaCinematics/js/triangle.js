@@ -35,20 +35,8 @@ const calcFormula = document.getElementById("calc-formula");
 
 // One-after-the-other stepping: declaration line first, then input/expression line.
 const lineByStep = [
-  0, 2, 3,
-  4, 5,
-  6, 7,
-  8, 9,
-  10, 11,
-  12, 13,
-  14, 15,
-  16, 17,
-  18, 19,
-  20, 21,
-  22, 23,
-  24, 25,
-  26, 27,
-  28,
+  0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+  23, 24, 25, 26, 27, 28,
 ];
 
 const stepMessages = [
@@ -190,21 +178,21 @@ function computeSidesAndAngles() {
   if (current >= 16) {
     values.a = Math.sqrt(
       (values.x2 - values.x3) * (values.x2 - values.x3) +
-        (values.y2 - values.y3) * (values.y2 - values.y3)
+        (values.y2 - values.y3) * (values.y2 - values.y3),
     );
   }
 
   if (current >= 18) {
     values.b = Math.sqrt(
       (values.x1 - values.x3) * (values.x1 - values.x3) +
-        (values.y1 - values.y3) * (values.y1 - values.y3)
+        (values.y1 - values.y3) * (values.y1 - values.y3),
     );
   }
 
   if (current >= 20) {
     values.c = Math.sqrt(
       (values.x1 - values.x2) * (values.x1 - values.x2) +
-        (values.y1 - values.y2) * (values.y1 - values.y2)
+        (values.y1 - values.y2) * (values.y1 - values.y2),
     );
   }
 
@@ -259,12 +247,12 @@ function flyMultiToFormula(srcKeys, finalText) {
 
     document.body.appendChild(flying);
 
-    flying.style.left = rectStart.left + rectStart.width  / 2 + "px";
-    flying.style.top  = rectStart.top  + rectStart.height / 2 + "px";
+    flying.style.left = rectStart.left + rectStart.width / 2 + "px";
+    flying.style.top = rectStart.top + rectStart.height / 2 + "px";
 
     requestAnimationFrame(() => {
-      flying.style.left = rectEnd.left + rectEnd.width  / 2 + "px";
-      flying.style.top  = rectEnd.top  + rectEnd.height / 2 + "px";
+      flying.style.left = rectEnd.left + rectEnd.width / 2 + "px";
+      flying.style.top = rectEnd.top + rectEnd.height / 2 + "px";
     });
 
     flying.addEventListener("transitionend", () => {
@@ -289,28 +277,37 @@ function updateMemorySquares() {
 
   // Determine formula text and which squares to fly from for this step
   let formulaText = "";
-  let srcKeys     = [];
+  let srcKeys = [];
 
   if (current === 16 && Number.isFinite(values.a)) {
-    formulaText = `a = Math.sqrt((x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3)) = Math.sqrt((${formatNum(values.x2)} - ${formatNum(values.x3)}) * (${formatNum(values.x2)} - ${formatNum(values.x3)}) + (${formatNum(values.y2)} - ${formatNum(values.y3)}) * (${formatNum(values.y2)} - ${formatNum(values.y3)})) = ${formatNum(round2(values.a))}`;
+    formulaText = `Math.sqrt((${formatNum(values.x2)} - ${formatNum(values.x3)}) * (${formatNum(values.x2)} - ${formatNum(values.x3)}) + (${formatNum(values.y2)} - ${formatNum(values.y3)}) * (${formatNum(values.y2)} - ${formatNum(values.y3)})) = ${formatNum(round2(values.a))}`;
     srcKeys = ["x2", "x3", "y2", "y3"];
   } else if (current === 18 && Number.isFinite(values.b)) {
-    formulaText = `b = Math.sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3)) = Math.sqrt((${formatNum(values.x1)} - ${formatNum(values.x3)}) * (${formatNum(values.x1)} - ${formatNum(values.x3)}) + (${formatNum(values.y1)} - ${formatNum(values.y3)}) * (${formatNum(values.y1)} - ${formatNum(values.y3)})) = ${formatNum(round2(values.b))}`;
+    formulaText = `Math.sqrt((${formatNum(values.x1)} - ${formatNum(values.x3)}) * (${formatNum(values.x1)} - ${formatNum(values.x3)}) + (${formatNum(values.y1)} - ${formatNum(values.y3)}) * (${formatNum(values.y1)} - ${formatNum(values.y3)})) = ${formatNum(round2(values.b))}`;
     srcKeys = ["x1", "x3", "y1", "y3"];
   } else if (current === 20 && Number.isFinite(values.c)) {
-    formulaText = `c = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) = Math.sqrt((${formatNum(values.x1)} - ${formatNum(values.x2)}) * (${formatNum(values.x1)} - ${formatNum(values.x2)}) + (${formatNum(values.y1)} - ${formatNum(values.y2)}) * (${formatNum(values.y1)} - ${formatNum(values.y2)})) = ${formatNum(round2(values.c))}`;
+    formulaText = `Math.sqrt((${formatNum(values.x1)} - ${formatNum(values.x2)}) * (${formatNum(values.x1)} - ${formatNum(values.x2)}) + (${formatNum(values.y1)} - ${formatNum(values.y2)}) * (${formatNum(values.y1)} - ${formatNum(values.y2)})) = ${formatNum(round2(values.c))}`;
     srcKeys = ["x1", "x2", "y1", "y2"];
   } else if (current === 22 && Number.isFinite(values.A)) {
-    formulaText = `A = Math.toDegrees(Math.acos((a * a - b * b - c * c) / (-2 * b * c))) = ${formatNum(round2(values.A))}°`;
+    const ra = formatNum(round2(values.a)), rb = formatNum(round2(values.b)), rc = formatNum(round2(values.c));
+    formulaText = `Math.toDegrees(Math.acos((${ra} * ${ra} - ${rb} * ${rb} - ${rc} * ${rc}) / (-2 * ${rb} * ${rc}))) = ${formatNum(round2(values.A))}`;
     srcKeys = ["a", "b", "c"];
   } else if (current === 24 && Number.isFinite(values.B)) {
-    formulaText = `B = Math.toDegrees(Math.acos((b * b - a * a - c * c) / (-2 * a * c))) = ${formatNum(round2(values.B))}°`;
+    const ra = formatNum(round2(values.a)), rb = formatNum(round2(values.b)), rc = formatNum(round2(values.c));
+    formulaText = `Math.toDegrees(Math.acos((${rb} * ${rb} - ${ra} * ${ra} - ${rc} * ${rc}) / (-2 * ${ra} * ${rc}))) = ${formatNum(round2(values.B))}`;
     srcKeys = ["a", "b", "c"];
   } else if (current === 26 && Number.isFinite(values.C)) {
-    formulaText = `C = Math.toDegrees(Math.acos((c * c - b * b - a * a) / (-2 * a * b))) = ${formatNum(round2(values.C))}°`;
+    const ra = formatNum(round2(values.a)), rb = formatNum(round2(values.b)), rc = formatNum(round2(values.c));
+    formulaText = `Math.toDegrees(Math.acos((${rc} * ${rc} - ${rb} * ${rb} - ${ra} * ${ra}) / (-2 * ${ra} * ${rb}))) = ${formatNum(round2(values.C))}`;
     srcKeys = ["a", "b", "c"];
-  } else if (current === 27 && Number.isFinite(values.A) && Number.isFinite(values.B) && Number.isFinite(values.C)) {
-    formulaText = `Math.round(A * 100) / 100.0 = ${formatNum(round2(values.A))}\nMath.round(B * 100) / 100.0 = ${formatNum(round2(values.B))}\nMath.round(C * 100) / 100.0 = ${formatNum(round2(values.C))}`;
+  } else if (
+    current === 27 &&
+    Number.isFinite(values.A) &&
+    Number.isFinite(values.B) &&
+    Number.isFinite(values.C)
+  ) {
+    const rA = formatNum(round2(values.A)), rB = formatNum(round2(values.B)), rC = formatNum(round2(values.C));
+    formulaText = `Math.round(${rA} * 100) / 100.0 = ${rA}\nMath.round(${rB} * 100) / 100.0 = ${rB}\nMath.round(${rC} * 100) / 100.0 = ${rC}`;
     srcKeys = ["A", "B", "C"];
   }
 
@@ -343,7 +340,7 @@ function updateOutput() {
 
   if (current >= 27 && Number.isFinite(values.A)) {
     out3.innerText = `The three angles are ${round2(values.A)} ${round2(
-      values.B
+      values.B,
     )} ${round2(values.C)}`;
   } else {
     out3.innerText = "";
