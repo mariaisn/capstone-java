@@ -40,6 +40,7 @@ const ini = {
   pal: document.getElementById("ini-isP"),
   plus: document.getElementById("ini-plus"),
   min: document.getElementById("ini-minus"),
+  isF: document.getElementById("ini-isF"),
 }
 const print = {
   e: document.getElementById("print-E"),
@@ -322,7 +323,7 @@ function updateUI() {
     low--;
   }
 
-  if(current === 26 && prev >= 26){
+  if(current === 26 && prev === 14){
     high++;
   }
 
@@ -363,16 +364,16 @@ function updateUI() {
   
   //assign variables
   const iniVar = [
-    {step: 7, variable: "low", value: 0},
-    {step: 13, variable: "pal", value: "true"},
-    {step: 19, variable: "pal", value: "false"}
+    {step: 7, from: "low", to: "low", value: 0},
+    {step: 13, from: "pal", to: "pal", value: "true"},
+    {step: 19, from: "isF", to: "pal", value: "false"}
   ];
 
-  iniVar.forEach(({step, variable, value}) => {
-     if(current === step && prev<step){
-    animateToMemory(ini[variable], mem[variable], value);
-  }
-  })
+  iniVar.forEach(({step, from, to, value}) => {
+    if (current === step && prev < step) {
+      animateToMemory(ini[from], mem[to], value);
+    }
+  });
 
 
   if (current >=9 && current <= 11){
@@ -445,6 +446,10 @@ function updateUI() {
   if (current === 18){
     num.bool.style.display = "flex";
     num.bool.innerText = sArr.charAt(low) !== sArr.charAt(high) ? "true" : "false";
+  }
+
+  if (current === 18 && prev > 18){
+    mem.pal.innerText = "true";
   }
 
 
@@ -573,7 +578,6 @@ nextBtn.addEventListener("click", () => {
       current = low < high ? 17 : 27;
     } else if (current === 18) {
       current = sArr.charAt(low) !== sArr.charAt(high) ? 19 : 21;
-      prev = current;
     } else if (current === 20) {
       current = 27;
     } else if (current === 26) {
