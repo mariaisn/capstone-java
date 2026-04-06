@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="percent">
+    <head>
+        <title>Structural | Trace Array</title>
+        <link rel="stylesheet" href="css/TraceArray.css" />
+    </head>
+
+
+    <body class="container percent">
+        <header class="a1 cent">
+            <a href="index.html" class="fit">
+                <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold">
+            </a>
+            <div class="example-title-box">Trace Array</div>
+        </header>
+
+        <div class="b1 code">
+            <div class="sectiontitle cent ca">
+                Code
+            </div>
+
+            <div class="cb bar">
+            <pre id="high">
+<span>public class Test {</span>
+<span>  public static void main(String[] args) {</span>
+<span>    int[] values = new int[5];</span>
+<span>    for (int i = 1; i &lt; 5; i++) {</span>
+<span>      values[i] = i + values[i - 1];</span>
+<span>    }</span>
+<span>    values[0] = values[1] + values[4];</span>
+<span>  }</span>
+<span>}</span>
+            </pre>
+
+            </div>
+
+            <div class="cc cent">
+                <button id="back">Back</button>
+                <button id="next">Next</button>
+            </div>
+            
+        </div>
+
+        <div class="b2 viz">
+            <div class="sectiontitle cent ca">
+                Memory
+            </div>
+            
+            <div class="cb memory-content">
+                <div class="memory-explanation" id="memory-explanation"></div>
+
+                <div class="mVariable cent">
+                    <div class="mem-item" id="item-i">
+                        <div class="mem-label">i</div>
+                        <div class="mem-square cent" id="mem-i"></div>
+                    </div>
+                </div>
+
+                <div class="char-container">
+                    <div class="char-row">
+                        <div class="char-index">0</div>
+                        <div class="char-index">1</div>
+                        <div class="char-index">2</div>
+                        <div class="char-index">3</div>
+                        <div class="char-index">4</div>
+                    </div>
+                    <div class="char-row">
+                        <div class="char-box" id="arr-0"></div>
+                        <div class="char-box" id="arr-1"></div>
+                        <div class="char-box" id="arr-2"></div>
+                        <div class="char-box" id="arr-3"></div>
+                        <div class="char-box" id="arr-4"></div>
+                    </div>
+                </div>
+
+                <div class="mVariable" id="mem-calc">
+                    <div class="mem-item memOut" id="calc-left"></div>
+                    <div class="memOut cent" id="calc-op"></div>
+                    <div class="mem-item memOut" id="calc-right"></div>
+                    <div class="memOut cent" id="calc-eq"></div>
+                    <div class="mem-item memOut" id="calc-result"></div>
+                </div>
+            </div>
+
+    </div>
+
+        
+        <div class="c1 out">
+            <div class="ca sectiontitle cent">
+                Output
+            </div>
+            
+            <div class="cb bar">
+                <div id="ou1"></div>
+            </div>
+
+        </div>
+
+        <script src="js/TraceArray.js"></script>
+    </body>
+</html>
