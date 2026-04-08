@@ -1,0 +1,114 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | Hex Digit to Decimal</title>
+    <link rel="stylesheet" href="css/decimalconversion.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">Hex Digit to Decimal</div>
+    </header>
+
+    <div class="b1 div1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+<span id="import-line">import java.util.Scanner;</span>
+
+public class HexDigit2Dec {
+  <span id="main-line">public static void main(String[] args) {</span>
+    <span id="scanner-line">Scanner input = new Scanner(System.in);</span>
+    <span id="prompt-line">System.out.print("Enter a hex digit: ");</span>
+    <span id="read-line">String hexString = input.nextLine();</span>
+
+    <span id="len-if-line">if (hexString.length() != 1) {</span>
+      <span id="len-print-line">System.out.println("You must enter exactly one character");</span>
+      <span id="exit-line">System.exit(1);</span>
+    <span>}</span>
+
+    <span id="ch-line">char ch = Character.toUpperCase(hexString.charAt(0));</span>
+    <span id="af-if-line">if ('A' &lt;= ch &amp;&amp; ch &lt;= 'F') {</span>
+      <span id="value-line">int value = ch - 'A' + 10;</span>
+      <span id="print-value-line">System.out.println("The decimal value for hex digit "</span>
+      <span id="print-value-line-2">  + ch + " is " + value);</span>
+    <span>}</span>
+    <span id="digit-if-line">else if (Character.isDigit(ch)) {</span>
+      <span id="print-digit-line">System.out.println("The decimal value for hex digit "</span>
+      <span id="print-digit-line-2">  + ch + " is " + ch);</span>
+    <span>}</span>
+    <span>else {</span>
+      <span id="invalid-print-line">System.out.println(ch + " is an invalid input");</span>
+    <span>}</span>
+  <span>}</span>
+}
+        </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation">
+          Click Next to begin
+        </div>
+
+        <div class="mVariable cent">
+          <div class="mem-item" id="item-hex">
+            <div class="mem-label">hexString</div>
+            <div class="mem-square cent" id="mem-hex"></div>
+          </div>
+
+          <div class="mem-item" id="item-ch">
+            <div class="mem-label">ch</div>
+            <div class="mem-square cent" id="mem-ch"></div>
+          </div>
+
+          <div class="mem-item" id="item-value">
+            <div class="mem-label">value</div>
+            <div class="mem-square cent" id="mem-value"></div>
+          </div>
+        </div>
+
+        <div class="mVariable" id="calc-row">
+          <div class="mem-item memOut" id="calc-left"></div>
+          <div class="memOut cent" id="calc-op"></div>
+          <div class="mem-item memOut" id="calc-right"></div>
+          <div class="memOut cent" id="calc-eq">=</div>
+          <div class="mem-item memOut" id="calc-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+
+      <div class="cb bar out-box">
+        <div class="console-row" id="console-input-row">
+          <div id="prompt"></div>
+          <input
+            id="console-input"
+            type="text"
+            maxlength="8"
+            placeholder="b"
+            autocomplete="off"
+          />
+        </div>
+        <div id="ou1"></div>
+        <div id="ou2"></div>
+      </div>
+    </div>
+
+    <script src="js/decimalconversion.js"></script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="percent">
+    <head>
+        <title>Java Cinematics Example</title>
+        <link rel="stylesheet" href="css/NameScanner.css" />
+    </head>
+
+
+
+
+    <body class="container percent">
+        <header class="a1 cent">
+            <a href="index.html">
+                <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+            </a>
+            <div class="example-title-box">Reading Names with Scanner</div>
+        </header>
+
+
+        <div class="b1 div1 code">
+            <div class="sectiontitle cent ca">
+                Code
+            </div>
+
+
+            <div class="cb bar">
+            <pre id="high">
+<span>Import java.util.Scanner;</span>
+
+
+public class Test {
+   
+    public static void main(String args[]) {
+        <span>Scanner input= new Scanner(System.in);</span>
+       
+                <span>System.out.println("Enter your firstname:");</span>;
+       
+
+
+        <span>String firstname=</span><span id="val-a"> input.next()</span>;
+       
+   
+        <span>System.out.println("Hello " + name);</span>;
+       
+
+
+        <span>System.out.println("Enter your lastname:");</span>;
+       
+       
+        <span>String lastname=</span><span id="val-b"> input.next()</span>;
+              input.close();
+   
+        <span>System.out.println("Hello " + firstname + " " + lastname)</span>;
+       
+
+
+       
+       
+    }
+
+
+}
+            </pre>
+
+
+            </div>
+
+
+            <div class="cc cent">
+                <button id="back">Back</buttdiv with on>
+                <button id="next">Next</button>
+            </div>
+           
+        </div>
+
+
+        <!-- updated memory section - antonio -->
+        <div class="b2 viz">
+            <div class="sectiontitle cent ca">
+                Memory
+            </div>
+           
+            <div class="cb memory-content">
+                <div class="memory-explanation" id="memory-explanation" style="display: none"></div>
+
+                <div class="mVariable cent">
+                    <div class="mem-item" id="mem-item-x">
+                        <div class="mem-label">firstname</div>
+                        <div class="mem-square cent" id="mem-x"></div>
+                        <div class="char-container" id="mem-x-chars"></div>
+                    </div>
+
+
+                    <div class="mem-item" id="mem-item-y">
+                        <div class="mem-label">lastname</div>
+                        <div class="mem-square cent" id="mem-y"></div>
+                        <div class="char-container" id="mem-y-chars"></div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+                
+
+
+                <div class="mVariable">
+                    <div class="mem-item memOut" id="mem-num-x"></div>
+
+
+                    <div class="memOut cent" id="plus-op"></div>
+
+
+                    <div class="mem-item memOut" id="mem-num-y"></div>
+
+
+                    <div class="memOut cent" id="equal-op"></div>
+
+
+                    <div class="mem-item memOut" id="val-add"></div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+       
+        <div class="c1 out">
+            <div class="ca sectiontitle cent">
+                Output
+            </div>
+           
+            <div class="cb bar">
+             <div class="cb bar out-box">
+                  <div id="ou1"></div>
+                  <input id="firstName" type="text" class="input-item" >
+                    <div id="ou2"></div>
+                    <div id="ou3"></div>
+                    <div id="ou4"></div>
+                    <input id="lastName" type="text" class="input-item">
+                    <div id="ou5"></div>
+                    <div id="ou6"></div>
+                </div>
+
+
+        </div>
+
+
+        <script src="js/NameScanner.js"></script>
+    </body>
+</html>

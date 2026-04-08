@@ -1,0 +1,95 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Procedural | Calling Methods</title>
+    <link rel="stylesheet" href="css/callingMethods.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">Calling Methods</div>
+    </header>
+
+    <div class="b1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+<span id="class-line">public class TestMax {</span>
+  <span>/** Main method */</span>
+  <span id="main-line">public static void main(String[] args) {</span>
+    <span id="decl-i">int i</span><span id="assign-i"> = 5;</span>
+    <span id="decl-j">int j</span><span id="assign-j"> = 2;</span>
+    <span id="call-line">int k = max(i, j);</span>
+    <span id="print-line">System.out.println("The maximum between " + i +</span>
+      <span>" and " + j + " is " + k);</span>
+  <span>}</span>
+
+  <span>/** Return the max between two numbers */</span>
+  <span id="max-signature-line">public static int max(int num1, int num2) {</span>
+    <span id="result-decl-line">int result;</span>
+
+    <span id="if-line">if (num1 &gt; num2)</span>
+      <span id="result-num1-line">result = num1;</span>
+    <span>else</span>
+      <span id="result-num2-line">result = num2;</span>
+
+    <span id="return-line">return result;</span>
+  <span>}</span>
+<span id="end-class-line">}</span>
+        </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation">
+          Click Next to begin
+        </div>
+
+        <div class="mVariable">
+          <div class="mem-item" id="item-i">
+            <div class="mem-label">i</div>
+            <div class="mem-square cent" id="mem-i"></div>
+          </div>
+          <div class="mem-item" id="item-j">
+            <div class="mem-label">j</div>
+            <div class="mem-square cent" id="mem-j"></div>
+          </div>
+          <div class="mem-item" id="item-k">
+            <div class="mem-label">k</div>
+            <div class="mem-square cent" id="mem-k"></div>
+          </div>
+        </div>
+
+        <div class="mVariable calc-row" id="calc-row">
+          <div class="memOut cent" id="calc-num1"></div>
+          <div class="memOut cent">&gt;</div>
+          <div class="memOut cent" id="calc-num2"></div>
+          <div class="memOut cent">=</div>
+          <div class="memOut cent" id="calc-bool"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="sectiontitle cent ca">Output</div>
+
+      <div class="console-wrapper bar">
+        <div id="console"></div>
+      </div>
+    </div>
+
+    <script src="js/callingMethods.js"></script>
+  </body>
+</html>

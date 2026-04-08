@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="percent">
+    <head>
+        <title>Structural | Math Operators with Scanner</title>
+        <link rel="stylesheet" href="css/mathS.css" />
+    </head>
+
+
+    <body class="container percent">
+        <header class="a1 cent">
+            <a href="index.html">
+                  <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+              </a>
+            <div class="example-title-box">Math Operators with Scanner</div>
+        </header>
+
+        <div class="b1 code">
+            <div class="sectiontitle cent ca">
+                Code
+            </div>
+
+            <div class="cb bar">
+            <pre id="high">
+<span>import java.util.Scanner</span>;
+
+public class Test {
+	
+	public static void main(String args[]) {
+	
+		<span>Scanner in = new Scanner(System.in);</span>
+
+		<span>int x</span><span> = in.nextInt()</span>;
+		<span>int y</span><span> = in.nextInt()</span>;
+		
+		<span>int add</span><span> = x+y</span>;
+		<span>System.out.println(add)</span>;
+			
+		<span>int sub</span><span> = x-y</span>;
+		<span>System.out.println(sub)</span>;
+			
+		<span>int mul</span><span> = x*y</span>;
+		<span>System.out.println(mul)</span>;
+			
+		<span>int div</span><span> = x/y</span>;
+		<span>System.out.println(div)</span>;
+		
+		<span>int rem</span><span> =x%y</span>;
+		<span>System.out.println(rem)</span>;
+		
+		<span>double x1</span><span> = in.nextInt()</span>;
+		<span>double y1</span><span> = in.nextInt()</span>;
+		
+		<span>double div2</span><span> = x1/y1</span>;
+		<span>System.out.println(div2)</span>;
+	}
+
+}
+            </pre>
+
+            </div>
+
+            <div class="cc cent">
+                <button id="back">Back</buttdiv with on>
+                <button id="next">Next</button>
+            </div>
+            
+        </div>
+
+        <div class="b2 viz">
+            <div class="sectiontitle cent ca">
+                Memory
+            </div>
+            
+            <div class="cb memory-content">
+  <div class="memory-explanation" id="memory-explanation"></div>
+  <div class="mVariable cent">
+    <div class="mem-item">
+        <div class="mem-label">x</div>
+        <div class="mem-square cent" id="mem-x"></div>
+    </div>
+
+    <div class="mem-item">
+        <div class="mem-label">y</div>
+        <div class="mem-square cent" id="mem-y"></div>
+    </div>
+
+    <div class="mem-item">
+        <div class="mem-label">add</div>
+        <div class="mem-square cent" id="mem-add"></div>
+    </div>
+
+    <div class="mem-item">
+        <div class="mem-label">sub</div>
+        <div class="mem-square cent" id="mem-sub"></div>
+    </div>
+
+    <div class="mem-item">
+        <div class="mem-label">mul</div>
+        <div class="mem-square cent" id="mem-mul"></div>
+    </div>
+
+    <div class="mem-item">
+        <div class="mem-label">div</div>
+        <div class="mem-square cent" id="mem-div"></div>
+    </div>
+
+    <div class="mem-item">
+        <div class="mem-label">rem</div>
+        <div class="mem-square cent" id="mem-rem"></div>
+    </div>
+
+  </div>
+
+  <div class="mVariable">
+    <div class="mem-item memOut" id="mem-num-x"></div>
+
+    <div class="memOut cent" id="plus-op">+</div>
+    <div class="memOut cent" id="minus-op">-</div>
+    <div class="memOut cent" id="multi-op">*</div>
+    <div class="memOut cent" id="divi-op">/</div>
+    <div class="memOut cent" id="rem-op">%</div>
+
+
+    <div class="mem-item memOut" id="mem-num-y"></div>
+
+    <div class="memOut cent" id="equal-op">=</div>
+
+    <div class="mem-item memOut" id="val-sum"></div>
+  </div>
+
+  <div class="mVariable cent">
+    
+        <div class="mem-item">
+        <div class="mem-label">x1</div>
+        <div class="mem-square cent" id="mem-x1"></div>
+        </div>
+
+        <div class="mem-item">
+            <div class="mem-label">y1</div>
+            <div class="mem-square cent" id="mem-y1"></div>
+        </div>
+
+         <div class="mem-item">
+            <div class="mem-label">div2</div>
+            <div class="mem-square cent" id="mem-div2"></div>
+        </div>
+    </div>
+
+    <div class="mVariable">
+    <div class="mem-item memOut" id="mem-num-x1"></div>
+
+    <div class="memOut cent" id="divi-op2">/</div>
+
+
+    <div class="mem-item memOut" id="mem-num-y1"></div>
+
+    <div class="memOut cent" id="equal-op2">=</div>
+
+    <div class="mem-item memOut" id="val-sum2"></div>
+  </div>
+  <div>
+
+    </div>
+    </div>
+
+    </div>
+
+        
+        <div class="c1 out">
+            <div class="ca sectiontitle cent">
+                Output
+            </div>
+            
+           <div class="console-wrapper bar">
+                <div id="console"></div>
+                <input id="console-input" type="number">
+            </div>
+
+        </div>
+
+        <script src="js/mathS.js"></script>
+    </body>
+</html>

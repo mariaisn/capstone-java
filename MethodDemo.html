@@ -1,0 +1,84 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | MethodDemo</title>
+    <link rel="stylesheet" href="css/MethodDemo.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">MethodDemo</div>
+    </header>
+
+    <div class="b1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+<span id="l1">public class MethodDemo {</span>
+  <span id="l2">public static int sum(int i1, int i2) {</span>
+    <span id="l3">int result = 0;</span>
+    <span id="l4">for (int i = i1; i &lt;= i2; i++)</span>
+      <span id="l5">result += i;</span>
+
+    <span id="l6">return result;</span>
+  <span id="l7">}</span>
+
+  <span id="l8">public static void main(String[] args) {</span>
+    <span id="l9">System.out.println(&quot;Sum from 1 to 10 is &quot; + sum(1, 10));</span>
+    <span id="l10">System.out.println(&quot;Sum from 20 to 37 is &quot; + sum(20, 37));</span>
+    <span id="l11">System.out.println(&quot;Sum from 35 to 49 is &quot; + sum(35, 49));</span>
+  <span id="l12">}</span>
+<span id="l13">}</span>
+        </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div
+          class="memory-explanation"
+          id="memory-explanation"
+          style="display: none"
+        ></div>
+
+        <div class="mVariable cent">
+          <div class="mem-item" id="item-i1">
+            <div class="mem-label">i1</div>
+            <div class="mem-square cent" id="mem-i1"></div>
+          </div>
+
+          <div class="mem-item" id="item-i2">
+            <div class="mem-label">i2</div>
+            <div class="mem-square cent" id="mem-i2"></div>
+          </div>
+
+          <div class="mem-item" id="item-result">
+            <div class="mem-label">result</div>
+            <div class="mem-square cent" id="mem-result"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="sectiontitle cent ca">Output</div>
+
+      <div class="console-wrapper bar">
+        <div id="console"></div>
+      </div>
+    </div>
+
+    <script src="js/MethodDemo.js"></script>
+  </body>
+</html>

@@ -1,0 +1,208 @@
+/* Gold logo styling for header */
+.logo-gold {
+  height: 70px;
+  vertical-align: middle;
+  margin-right: 24px;
+  filter: drop-shadow(0 0 10px gold);
+}
+
+.a1 {
+  flex-direction: column;
+  gap: 6px;
+}
+
+.example-title-box {
+  background: rgba(120, 34, 34, 0.22);
+  border: 1px solid #6b1f1f;
+  border-radius: 2px;
+  padding: 4px 9px;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #f3dada;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, darkred, black);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.percent {
+  width: 100%;
+  height: 100%;
+}
+
+.fit {
+  height: 100%;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+#high {
+  font-family: Consolas, monospace;
+}
+
+.cent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar {
+  overflow: auto;
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  display: grid;
+  row-gap: 10px;
+  column-gap: 10px;
+  grid-template-rows: 15% 65% 20%;
+  grid-template-columns: 30% 70%;
+  grid-template-areas:
+    "a1 a1"
+    "b1 b2"
+    "c1 c1";
+}
+
+.a1 {
+  grid-area: a1;
+  background-color: darkred;
+  background: linear-gradient(to bottom, darkred, black);
+}
+
+.b1 {
+  grid-area: b1;
+  background-color: white;
+}
+
+.b2 {
+  grid-area: b2;
+  background-color: white;
+}
+
+.c1 {
+  grid-area: c1;
+  background-color: white;
+}
+
+.code {
+  display: grid;
+  grid-template-rows: 5% 90% 5%;
+}
+
+.viz {
+  display: grid;
+  grid-template-rows: 5% 95%;
+}
+
+.out {
+  display: grid;
+  grid-template-rows: 10% 90%;
+}
+
+.ca {
+  grid-row: 1;
+}
+
+.cb {
+  grid-row: 2;
+}
+
+.cc {
+  grid-row: 3;
+}
+
+.sectiontitle {
+  background-color: rgb(255, 251, 6);
+}
+
+.memory-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.mVariable {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mem-item {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.mem-square {
+  width: 100px;
+  height: 60px;
+  border: 2px solid black;
+  background-color: white;
+  font-family: Consolas, monospace;
+  font-size: 18px;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.mem-label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.memory-explanation {
+  display: none;
+  background: #f8f8d8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  min-height: 40px;
+  font-size: 1.1em;
+  color: #333;
+  text-align: center;
+}
+
+.out-box {
+  padding: 8px;
+  font-family: Consolas, monospace;
+}
+
+#ou1 {
+  margin: 0;
+  white-space: pre;
+}
+
+.fly-value {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2000;
+  background: #fff9c4;
+  border: 1px solid #d4b106;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-family: Consolas, monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition:
+    left 0.65s ease,
+    top 0.65s ease;
+}

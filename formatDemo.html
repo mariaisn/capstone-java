@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | Format Demo</title>
+    <link rel="stylesheet" href="css/formatDemo.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">Format Demo</div>
+    </header>
+
+    <div class="b1 div1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+public class FormatDemo {
+  <span id="main-line">public static void main(String[] args) {</span>
+    <span id="header-line-1">System.out.printf("%-10s%-10s%-10s%-10s%-10s\n", "Degrees",</span>
+    <span id="header-line-2">  "Radians", "Sine", "Cosine", "Tangent");</span>
+
+    <span id="deg30-decl-line">int degrees </span><span id="deg30-assign-line">= 30;</span>
+    <span id="rad30-decl-line">double radians </span><span id="rad30-assign-line">= Math.toRadians(degrees);</span>
+    <span id="row30-line-1">System.out.printf("%-10d%-10.4f%-10.4f%-10.4f%-10.4f\n", degrees,</span>
+    <span id="row30-line-2">  radians, Math.sin(radians), Math.cos(radians),</span>
+    <span id="row30-line-3">  Math.tan(radians));</span>
+
+    <span id="deg60-target-line">degrees </span><span id="deg60-assign-line">= 60;</span>
+    <span id="rad60-target-line">radians </span><span id="rad60-assign-line">= Math.toRadians(degrees);</span>
+    <span id="row60-line-1">System.out.printf("%-10d%-10.4f%-10.4f%-10.4f%-10.4f\n", degrees,</span>
+    <span id="row60-line-2">  radians, Math.sin(radians), Math.cos(radians),</span>
+    <span id="row60-line-3">  Math.tan(radians));</span>
+  <span>}</span>
+}
+        </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation">
+          Click Next to begin
+        </div>
+
+        <div class="mVariable cent">
+          <div class="mem-item" id="item-degrees">
+            <div class="mem-label">degrees</div>
+            <div class="mem-square cent" id="mem-degrees"></div>
+          </div>
+
+          <div class="mem-item" id="item-radians">
+            <div class="mem-label">radians</div>
+            <div class="mem-square cent" id="mem-radians"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+
+      <div class="cb bar out-box">
+        <pre id="ou1"></pre>
+      </div>
+    </div>
+
+    <script src="js/formatDemo.js"></script>
+  </body>
+</html>
