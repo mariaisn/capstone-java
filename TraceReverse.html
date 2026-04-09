@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html class="percent">
+  <head>
+    <title>Structural | Trace Reverse</title>
+    <link rel="stylesheet" href="css/TraceReverse.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html" class="fit">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">Trace Reverse</div>
+    </header>
+
+    <div class="b1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+<span>int[] list1 = {1, 2, 3, 4, 5, 6};</span>
+<span>int[] list2 = reverse(list1);</span>
+
+<span>public static int[] reverse(int[] list) {</span>
+<span>  int[] result = new int[list.length];</span>
+
+<span>  for (int i = 0, j = result.length - 1; i &lt; list.length; i++, j--) {</span>
+<span>    result[j] = list[i];</span>
+<span>  }</span>
+
+<span>  return result;</span>
+<span>}</span>
+        </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation"></div>
+
+        <div class="mVariable cent">
+          <div class="mem-item" id="item-i">
+            <div class="mem-label">i</div>
+            <div class="mem-square cent" id="mem-i"></div>
+          </div>
+
+          <div class="mem-item" id="item-j">
+            <div class="mem-label">j</div>
+            <div class="mem-square cent" id="mem-j"></div>
+          </div>
+        </div>
+
+        <div class="char-container">
+          <div class="mem-label">list</div>
+          <div class="char-row">
+            <div class="char-index">0</div>
+            <div class="char-index">1</div>
+            <div class="char-index">2</div>
+            <div class="char-index">3</div>
+            <div class="char-index">4</div>
+            <div class="char-index">5</div>
+          </div>
+          <div class="char-row">
+            <div class="char-box" id="list-0"></div>
+            <div class="char-box" id="list-1"></div>
+            <div class="char-box" id="list-2"></div>
+            <div class="char-box" id="list-3"></div>
+            <div class="char-box" id="list-4"></div>
+            <div class="char-box" id="list-5"></div>
+          </div>
+        </div>
+
+        <div class="char-container">
+          <div class="mem-label">result</div>
+          <div class="char-row">
+            <div class="char-index">0</div>
+            <div class="char-index">1</div>
+            <div class="char-index">2</div>
+            <div class="char-index">3</div>
+            <div class="char-index">4</div>
+            <div class="char-index">5</div>
+          </div>
+          <div class="char-row">
+            <div class="char-box" id="result-0"></div>
+            <div class="char-box" id="result-1"></div>
+            <div class="char-box" id="result-2"></div>
+            <div class="char-box" id="result-3"></div>
+            <div class="char-box" id="result-4"></div>
+            <div class="char-box" id="result-5"></div>
+          </div>
+        </div>
+
+        <div class="char-container">
+          <div class="mem-label">list2</div>
+          <div class="char-row">
+            <div class="char-index">0</div>
+            <div class="char-index">1</div>
+            <div class="char-index">2</div>
+            <div class="char-index">3</div>
+            <div class="char-index">4</div>
+            <div class="char-index">5</div>
+          </div>
+          <div class="char-row">
+            <div class="char-box" id="list2-0"></div>
+            <div class="char-box" id="list2-1"></div>
+            <div class="char-box" id="list2-2"></div>
+            <div class="char-box" id="list2-3"></div>
+            <div class="char-box" id="list2-4"></div>
+            <div class="char-box" id="list2-5"></div>
+          </div>
+        </div>
+
+        <div class="mVariable" id="mem-calc">
+          <div class="mem-item memOut" id="calc-left"></div>
+          <div class="memOut cent" id="calc-op"></div>
+          <div class="mem-item memOut" id="calc-right"></div>
+          <div class="memOut cent" id="calc-eq"></div>
+          <div class="mem-item memOut" id="calc-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+
+      <div class="cb bar">
+        <div id="ou1"></div>
+      </div>
+    </div>
+
+    <script src="js/TraceReverse.js"></script>
+  </body>
+</html>
