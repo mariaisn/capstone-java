@@ -135,6 +135,35 @@ added the following 6 classes - antonio
     gap: 20px;
 }
 
+#array-ref-row {
+    order: 1;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 24px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 8px 8px;
+}
+
+#array-ref-row .mem-item {
+    display: flex;
+}
+
+.array-groups {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+#mem-calc {
+    order: 3;
+}
+
 .mem-item {
     flex-direction: column;
     align-items: center;
