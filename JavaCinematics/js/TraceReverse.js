@@ -5,6 +5,12 @@ const backBtn = document.getElementById("back");
 const memoryExplanation = document.getElementById("memory-explanation");
 const memI = document.getElementById("mem-i");
 const memJ = document.getElementById("mem-j");
+const memListRef = document.getElementById("mem-list-ref");
+const memReverseRef = document.getElementById("mem-reverse-ref");
+const memList2Ref = document.getElementById("mem-list2-ref");
+const itemListRef = document.getElementById("item-list-ref");
+const itemReverseRef = document.getElementById("item-reverse-ref");
+const itemList2Ref = document.getElementById("item-list2-ref");
 const calcLeft = document.getElementById("calc-left");
 const calcOp = document.getElementById("calc-op");
 const calcRight = document.getElementById("calc-right");
@@ -299,6 +305,12 @@ function renderStep() {
     setRowVisibility(list2Cells, false);
     memI.innerText = "";
     memJ.innerText = "";
+    if (itemListRef) itemListRef.style.display = "none";
+    if (itemReverseRef) itemReverseRef.style.display = "none";
+    if (itemList2Ref) itemList2Ref.style.display = "none";
+    if (memListRef) memListRef.innerText = "";
+    if (memReverseRef) memReverseRef.innerText = "";
+    if (memList2Ref) memList2Ref.innerText = "";
     renderCalc(null);
     output.innerText = "";
     backBtn.disabled = true;
@@ -314,6 +326,14 @@ function renderStep() {
   const showList = current >= 0;
   const showResult = current >= 2;
   const showList2 = current >= 1;
+
+  if (itemListRef) itemListRef.style.display = showList ? "flex" : "none";
+  if (itemReverseRef) itemReverseRef.style.display = showResult ? "flex" : "none";
+  if (itemList2Ref) itemList2Ref.style.display = showList2 ? "flex" : "none";
+
+  if (memListRef) memListRef.innerText = showList ? "ref" : "";
+  if (memReverseRef) memReverseRef.innerText = showResult ? "ref" : "";
+  if (memList2Ref) memList2Ref.innerText = showList2 ? "ref" : "";
 
   if (listContainers[0]) setDisplay(listContainers[0], showList, "flex");
   if (listContainers[1]) setDisplay(listContainers[1], showResult, "flex");
