@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="percent">
+    <head>
+        <title>Palindrome with Scanner Class</title>
+        <link rel="stylesheet" href="css/passing.css" />
+    </head>
+
+
+
+
+    <body class="container percent">
+        <header class="a1 cent">
+            <a href="index.html">
+                <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+            </a>
+            <div class="example-title-box">Palindrome with Scanner Class</div>
+        </header>
+
+
+        <div class="b1 div1 code">
+            <div class="sectiontitle cent ca">
+                Code
+            </div>
+
+
+            <div class="cb bar">
+            <pre id="high">
+public class TestPassArray {
+	<span>public static void main(String[] args) </span>{
+		<span>int[] a</span> <span id="ini-a">= {1, 2}</span>;
+		
+		<span id="print-bS">System.out.println("Before invoking swap")</span>;
+		<span id="print-arS">System.out.println("array is {" + a[0] + ", " + a[1] + "}")</span>;
+		 
+		<span >swap(a[0], a[1])</span>;
+		
+		<span id="print-aS">System.out.println("After invoking swap")</span>;
+		<span id="print-rS">System.out.println("array is {" + a[0] + ", " + a[1] + "}")</span>;
+		   
+		
+		<span id="print-bF">System.out.println("Before invoking swapFirstTwoInArray")</span>;
+		<span id="print-arF">System.out.println("array is {" + a[0] + ", " + a[1] + "}")</span>;
+		 
+		<span>swapFirstTwoInArray(a)</span>;
+		
+		<span id="print-aF">System.out.println("After invoking swapFirstTwoInArray")</span>;
+		<span id="print-rF">System.out.println("array is {" + a[0] + ", " + a[1] + "}")</span>;
+	}
+		   
+	<span>public static void swap(int n1, int n2)</span> {
+		<span>int temp</span> <span id="ini-t1">= n1</span>;
+		<span>n1 = n2</span>;
+		<span>n2 = temp</span>;
+    }<span> </span>
+		   
+
+	<span>public static void swapFirstTwoInArray(int[] array)</span> {
+		<span>int temp</span> <span id="ini-t2">= array[0]</span>;
+		<span>array[0] = array[1]</span>;
+		<span>array[1] = temp</span>;
+    }<span> </span>
+}
+            </pre>
+
+            </div>
+
+
+            <div class="cc cent">
+                <button id="back">Back</buttdiv with on>
+                <button id="next">Next</button>
+            </div>
+           
+        </div>
+
+
+
+        <div class="b2 viz">
+            <div class="sectiontitle cent ca">
+                Memory
+            </div>
+           
+            <div class="cb memory-content">
+
+                <div class="memory-explanation" id="memory-explanation"></div>
+
+
+                <div class="mVariable cent">
+
+                    <fieldset class="cent"id="meth-main">
+                    <legend>main</legend>
+                    <!-- mem-item 0 -->
+                    <div class="mem-item">
+                        <div class="mem-label">a</div>
+                        <div class="mem-square cent" id="mem-a"></div>
+                        <div class="char-container" id="mem-r"></div>
+                    </div>
+                    </fieldset>
+
+                    
+                    <fieldset class="cent" id="meth-swap">
+                    <legend>swap</legend>
+
+                    <!-- mem-item 1 -->
+                    <div class="mem-item">
+                        <div class="mem-label">n1</div>
+                        <div class="mem-square cent" id="mem-n1"></div>
+                    </div>
+
+                    <!-- mem-item 2 -->
+                    <div class="mem-item">
+                        <div class="mem-label">n2</div>
+                        <div class="mem-square cent" id="mem-n2"></div>
+                    </div>
+
+                    <!-- mem-item 3 -->
+                    <div class="mem-item">
+                        <div class="mem-label">temp</div>
+                        <div class="mem-square cent" id="mem-t1"></div>
+                    </div>
+                    </fieldset>
+
+                    <fieldset class="cent" id="meth-first">
+                    <legend>swapFirstTwoInArray</legend>
+                    <!-- mem-item 4 -->
+                    <div class="mem-item">
+                        <div class="mem-label">array</div>
+                        <div class="mem-square cent" id="mem-arr"></div>
+                        <div class="char-container" id="mem-ref"> <- a</div>
+                    </div>
+
+                    <!-- mem-item 5 -->
+                    <div class="mem-item">
+                        <div class="mem-label">temp</div>
+                        <div class="mem-square cent" id="mem-t2"></div>
+                    </div>
+                    </fieldset>
+                </div>
+            </div>
+
+
+        </div>
+
+
+       
+        <div class="c1 out">
+            <div class="ca sectiontitle cent">
+                Output
+            </div>
+            
+           <div class="console-wrapper bar">
+                <div id="console"></div>
+            </div>
+
+        </div>
+
+
+        <script src="js/passing.js"></script>
+    </body>
+</html>
