@@ -368,7 +368,7 @@ const steps = [
     highlight: [lineList2],
     list: [1, 2, 3, 4, 5, 6],
     result: [6, 5, 4, 3, 2, 1],
-    list2: [0, 0, 0, 0, 0, 0],
+    list2: [6, 5, 4, 3, 2, 1],
     iValue: "6",
     jValue: "-1",
     calc: null,
@@ -500,7 +500,7 @@ function renderStep() {
 
   const showList = current >= 0;
   const showResult = current >= 2;
-  const showList2 = current >= 1;
+  const showList2 = current >= steps.length - 1;
   const showI = current >= 3;
   const showJ = current >= 4;
 
@@ -513,8 +513,8 @@ function renderStep() {
   if (itemList2Ref) itemList2Ref.style.display = showList2 ? "flex" : "none";
 
   if (memListRef) memListRef.innerText = showList ? "ref" : "";
-  if (memReverseRef) memReverseRef.innerText = showResult ? "ref3" : "";
-  if (memList2Ref) memList2Ref.innerText = showList2 ? "ref2" : "";
+  if (memReverseRef) memReverseRef.innerText = showResult ? "ref" : "";
+  if (memList2Ref) memList2Ref.innerText = showList2 ? "ref" : "";
 
   if (listContainers[0]) setDisplay(listContainers[0], showList, "flex");
   if (listContainers[1]) setDisplay(listContainers[1], showResult, "flex");
@@ -552,7 +552,7 @@ function renderStep() {
     setRow(resultCells, step.result);
   }
 
-  setRow(list2Cells, step.list2);
+  setRow(list2Cells, showList2 ? step.list2 : ["", "", "", "", "", ""]);
 
   memI.innerText = step.iValue;
   memJ.innerText = step.jValue;

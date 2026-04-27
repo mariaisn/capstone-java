@@ -329,34 +329,3 @@ body.night-mode .mem-label {
 body.night-mode .memOut {
   color: #ffe9e9;
 }
-
-.btn {
-  position: relative;
-  font-size: 15px;
-  text-decoration: none;
-  padding: 0em 3.2em;
-  display: inline-block;
-  cursor: pointer;
-  border-color: darkred;
-  font-family: inherit;
-  font-weight: 500;
-  color: black;
-  background-color: white;
-
-  margin: 10px;
-  transition: all 0.15s ease;
-}
-
-.btn:not(:disabled):hover {
-  color: rgb(198, 22, 22);
-}
-
-.btn:not(:disabled):active {
-  color: black;
-  background-color: rgb(247, 247, 247);
-}
-
-.btn:disabled {
-  opacity: 0.5;
-  filter: grayscale(20%);
-}

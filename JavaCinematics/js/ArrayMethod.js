@@ -40,7 +40,7 @@ const stepMessages = [
   "",
 ];
 
-const initialArray = ["", "", "", "", ""];
+const initialArray = ["0", "0", "0", "0", "0"];
 const assignmentByLine = {
   3: { index: 0, value: "7" },
   4: { index: 1, value: "8" },
@@ -201,7 +201,7 @@ function updateHighlight() {
   if (isForward && assignment && memAArray) {
     const target = getArrayValueSource(memAArray, assignment.index);
     if (target) {
-      target.innerText = previousState.array[assignment.index] || "";
+      target.innerText = previousState.array[assignment.index] ?? "";
       animateToMemory(lines[current], target, assignment.value);
     }
   }

@@ -248,7 +248,7 @@ function buildSteps() {
   // 6 - enter numbers (inputs enabled at this step)
   steps.push({
     msg: "Enter " + n + " number(s) below, then click Next.",
-    hl: [lineForLoop1, lineReadNum],
+    hl: [lineReadNum],
     n: String(n),
     sum: "0.0",
     avg: "",
@@ -260,37 +260,69 @@ function buildSteps() {
     calc: null,
   });
 
-  // 7..6+n - first for loop
+  // 7... - first for loop, one highlighted line per step
   let runSum = 0;
+  let partialArr = Array(n).fill("0.0");
   for (let i = 0; i < n; i++) {
     const prev = runSum;
-    runSum += numbers[i];
-    const partArr = [
-      ...numbers.slice(0, i + 1).map(fmt),
-      ...Array(n - i - 1).fill("0.0"),
-    ];
+
     steps.push({
       msg:
-        "i=" +
+        "Check first loop condition: i=" +
         i +
-        ": numbers[" +
+        ". Since " +
         i +
-        "] = " +
-        fmt(numbers[i]) +
-        ". sum = " +
+        " < " +
+        n +
+        ", continue the loop.",
+      hl: [lineForLoop1],
+      n: String(n),
+      sum: fmt(prev),
+      avg: "",
+      cnt: "",
+      i: String(i),
+      arr: [...partialArr],
+      out1: "",
+      out2: "",
+      calc: { left: String(i), op: "<", right: String(n), result: "true" },
+    });
+
+    partialArr[i] = fmt(numbers[i]);
+
+    steps.push({
+      msg: "Read " + fmt(numbers[i]) + " and store it in numbers[" + i + "].",
+      hl: [lineReadNum],
+      n: String(n),
+      sum: fmt(prev),
+      avg: "",
+      cnt: "",
+      i: String(i),
+      arr: [...partialArr],
+      out1: "",
+      out2: "",
+      calc: null,
+    });
+
+    runSum += numbers[i];
+
+    steps.push({
+      msg:
+        "Add numbers[" +
+        i +
+        "] to sum: " +
         fmt(prev) +
         " + " +
         fmt(numbers[i]) +
         " = " +
         fmt(runSum) +
         ".",
-      hl: [lineForLoop1, lineReadNum, lineSumAdd],
+      hl: [lineSumAdd],
       n: String(n),
       sum: fmt(runSum),
       avg: "",
       cnt: "",
       i: String(i),
-      arr: partArr,
+      arr: [...partialArr],
       out1: "",
       out2: "",
       calc: {
@@ -359,39 +391,49 @@ function buildSteps() {
   for (let j = 0; j < n; j++) {
     const above = numbers[j] > average;
     const beforeCnt = runCount;
-    if (above) runCount++;
-    const hlArr = [lineForLoop2, lineIfAbove];
-    if (above) hlArr.push(lineCountInc);
-    const msg2 = above
-      ? "i=" +
-        j +
-        ": numbers[" +
-        j +
-        "]=" +
-        fmt(numbers[j]) +
-        " > average=" +
-        avgFmt +
-        "? Yes. count++ and count = " +
-        runCount +
-        "."
-      : "i=" +
-        j +
-        ": numbers[" +
-        j +
-        "]=" +
-        fmt(numbers[j]) +
-        " > average=" +
-        avgFmt +
-        "? No. count stays " +
-        beforeCnt +
-        ".";
+
     steps.push({
-      msg: msg2,
-      hl: hlArr,
+      msg:
+        "Check second loop condition: i=" +
+        j +
+        ". Since " +
+        j +
+        " < " +
+        n +
+        ", continue the loop.",
+      hl: [lineForLoop2],
       n: String(n),
       sum: sumFmt,
       avg: avgFmt,
-      cnt: String(runCount),
+      cnt: String(beforeCnt),
+      i: String(j),
+      arr: fullArr,
+      out1: "",
+      out2: "",
+      calc: { left: String(j), op: "<", right: String(n), result: "true" },
+    });
+
+    steps.push({
+      msg: above
+        ? "Compare numbers[" +
+          j +
+          "]=" +
+          fmt(numbers[j]) +
+          " to average=" +
+          avgFmt +
+          ". The condition is true."
+        : "Compare numbers[" +
+          j +
+          "]=" +
+          fmt(numbers[j]) +
+          " to average=" +
+          avgFmt +
+          ". The condition is false.",
+      hl: [lineIfAbove],
+      n: String(n),
+      sum: sumFmt,
+      avg: avgFmt,
+      cnt: String(beforeCnt),
       i: String(j),
       arr: fullArr,
       out1: "",
@@ -403,6 +445,23 @@ function buildSteps() {
         result: above ? "true" : "false",
       },
     });
+
+    if (above) {
+      runCount++;
+      steps.push({
+        msg: "Increase count to " + runCount + ".",
+        hl: [lineCountInc],
+        n: String(n),
+        sum: sumFmt,
+        avg: avgFmt,
+        cnt: String(runCount),
+        i: String(j),
+        arr: fullArr,
+        out1: "",
+        out2: "",
+        calc: null,
+      });
+    }
   }
 
   // second loop ends

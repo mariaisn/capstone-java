@@ -348,6 +348,7 @@ added the following 6 classes - antonio
 }
 
 .memory-explanation {
+  display: none;
   background: #f8f8d8;
   border: 1px solid #ccc;
   border-radius: 8px;

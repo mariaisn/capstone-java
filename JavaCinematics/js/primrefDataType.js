@@ -176,10 +176,13 @@ function updateMemoryExplanation() {
   if (!memoryExplanation) return;
 
   if (current < 0) {
+    memoryExplanation.style.display = "none";
     memoryExplanation.innerText = "";
   } else if (current < stepMessages.length) {
+    memoryExplanation.style.display = "block";
     memoryExplanation.innerText = stepMessages[current];
   } else {
+    memoryExplanation.style.display = "block";
     memoryExplanation.innerText = "Done!";
   }
 }
