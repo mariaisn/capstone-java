@@ -1,5 +1,12 @@
-const lines = document.querySelectorAll("#high span");
+// Night mode toggle
+const toggle = document.getElementById("toggle");
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("night-mode");
+  });
+}
 
+const lines = document.querySelectorAll("#high span");
 
 const nextBtn = document.getElementById("next");
 const backBtn = document.getElementById("back");
@@ -10,28 +17,28 @@ const conBox = document.getElementById("console");
 const memItems = document.querySelectorAll(".mem-item");
 
 const mem = {
-    s: document.getElementById("mem-s"),
-    low: document.getElementById("mem-l"),
-    high: document.getElementById("mem-h"),
-    pal: document.getElementById("mem-p"),
-    ref: document.getElementById("mem-r")
-}
+  s: document.getElementById("mem-s"),
+  low: document.getElementById("mem-l"),
+  high: document.getElementById("mem-h"),
+  pal: document.getElementById("mem-p"),
+  ref: document.getElementById("mem-r"),
+};
 
 const num = {
-    low: document.getElementById("num-low"),
-    length: document.getElementById("num-length"),
-    high: document.getElementById("num-high"),
-    one: document.getElementById("num-one"),
-    sum: document.getElementById("num-sum"),
-    bool: document.getElementById("num-bool"),
-}
+  low: document.getElementById("num-low"),
+  length: document.getElementById("num-length"),
+  high: document.getElementById("num-high"),
+  one: document.getElementById("num-one"),
+  sum: document.getElementById("num-sum"),
+  bool: document.getElementById("num-bool"),
+};
 
 const opp = {
-    min: document.getElementById("minus-op"),
-    plus: document.getElementById("plus-op"),
-    less: document.getElementById("less-op"),
-    notE: document.getElementById("notE-op"),
-    equal: document.getElementById("equal-op"),
+  min: document.getElementById("minus-op"),
+  plus: document.getElementById("plus-op"),
+  less: document.getElementById("less-op"),
+  notE: document.getElementById("notE-op"),
+  equal: document.getElementById("equal-op"),
 };
 
 const ini = {
@@ -41,19 +48,17 @@ const ini = {
   plus: document.getElementById("ini-plus"),
   min: document.getElementById("ini-minus"),
   isF: document.getElementById("ini-isF"),
-}
+};
 const print = {
   e: document.getElementById("print-E"),
   is: document.getElementById("print-is"),
   not: document.getElementById("print-not"),
-}
-
+};
 
 const steps = 33;
 const inputSteps = [4];
 let current = -1;
 let prev = -1;
-
 
 let sArr;
 const outArr = [];
@@ -68,7 +73,7 @@ let highVal;
 const memoryExplanation = document.getElementById("memory-explanation");
 const stepMessages = [
   "Importing the Scanner Class",
-  "The statement creates an object for performing console input and assigns the object to the reference variable named in",
+  "Creating object named input from Scanner Class to get user input",
   "Print Enter a string: ",
   "Declare s",
   "Receive input from user",
@@ -102,8 +107,6 @@ const stepMessages = [
   "Exit if else statement",
 ];
 
-
-
 function animateToMemory(sourceElement, targetElement, finalValue) {
   const rectStart = sourceElement.getBoundingClientRect();
   const rectEnd = targetElement.getBoundingClientRect();
@@ -125,15 +128,13 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
   flying.addEventListener("transitionend", () => {
     if (targetElement === mem.s) {
       setReferenceValue(mem.s, mem.ref, finalValue);
-    }  else {
+    } else {
       targetElement.innerText = finalValue;
     }
 
     document.body.removeChild(flying);
   });
 }
-
-
 
 function setReferenceValue(targetElement, charsElement, storedValue) {
   targetElement.innerText = "ref";
@@ -142,8 +143,6 @@ function setReferenceValue(targetElement, charsElement, storedValue) {
   sArr = targetElement._storedArray;
   createCharDisplay(charsElement, storedValue);
 }
-
-
 
 function createCharDisplay(container, str) {
   container.innerHTML = "";
@@ -173,25 +172,23 @@ function createCharDisplay(container, str) {
   container.appendChild(charRow);
 }
 
-
-
 function getHLine(step) {
   if (step < 0) return -1;
 
   const ranges = [
     [4, 5, 4],
-    [9,11,8],
-    [15,16,12],
-    [17,18,13],
-    [21,23,16],
-    [24,26,17]
+    [9, 11, 8],
+    [15, 16, 12],
+    [17, 18, 13],
+    [21, 23, 16],
+    [24, 26, 17],
   ];
 
   for (const [start, end, line] of ranges) {
     if (step >= start && step <= end) return line;
   }
 
-    //fix holds
+  //fix holds
   let temp = 0;
   if (step > 5) temp = temp - 1;
   if (step > 11) temp = temp - 2;
@@ -203,20 +200,17 @@ function getHLine(step) {
   return step + temp;
 }
 
-
-
-conIn.addEventListener("keydown", function(e) {
+conIn.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
+    const value = conIn.value;
 
-  const value = conIn.value;
+    const source = pushOut(value);
+    source.style.color = "goldenrod";
 
-  const source = pushOut(value);
-  source.style.color="goldenrod";
-
-  if (current === 4) {
-    sVal = String(value);
-    animateToMemory(source,mem.s, sVal);
-  }
+    if (current === 4) {
+      sVal = String(value);
+      animateToMemory(source, mem.s, sVal);
+    }
 
     history.push(current);
     conIn.value = "";
@@ -226,9 +220,6 @@ conIn.addEventListener("keydown", function(e) {
     updateMemoryExplanation();
   }
 });
-
-
-
 
 function addOutRow(text) {
   const row = document.createElement("div");
@@ -243,24 +234,19 @@ function addOutRow(text) {
   return row;
 }
 
-function pushOut(text){
+function pushOut(text) {
   const row = addOutRow(text);
   outArr.push(row);
 
   return row;
 }
 
-function popOut(){
+function popOut() {
   const row = outArr.pop();
   if (row) {
     row.remove();
   }
 }
-
-
-
-
-
 
 function updateUI() {
   lines.forEach((line) => line.classList.remove("highlight"));
@@ -271,62 +257,80 @@ function updateUI() {
     lines[hLine].classList.add("highlight");
   }
 
-  if(current >=0){
-     memoryExplanation.style.display="flex";
+  if (current >= 0) {
+    memoryExplanation.style.display = "flex";
   }
 
   memItems.forEach((item) => (item.style.display = "none"));
 
-  Object.values(opp).forEach(op => op.style.display="none");
-  Object.values(num).forEach(el => {
+  Object.values(opp).forEach((op) => (op.style.display = "none"));
+  Object.values(num).forEach((el) => {
     el.style.display = "none";
     el.innerText = "";
   });
 
-
   //receive input
   if (current === 4) {
     conIn.style.display = "block";
-    
+
     if (document.activeElement !== conIn) {
-        conIn.focus();
+      conIn.focus();
     }
 
     conIn.onblur = () => {
-        if (inputSteps.includes(current)) {
-            conIn.focus();
-        }
+      if (inputSteps.includes(current)) {
+        conIn.focus();
+      }
     };
   } else {
-      conIn.style.display = "none";
-      conIn.onblur = null;
+    conIn.style.display = "none";
+    conIn.onblur = null;
   }
-
 
   //hide variables during math
   function hideRanges(ranges, element) {
-  ranges.forEach(([start, end]) => {
-    if (current >= start && current <= end) {
-      element.style.display = "none";
-      element.innerText = "";
-    }
+    ranges.forEach(([start, end]) => {
+      if (current >= start && current <= end) {
+        element.style.display = "none";
+        element.innerText = "";
+      }
     });
   }
 
-  hideRanges([[9,11],[24,26],[15,16],[17,18]], num.high);
-  hideRanges([[9,11],[24,26],[21,23]], num.one);
-  hideRanges([[15,16],[17,18],[21,23]], num.low);
-
+  hideRanges(
+    [
+      [9, 11],
+      [24, 26],
+      [15, 16],
+      [17, 18],
+    ],
+    num.high,
+  );
+  hideRanges(
+    [
+      [9, 11],
+      [24, 26],
+      [21, 23],
+    ],
+    num.one,
+  );
+  hideRanges(
+    [
+      [15, 16],
+      [17, 18],
+      [21, 23],
+    ],
+    num.low,
+  );
 
   //adjust low and high when going back
   if (current === 23 && prev >= 23) {
     low--;
   }
 
-  if(current === 26 && prev === 14){
+  if (current === 26 && prev === 14) {
     high++;
   }
-
 
   //delete number from variables
   if (current < 5) {
@@ -335,48 +339,43 @@ function updateUI() {
   }
 
   const delVal = [
-    {step: 7, variable: "low"},
-    {step: 11, variable: "high"},
-    {step: 13, variable: "pal"},
-  ]
+    { step: 7, variable: "low" },
+    { step: 11, variable: "high" },
+    { step: 13, variable: "pal" },
+  ];
 
-  delVal.forEach(({step, variable}) => {
+  delVal.forEach(({ step, variable }) => {
     if (current < step) mem[variable].innerText = "";
-  })
+  });
 
   //declare variables
   const declVar = [
     [3, 0], //s
-    [6,1], //low
-    [8,2], //high
-    [12,3], //isPalandrome
-  ]
+    [6, 1], //low
+    [8, 2], //high
+    [12, 3], //isPalandrome
+  ];
 
   declVar.forEach(([step, i]) => {
     if (current >= step) {
-    memItems[i].style.display = "flex";
+      memItems[i].style.display = "flex";
     }
-  })
+  });
 
-
-  
-  
-  
   //assign variables
   const iniVar = [
-    {step: 7, from: "low", to: "low", value: 0},
-    {step: 13, from: "pal", to: "pal", value: "true"},
-    {step: 19, from: "isF", to: "pal", value: "false"}
+    { step: 7, from: "low", to: "low", value: 0 },
+    { step: 13, from: "pal", to: "pal", value: "true" },
+    { step: 19, from: "isF", to: "pal", value: "false" },
   ];
 
-  iniVar.forEach(({step, from, to, value}) => {
+  iniVar.forEach(({ step, from, to, value }) => {
     if (current === step && prev < step) {
       animateToMemory(ini[from], mem[to], value);
     }
   });
 
-
-  if (current >=9 && current <= 11){
+  if (current >= 9 && current <= 11) {
     num.high.style.display = "flex";
     num.one.style.display = "flex";
     opp.min.style.display = "flex";
@@ -384,7 +383,7 @@ function updateUI() {
     if (current === 9) {
       animateToMemory(ini.high, num.high, sArr.length);
       animateToMemory(ini.high, num.one, 1);
-    } else{
+    } else {
       if (current >= 10 && current <= 11) {
         num.high.innerText = sArr.length;
         num.one.innerText = 1;
@@ -395,13 +394,12 @@ function updateUI() {
         num.sum.style.display = "flex";
         num.sum.innerText = high;
 
-      if (current === 11 && prev < 11) {
-        animateToMemory(num.sum, mem.high, high);
+        if (current === 11 && prev < 11) {
+          animateToMemory(num.sum, mem.high, high);
+        }
       }
-      } 
     }
   }
-
 
   if (current >= 15 && current <= 16) {
     num.low.style.display = "flex";
@@ -421,13 +419,12 @@ function updateUI() {
     }
   }
 
-  if(current === 16) {
+  if (current === 16) {
     num.bool.style.display = "flex";
     num.bool.innerText = low < high ? "true" : "false";
   }
 
-
-  if(current >=17 && current <= 18) {
+  if (current >= 17 && current <= 18) {
     num.low.style.display = "flex";
     num.high.style.display = "flex";
     opp.notE.style.display = "flex";
@@ -436,22 +433,22 @@ function updateUI() {
       animateToMemory(mem.ref, num.low, sArr.charAt(low));
       animateToMemory(mem.ref, num.high, sArr.charAt(high));
     } else {
-      if(current === 18){
+      if (current === 18) {
         num.low.innerText = sArr.charAt(low);
         num.high.innerText = sArr.charAt(high);
       }
     }
-  } 
-
-  if (current === 18){
-    num.bool.style.display = "flex";
-    num.bool.innerText = sArr.charAt(low) !== sArr.charAt(high) ? "true" : "false";
   }
 
-  if (current === 18 && prev > 18){
+  if (current === 18) {
+    num.bool.style.display = "flex";
+    num.bool.innerText =
+      sArr.charAt(low) !== sArr.charAt(high) ? "true" : "false";
+  }
+
+  if (current === 18 && prev > 18) {
     mem.pal.innerText = "true";
   }
-
 
   if (current >= 21 && current <= 23) {
     num.low.style.display = "flex";
@@ -476,11 +473,9 @@ function updateUI() {
         }
       }
     }
-
   }
 
   if (current >= 22 && current <= 23) {
-
     num.sum.style.display = "flex";
     num.sum.innerText = low + 1;
 
@@ -488,15 +483,10 @@ function updateUI() {
       animateToMemory(num.sum, mem.low, low + 1);
     }
   }
-  
-  
-  
-    if(current === 24 && prev < 24){
+
+  if (current === 24 && prev < 24) {
     low++;
   }
-
-
-
 
   if (current >= 24 && current <= 26) {
     num.high.style.display = "flex";
@@ -507,19 +497,19 @@ function updateUI() {
       animateToMemory(mem.high, num.high, high);
       animateToMemory(ini.min, num.one, 1);
       opp.min.style.display = "flex";
-    } else{
-      if(current >= 25 && current <= 26) {
+    } else {
+      if (current >= 25 && current <= 26) {
         num.high.innerText = high;
         num.one.innerText = 1;
         opp.min.style.display = "flex";
         opp.equal.style.display = "flex";
 
-        if (current === 25 && prev >= 25){
+        if (current === 25 && prev >= 25) {
           mem.high.innerText = high;
         }
       }
     }
-  } 
+  }
 
   if (current >= 25 && current <= 26) {
     num.sum.style.display = "flex";
@@ -530,43 +520,36 @@ function updateUI() {
     }
   }
 
-
   if (current === 14 && prev === 26) {
     high--;
   }
 
-
   const printOut = [
-    {step: 2, output: "Enter a string: ", from: "e"},
-    {step: 29, output: sArr + " is a palindrome", from: "is"},
-    {step: 31, output: sArr + " is not a palindrome", from: "not"}
-  ]
+    { step: 2, output: "Enter a string: ", from: "e" },
+    { step: 29, output: sArr + " is a palindrome", from: "is" },
+    { step: 31, output: sArr + " is not a palindrome", from: "not" },
+  ];
 
-  printOut.forEach(({step, output, from}) => {
-    if(current === step && prev < step){
+  printOut.forEach(({ step, output, from }) => {
+    if (current === step && prev < step) {
       const x = pushOut(output);
       animateToMemory(print[from], x, output);
     }
-  })
+  });
 
   const delOut = [1, 4, 28, 29];
 
-  delOut.forEach(step => {
+  delOut.forEach((step) => {
     if (current === step && prev > step) {
       popOut();
     }
-  })
+  });
 
   backBtn.disabled = current <= 0;
-  nextBtn.disabled = (current >= steps - 1 || current === 4);
+  nextBtn.disabled = current >= steps - 1 || current === 4;
 
   prev = current;
 }
-
-
-
-
-
 
 nextBtn.addEventListener("click", () => {
   if (current === 4) return;
@@ -604,11 +587,11 @@ backBtn.addEventListener("click", () => {
 });
 
 function updateMemoryExplanation() {
-    if (current < stepMessages.length) {
-        memoryExplanation.innerText = stepMessages[current];
-    } else {
-        memoryExplanation.innerText = "Done!";
-    }
+  if (current < stepMessages.length) {
+    memoryExplanation.innerText = stepMessages[current];
+  } else {
+    memoryExplanation.innerText = "Done!";
+  }
 }
 
 updateUI();

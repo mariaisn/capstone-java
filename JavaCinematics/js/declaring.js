@@ -1,3 +1,11 @@
+// Night mode toggle
+const toggle = document.getElementById("toggle");
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("night-mode");
+  });
+}
+
 //select all lines
 const lines = document.querySelectorAll("#high span");
 

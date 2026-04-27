@@ -53,10 +53,13 @@ const stepMessages = [
 
 function updateMemoryExplanation() {
   if (current < 0) {
-    memoryExplanation.innerText = stepMessages[0];
+    memoryExplanation.style.display = "none";
+    memoryExplanation.innerText = "";
   } else if (current + 1 < stepMessages.length) {
+    memoryExplanation.style.display = "flex";
     memoryExplanation.innerText = stepMessages[current + 1];
   } else {
+    memoryExplanation.style.display = "flex";
     memoryExplanation.innerText = "Done!";
   }
 }

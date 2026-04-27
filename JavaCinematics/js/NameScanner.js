@@ -3,6 +3,14 @@ const lines = document.querySelectorAll("#high span");
 const nextBtn = document.getElementById("next");
 const backBtn = document.getElementById("back");
 
+// Night Mode Implementation
+const toggle = document.getElementById("toggle");
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("night-mode", toggle.checked);
+  });
+}
+
 const memX = document.getElementById("mem-x");
 const memY = document.getElementById("mem-y");
 const memXChars = document.getElementById("mem-x-chars");
@@ -20,7 +28,7 @@ const memoryExplanation = document.getElementById("memory-explanation");
 
 const stepMessages = [
   "Import Scanner",
-  "Create Scanner input",
+  "The statement creates an object for performing console input and assigns the object to the reference variable named input",
   "Print firstname prompt",
   "Declare firstname",
   "Read firstname",
@@ -36,7 +44,10 @@ let firstName = "";
 let lastName = "";
 
 function setReferenceValue(targetElement, charsElement, storedValue) {
-  targetElement.innerText = "Ref";
+  if(targetElement === memX){
+  targetElement.innerText = "ref1";}
+  if(targetElement === memY){
+  targetElement.innerText = "ref2";}
   targetElement.dataset.storedValue = storedValue;
   createCharDisplay(charsElement, storedValue);
 }
@@ -188,7 +199,7 @@ function updateHighlight() {
   }
 
   backBtn.disabled = current <= 0;
-  nextBtn.disabled = current >= 9 ;
+  nextBtn.disabled = current >= 9;
 
   updateMemoryExplanation();
 }
@@ -196,10 +207,11 @@ function updateHighlight() {
 function updateMemoryExplanation() {
   if (!memoryExplanation) return;
 
-  memoryExplanation.style.display = "flex";
   if (current < 0) {
-    memoryExplanation.innerText = "Click Next to begin";
+    memoryExplanation.style.display = "none";
+    memoryExplanation.innerText = "";
   } else {
+    memoryExplanation.style.display = "flex";
     let message = stepMessages[current] || "Done!";
 
     if (current === 4) {

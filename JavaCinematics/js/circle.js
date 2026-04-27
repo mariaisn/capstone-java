@@ -5,6 +5,14 @@ const lines = document.querySelectorAll("#high span");
 const nextBtn = document.getElementById("next");
 const backBtn = document.getElementById("back");
 
+// Night Mode Implementation
+const toggle = document.getElementById("toggle");
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("night-mode", toggle.checked);
+  });
+}
+
 // memory squares
 const memRadius = document.getElementById("mem-radius");
 const memArea = document.getElementById("mem-area");
@@ -27,14 +35,13 @@ const out1 = document.getElementById("ou1");
 const explanationBox = document.getElementById("memory-explanation");
 
 const explanations = [
-  "click next to begin",
+  "",
   "declare radius",
   "declare area",
   "radius = 20.0",
   "start compute",
   "show result in calc row",
   "store area into memory",
-  "print line highlighted",
   "print output",
 ];
 
@@ -47,7 +54,7 @@ const PI_VAL = 3.14159;
 const PI_TEXT = "3.14159";
 const AREA_VAL = (RADIUS_VAL * RADIUS_VAL * PI_VAL).toFixed(3); // 1256.636
 
-const steps = 7;
+const steps = 6;
 let current = -1;
 
 function animateToMemory(sourceElement, targetElement, finalValue) {
@@ -93,7 +100,13 @@ function getHLine(step) {
 }
 
 function updateHighlight() {
-  explanationBox.textContent = explanations[current + 1] || "";
+  if (current < 0) {
+    explanationBox.style.display = "none";
+    explanationBox.textContent = "";
+  } else {
+    explanationBox.style.display = "flex";
+    explanationBox.textContent = explanations[current + 1] || "";
+  }
 
   // clear all highlights first
   lines.forEach((line) => line.classList.remove("highlight"));
@@ -122,7 +135,7 @@ function updateHighlight() {
   valResult.style.display = "none";
 
   // clear output when going backwards
-  if (current < 7) out1.innerHTML = "";
+  if (current < 6) out1.innerHTML = "";
 
   // show squares when declared
   if (current >= 0) memItems[0].style.display = "flex"; // radius
@@ -192,8 +205,8 @@ function updateHighlight() {
     animateToMemory(valResult, memArea, AREA_VAL);
   }
 
-  // step 7: print output
-  if (current === 7 && out1.innerHTML === "") {
+  // step 6: print output
+  if (current === 6 && out1.innerHTML === "") {
     out1.innerHTML =
       'The area for the circle of radius <span id="out-radius"></span> is <span id="out-area"></span>';
 

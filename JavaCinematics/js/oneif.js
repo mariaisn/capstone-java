@@ -3,6 +3,14 @@ const lines = document.querySelectorAll("#high span");
 const nextBtn = document.getElementById("next");
 const backBtn = document.getElementById("back");
 
+// Night Mode Implementation
+const toggle = document.getElementById("toggle");
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("night-mode", toggle.checked);
+  });
+}
+
 const memX = document.getElementById("mem-x");
 const memC = document.getElementById("mem-c");
 const vSum = document.getElementById("val-sum");

@@ -1,0 +1,991 @@
+/* Gold logo styling for header */
+.logo-gold {
+  height: 70px;
+  vertical-align: middle;
+  margin-right: 24px;
+  filter: drop-shadow(0 0 10px gold);
+}
+
+.theme-toggle-wrapper {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-checkbox {
+  display: none;
+}
+
+.toggle-label {
+  width: 68px;
+  height: 28px;
+  background-color: #f6c94c;
+  border-radius: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-label::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: left 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.toggle-label::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f59e0b;
+  top: 9px;
+  left: 9px;
+  z-index: 2;
+  box-shadow:
+    0 -6px 0 -4px #f59e0b,
+    0 6px 0 -4px #f59e0b,
+    6px 0 0 -4px #f59e0b,
+    -6px 0 0 -4px #f59e0b;
+  transition:
+    left 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  pointer-events: none;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: #8b0000;
+}
+
+.toggle-checkbox:checked + .toggle-label::after {
+  left: 42px;
+}
+
+.toggle-checkbox:checked + .toggle-label::before {
+  left: 49px;
+  background: #e2e8f0;
+  box-shadow: -3px 0 0 1px #475569;
+}
+
+body.night-mode {
+  background: #0b0000;
+  color: #f3dada;
+}
+
+body.night-mode .a1 {
+  background: linear-gradient(to bottom, #3a0000, #000000);
+}
+
+body.night-mode .b1,
+body.night-mode .b2,
+body.night-mode .c1 {
+  background-color: #140000;
+  color: #f3dada;
+}
+
+body.night-mode pre {
+  background-color: #090000;
+  color: #f3dada;
+}
+
+body.night-mode .sectiontitle {
+  background-color: #4d0000;
+  color: #ffe9e9;
+}
+
+body.night-mode .memory-explanation {
+  background: #1b0000;
+  border-color: #5a1a1a;
+  color: #f3dada;
+}
+
+body.night-mode #high,
+body.night-mode .out-box {
+  color: #f3dada;
+}
+
+body.night-mode .highlight {
+  background-color: yellow;
+  color: #000;
+}
+
+body.night-mode button {
+  background-color: #2a0000;
+  color: #f3dada;
+  border-color: #6b1f1f;
+}
+
+body.night-mode .toggle-label {
+  background-color: #4d0000;
+}
+
+body.night-mode .toggle-checkbox:checked + .toggle-label {
+  background-color: #8b0000;
+}
+
+.a1 {
+  flex-direction: column;
+  gap: 6px;
+}
+
+.example-title-box {
+  background: rgba(120, 34, 34, 0.22);
+  border: 1px solid #6b1f1f;
+  border-radius: 2px;
+  padding: 4px 9px;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #f3dada;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, darkred, black);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.percent {
+  width: 100%;
+  height: 100%;
+}
+
+.fit {
+  height: 100%;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+.cent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar {
+  overflow: auto;
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  display: grid;
+  row-gap: 10px;
+  column-gap: 10px;
+  grid-template-rows: 15% 65% 20%;
+  grid-template-columns: 30% 70%;
+  grid-template-areas:
+    "a1 a1"
+    "b1 b2"
+    "c1 c1";
+}
+
+.a1 {
+  grid-area: a1;
+  background: linear-gradient(to bottom, darkred, black);
+}
+
+.b1 {
+  grid-area: b1;
+  background: white;
+  display: grid;
+  grid-template-rows: 5% 90% 5%;
+}
+
+.b2 {
+  grid-area: b2;
+  background: white;
+  display: grid;
+  grid-template-rows: 5% 95%;
+}
+
+.c1 {
+  grid-area: c1;
+  background: white;
+  display: grid;
+  grid-template-rows: 10% 90%;
+}
+
+.ca {
+  grid-row: 1;
+}
+
+.cb {
+  grid-row: 2;
+}
+
+.cc {
+  grid-row: 3;
+}
+
+.sectiontitle {
+  background-color: rgb(255, 251, 6);
+}
+
+#high {
+  font-family: Consolas, monospace;
+  margin: 0;
+  padding: 8px;
+}
+
+.memory-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.mVariable {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mem-item {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.mem-square {
+  width: 100px;
+  height: 60px;
+  border: 2px solid black;
+  background-color: white;
+  font-family: Consolas, monospace;
+  font-size: 18px;
+}
+
+.mem-label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.memOut {
+  display: none;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 26px;
+}
+
+.fly-value {
+  position: absolute;
+  background: yellow;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.8s ease-in-out;
+  z-index: 1000;
+  font-family: Consolas, monospace;
+}
+
+.memory-explanation {
+  display: none;
+  background: #f8f8d8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  min-height: 20px;
+  font-size: 1em;
+  color: #333;
+  text-align: center;
+  max-width: 220px;
+}
+
+button {
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#next {
+  background: #ffd700;
+}
+
+#back {
+  background: #ececec;
+}
+
+.out-box {
+  padding: 8px;
+  font-family: Consolas, monospace;
+}
+
+.console-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#prompt {
+  min-height: 22px;
+}
+
+#console-input {
+  display: none;
+  margin-top: 0;
+  width: 120px;
+  color: goldenrod;
+  border: none;
+  outline: none;
+  font-family: Consolas, monospace;
+  font-size: 16px;
+}
+
+#ou1 {
+  white-space: pre-line;
+}
+
+#calc-row {
+  align-items: center;
+}
+
+#calc-eq {
+  display: none;
+}
+
+.code,
+.viz,
+.out {
+  width: 100%;
+}
+
+.bar {
+  padding: 0;
+}
+
+/* Consistency overrides to match other examples */
+button {
+  appearance: auto;
+  -webkit-appearance: button;
+  border: initial;
+  border-radius: initial;
+  padding: initial;
+  background: initial;
+  font-weight: initial;
+}
+
+#next,
+#back {
+  background: initial;
+}
+
+.memory-explanation {
+  padding: 12px;
+  margin-bottom: 12px;
+  min-height: 40px;
+  font-size: 1.1em;
+  max-width: none;
+}
+
+.mem-square {
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.cc {
+  gap: 8px;
+}
+
+#high span {
+  display: inline;
+}
+
+#high .block {
+  display: block;
+}
+
+#high {
+  line-height: 1.4;
+}
+
+input,
+label,
+.btn-row,
+.result-box,
+#message,
+#drawBtn,
+#resetBtn {
+  display: none;
+}
+
+.memory-content {
+  padding: 8px;
+}
+
+.out-box {
+  min-height: 100%;
+}
+
+.cb {
+  height: 100%;
+}
+
+.bar {
+  overflow: auto;
+}
+
+.b1 .cb,
+.b2 .cb,
+.c1 .cb {
+  width: 100%;
+}
+
+.memory-content {
+  box-sizing: border-box;
+}
+
+.b1,
+.b2,
+.c1 {
+  box-sizing: border-box;
+}
+
+.cent {
+  text-align: center;
+}
+
+.mVariable .memOut {
+  display: none;
+}
+
+.mVariable .mem-item.memOut {
+  display: none;
+}
+
+.mVariable #calc-left,
+.mVariable #calc-right,
+.mVariable #calc-result {
+  display: none;
+}
+
+.mVariable #calc-op {
+  display: none;
+}
+
+.mVariable #calc-eq {
+  display: none;
+}
+
+.memory-explanation {
+  margin-top: 4px;
+}
+
+.b2 .cb {
+  display: flex;
+}
+
+.b2 .memory-content {
+  width: 100%;
+}
+
+.b1 .cb {
+  display: block;
+}
+
+.c1 .cb {
+  display: block;
+}
+
+.b1 .sectiontitle,
+.b2 .sectiontitle,
+.c1 .sectiontitle {
+  font-weight: bold;
+}
+
+.b1 pre {
+  margin: 0;
+}
+
+.b1,
+.b2,
+.c1 {
+  border: 0;
+}
+
+.b1,
+.b2,
+.c1,
+.a1 {
+  border-radius: 0;
+}
+
+.memory-content .mVariable {
+  width: 100%;
+}
+
+.memory-content .mVariable.cent {
+  justify-content: center;
+}
+
+.out-box {
+  font-size: 16px;
+}
+
+.mVariable .mem-item {
+  min-width: 90px;
+}
+
+.memory-content {
+  min-height: 100%;
+}
+
+.b2 {
+  overflow: hidden;
+}
+
+.b1 {
+  overflow: hidden;
+}
+
+.c1 {
+  overflow: hidden;
+}
+
+.bar {
+  box-sizing: border-box;
+}
+
+.code {
+  overflow: hidden;
+}
+
+.viz {
+  overflow: hidden;
+}
+
+.out {
+  overflow: hidden;
+}
+
+.memory-content {
+  overflow: auto;
+}
+
+.out-box {
+  overflow: auto;
+}
+
+.cc button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.memory-content #calc-row {
+  display: flex;
+}
+
+.memory-content #calc-row > * {
+  align-self: center;
+}
+
+.mVariable .memOut {
+  margin-top: 0;
+}
+
+.mVariable .mem-item.memOut {
+  margin-top: 0;
+}
+
+.mVariable .mem-item.memOut,
+.mVariable .memOut {
+  font-size: 28px;
+}
+
+.memory-content {
+  gap: 14px;
+}
+
+.mem-square {
+  text-transform: none;
+}
+
+.out-box {
+  background: #fff;
+}
+
+.sectiontitle {
+  user-select: none;
+}
+
+.mem-label {
+  user-select: none;
+}
+
+.memory-explanation {
+  user-select: none;
+}
+
+.logo-gold {
+  user-select: none;
+}
+
+.example-title-box {
+  user-select: none;
+}
+
+.bar pre {
+  white-space: pre;
+}
+
+.cb {
+  position: relative;
+}
+
+.fly-value {
+  pointer-events: none;
+}
+
+.memory-content .mVariable {
+  max-width: 100%;
+}
+
+.memory-content .mVariable#calc-row {
+  gap: 12px;
+}
+
+.memory-content .mVariable#calc-row .mem-item {
+  min-width: 50px;
+}
+
+.memory-content .mVariable#calc-row .memOut {
+  min-width: 20px;
+}
+
+.out-box {
+  white-space: pre-line;
+}
+
+.cc {
+  margin-bottom: 4px;
+}
+
+.a1 {
+  padding-top: 4px;
+}
+
+.container {
+  padding: 0;
+}
+
+.b1,
+.b2,
+.c1 {
+  margin: 0;
+}
+
+.memory-content {
+  align-content: flex-start;
+}
+
+.memory-content .mVariable.cent {
+  align-items: flex-start;
+}
+
+.mVariable {
+  align-items: center;
+}
+
+.mem-square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.memory-explanation {
+  line-height: 1.2;
+}
+
+#high {
+  font-size: 15px;
+}
+
+.out-box {
+  font-size: 15px;
+}
+
+.memory-content .mVariable#calc-row {
+  justify-content: center;
+}
+
+.memory-content .mVariable#calc-row .mem-item,
+.memory-content .mVariable#calc-row .memOut {
+  display: none;
+}
+
+.memory-content .mVariable#calc-row #calc-eq {
+  display: none;
+}
+
+.memory-content .mVariable#calc-row #calc-op {
+  display: none;
+}
+
+.memory-content .mVariable#calc-row #calc-left,
+.memory-content .mVariable#calc-row #calc-right,
+.memory-content .mVariable#calc-row #calc-result {
+  display: none;
+}
+
+.memory-content .mVariable#calc-row .mem-item.memOut {
+  display: none;
+}
+
+.memory-content .mVariable#calc-row .memOut {
+  display: none;
+}
+
+.memory-content {
+  position: relative;
+}
+
+.out-box {
+  border-top: 1px solid #ddd;
+}
+
+.cc {
+  justify-content: center;
+}
+
+.cc button {
+  min-width: 70px;
+}
+
+.mVariable .mem-item {
+  justify-content: flex-start;
+}
+
+.memory-content .mVariable.cent .mem-item {
+  display: none;
+}
+
+.memory-content .mVariable.cent {
+  min-height: 90px;
+}
+
+.memory-content .mVariable#calc-row {
+  min-height: 48px;
+}
+
+.memory-content .mVariable#calc-row .memOut,
+.memory-content .mVariable#calc-row .mem-item.memOut {
+  font-weight: bold;
+}
+
+.b1 .bar,
+.b2 .bar,
+.c1 .bar {
+  height: 100%;
+}
+
+.c1 .out-box {
+  height: 100%;
+}
+
+.b1 .bar {
+  background: #fff;
+}
+
+.b2 .cb {
+  background: #fff;
+}
+
+.c1 .bar {
+  background: #fff;
+}
+
+.b1 .cb,
+.b2 .cb,
+.c1 .cb {
+  padding: 0;
+}
+
+.memory-content {
+  background: #fff;
+}
+
+.cc {
+  background: #fff;
+}
+
+.sectiontitle {
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.memory-content .mVariable#calc-row {
+  padding-bottom: 4px;
+}
+
+.memory-content .mVariable.cent {
+  padding-top: 4px;
+}
+
+.memory-content .memory-explanation {
+  align-self: center;
+}
+
+.out-box #ou1 {
+  min-height: 100%;
+}
+
+.cc {
+  align-items: center;
+}
+
+.mVariable .mem-item .mem-square {
+  word-break: break-word;
+}
+
+.memory-content .mVariable.cent {
+  gap: 18px;
+}
+
+.memory-content .mVariable#calc-row {
+  gap: 10px;
+}
+
+.memory-content .mVariable#calc-row .mem-item,
+.memory-content .mVariable#calc-row .memOut {
+  min-width: 42px;
+}
+
+.memory-content .mVariable#calc-row .memOut {
+  text-align: center;
+}
+
+.memory-content .mVariable#calc-row .mem-item {
+  text-align: center;
+}
+
+.memory-content .mVariable#calc-row .mem-item.memOut {
+  text-align: center;
+}
+
+.memory-content .mVariable#calc-row .mem-item.memOut,
+.memory-content .mVariable#calc-row .memOut {
+  align-items: center;
+  justify-content: center;
+}
+
+.memory-content .mVariable#calc-row {
+  width: auto;
+}
+
+.memory-content .mVariable.cent {
+  width: auto;
+}
+
+.memory-content {
+  justify-content: flex-start;
+}
+
+.memory-content .memory-explanation {
+  margin-top: 6px;
+}
+
+.memory-content .mVariable.cent {
+  margin-top: 2px;
+}
+
+.memory-content .mVariable#calc-row {
+  margin-top: 2px;
+}
+
+.mVariable .mem-item.memOut {
+  flex-direction: row;
+}
+
+/* Final normalization to match other examples */
+.container {
+  row-gap: 10px;
+  column-gap: 10px;
+  grid-template-rows: 15% 65% 20%;
+  grid-template-columns: 30% 70%;
+}
+
+.code {
+  grid-template-rows: 5% 90% 5%;
+}
+
+.viz {
+  grid-template-rows: 5% 95%;
+}
+
+.out {
+  grid-template-rows: 10% 90%;
+}
+
+.memory-content {
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 20px !important;
+  padding: 8px;
+}
+
+.memory-content .mVariable,
+.memory-content .mVariable.cent,
+.memory-content .mVariable#calc-row {
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 20px;
+  width: auto;
+  margin-top: 0;
+  min-height: 0;
+}
+
+.mem-item {
+  display: none;
+}
+
+.memOut {
+  display: none;
+  margin-top: 26px;
+}
+
+.memory-explanation {
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  min-height: 20px;
+  font-size: 1em;
+  max-width: 220px;
+}
+
+.out-box {
+  padding: 8px;
+  font-family: Consolas, monospace;
+  border-top: 0;
+}
+
+.cc {
+  gap: 8px;
+  justify-content: center;
+}
+
+.cc button {
+  min-width: unset;
+}

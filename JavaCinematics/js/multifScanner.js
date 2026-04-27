@@ -1,3 +1,11 @@
+// Night mode toggle
+const toggle = document.getElementById("toggle");
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("night-mode");
+  });
+}
+
 const lines = document.querySelectorAll("#high span");
 
 const nextBtn = document.getElementById("next");
@@ -34,18 +42,22 @@ const history = [];
 function updateMemoryExplanation() {
   if (!memoryExplanation) return;
 
-  memoryExplanation.style.display = "flex";
-
   if (current < 0) {
-    memoryExplanation.innerText = "Click Next to begin";
+    memoryExplanation.style.display = "none";
+    memoryExplanation.innerText = "";
     return;
   }
+
+  memoryExplanation.style.display = "flex";
 
   let message = "";
 
   if (current === 0) message = "Import Scanner";
-  else if (current === 1) message = "Create Scanner input";
-  else if (current === 2) message = "Print Enter x prompt";
+  else if (current === 1)
+    message =
+      "Creating object name input from class Scanner to get user input.";
+  else if (current === 14) message = "Print Enter x prompt";
+  else if (current === 2) message = "Declare x";
   else if (current === 3) message = hasX() ? "x stored" : "Input x";
   else if (current === 4) message = "Print Enter y prompt";
   else if (current === 5) message = "Declare y";
@@ -140,10 +152,11 @@ function revealResultAfterAnimation(step, value) {
 function getHLine(step) {
   if (step < 0) return -1;
   if (step === 0) return 0;
+  if (step === 1) return 1;
+  if (step === 14) return 2;
 
   let line = 0;
-  if (step === 1) line = 1;
-  else if (step === 2) line = 2;
+  if (step === 2) line = 2;
   else if (step === 3) line = 3;
   else if (step === 4) line = 4;
   else if (step === 5) line = 5;
@@ -160,7 +173,8 @@ function getHLine(step) {
 function getNextStep(step) {
   if (step < 0) return 0;
   if (step === 0) return 1;
-  if (step === 1) return 2;
+  if (step === 1) return 14;
+  if (step === 14) return 2;
   if (step === 2) return 3;
   if (step === 3) return 4;
   if (step === 4) return 5;
@@ -181,6 +195,13 @@ function isTerminalStep(step) {
 
 function updateHighlight() {
   lines.forEach((line) => line.classList.remove("highlight"));
+
+  const xDeclaredOrLater = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].includes(
+    current,
+  );
+  const yPromptOrLater = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13].includes(current);
+  const yDeclaredOrLater = [5, 6, 7, 8, 9, 10, 11, 12, 13].includes(current);
+  const yInputOrLater = [6, 7, 8, 9, 10, 11, 12, 13].includes(current);
 
   const hLine = getHLine(current);
   if (lines[hLine]) lines[hLine].classList.add("highlight");
@@ -206,7 +227,7 @@ function updateHighlight() {
     out1.innerText = "";
   }
 
-  if (current >= 4) {
+  if (yPromptOrLater) {
     out2.innerText = "Enter y: ";
   } else {
     out2.innerText = "";
@@ -214,10 +235,10 @@ function updateHighlight() {
 
   echoX.innerText =
     current >= 1 && current !== 3 && hasX() ? String(xValue) : "";
-  echoY.innerText = current >= 4 && hasY() ? String(yValue) : "";
+  echoY.innerText = yPromptOrLater && hasY() ? String(yValue) : "";
 
-  itemX.style.display = current >= 2 ? "flex" : "none";
-  itemY.style.display = current >= 5 ? "flex" : "none";
+  itemX.style.display = xDeclaredOrLater ? "flex" : "none";
+  itemY.style.display = yDeclaredOrLater ? "flex" : "none";
 
   out3.innerText = "";
 
@@ -227,7 +248,7 @@ function updateHighlight() {
     inputItems[0].value = "";
   }
 
-  if (current < 6) {
+  if (!yInputOrLater) {
     memY.innerText = "";
     yValue = null;
     inputItems[1].value = "";

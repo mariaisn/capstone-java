@@ -5,6 +5,14 @@ const lines = document.querySelectorAll("#high span");
 const nextBtn = document.getElementById("next");
 const backBtn = document.getElementById("back");
 
+// Night Mode Implementation
+const toggle = document.getElementById("toggle");
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("night-mode", toggle.checked);
+  });
+}
+
 // memory squares
 const memX = document.getElementById("mem-x");
 const memY = document.getElementById("mem-y");
@@ -355,12 +363,14 @@ function updateHighlight() {
 function updateMemoryExplanation() {
   if (!memoryExplanation) return;
 
-  memoryExplanation.style.display = "flex";
   if (current < 0) {
-    memoryExplanation.innerText = "Click Next to begin";
+    memoryExplanation.style.display = "none";
+    memoryExplanation.innerText = "";
   } else if (current < stepMessages.length) {
+    memoryExplanation.style.display = "flex";
     memoryExplanation.innerText = stepMessages[current];
   } else {
+    memoryExplanation.style.display = "flex";
     memoryExplanation.innerText = "Done!";
   }
 }

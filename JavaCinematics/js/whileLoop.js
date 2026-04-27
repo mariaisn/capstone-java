@@ -1,3 +1,11 @@
+// Night mode toggle
+const toggle = document.getElementById("toggle");
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("night-mode");
+  });
+}
+
 // select all spans
 const lines = document.querySelectorAll("#high span");
 
@@ -29,10 +37,10 @@ const J_START = 0;
 const LIMIT = 3;
 
 // steps
-// 0..15
+// 0..16
 let current = -1;
 let prevStep = -1;
-const steps = 16;
+const steps = 17;
 
 // animation
 function animateToMemory(sourceElement, targetElement, finalValue) {
@@ -62,55 +70,58 @@ function animateToMemory(sourceElement, targetElement, finalValue) {
 function getHLine(step) {
   if (step < 0) return -1;
   if (step === 0) return 0;
+  if (step === 1) return 1;
 
   if (
-    step === 1 ||
     step === 2 ||
-    step === 5 ||
     step === 6 ||
-    step === 9 ||
     step === 10 ||
-    step === 13 ||
-    step === 14
+    step === 14 ||
+    step === 3 ||
+    step === 7 ||
+    step === 11 ||
+    step === 15
   ) {
     return 2;
   }
 
-  if (step === 3 || step === 7 || step === 11) return 5;
-  if (step === 4 || step === 8 || step === 12) return 8;
-  if (step === 15) return 9;
+  if (step === 4 || step === 8 || step === 12) return 5;
+  if (step === 5 || step === 9 || step === 13) return 8;
+  if (step === 16) return 9;
 
   return -1;
 }
 
 function isCompareOnlyStep(step) {
-  return step === 1 || step === 5 || step === 9 || step === 13;
-}
-
-function isResultStep(step) {
   return step === 2 || step === 6 || step === 10 || step === 14;
 }
 
+function isResultStep(step) {
+  return step === 3 || step === 7 || step === 11 || step === 15;
+}
+
 function isPrintStep(step) {
-  return step === 3 || step === 7 || step === 11;
+  return step === 4 || step === 8 || step === 12;
 }
 
 function isIncStep(step) {
-  return step === 4 || step === 8 || step === 12;
+  return step === 5 || step === 9 || step === 13;
 }
 
 function jValueAt(step) {
   if (step < 0) return null;
-  if (step >= 12) return 3;
-  if (step >= 8) return 2;
-  if (step >= 4) return 1;
-  return 0;
+  if (step >= 13) return 3;
+  if (step >= 9) return 2;
+  if (step >= 5) return 1;
+  if (step >= 1) return 0;
+  return null;
 }
 
 function updateMemoryExplanation() {
   const explanationBox = document.getElementById("memory-explanation");
   const messages = [
     "Declare j",
+    "Assign 0 to j",
     "Check j < 3",
     "j < 3 is true",
     "Print World",
@@ -176,11 +187,6 @@ function updateHighlight() {
   const hLine = getHLine(current);
   if (lines[hLine]) lines[hLine].classList.add("highlight");
 
-  // int j line uses spans 0 and 1
-  if (hLine === 0 && lines[1]) {
-    lines[1].classList.add("highlight");
-  }
-
   // while line uses spans 2, 3, 4
   if (hLine === 2) {
     if (lines[3]) lines[3].classList.add("highlight");
@@ -198,9 +204,9 @@ function updateHighlight() {
   if (current >= 0) memItems[0].style.display = "flex";
 
   // output deterministic
-  out1.innerText = current >= 3 ? "World" : "";
-  out2.innerText = current >= 7 ? "World" : "";
-  out3.innerText = current >= 11 ? "World" : "";
+  out1.innerText = current >= 4 ? "World" : "";
+  out2.innerText = current >= 8 ? "World" : "";
+  out3.innerText = current >= 12 ? "World" : "";
   out4.innerText = "";
 
   const jVal = jValueAt(current);
@@ -213,8 +219,8 @@ function updateHighlight() {
     memJ.innerText = String(jVal);
   }
 
-  // first step: create square + highlight + move 0 into memory together
-  if (current === 0) {
+  // second step: assign 0 into memory
+  if (current === 1) {
     if (goingForward) {
       memJ.innerText = "";
       animateToMemory(document.getElementById("val-j"), memJ, String(J_START));
@@ -243,15 +249,15 @@ function updateHighlight() {
   if (isPrintStep(current) && goingForward) {
     const src = document.getElementById("lit-world");
 
-    if (current === 3) {
+    if (current === 4) {
       out1.innerText = "";
       animateToMemory(src, out1, "World");
     }
-    if (current === 7) {
+    if (current === 8) {
       out2.innerText = "";
       animateToMemory(src, out2, "World");
     }
-    if (current === 11) {
+    if (current === 12) {
       out3.innerText = "";
       animateToMemory(src, out3, "World");
     }
@@ -259,8 +265,8 @@ function updateHighlight() {
 
   if (isIncStep(current)) {
     let jBefore = 0;
-    if (current === 8) jBefore = 1;
-    if (current === 12) jBefore = 2;
+    if (current === 9) jBefore = 1;
+    if (current === 13) jBefore = 2;
 
     const jAfter = jBefore + 1;
 

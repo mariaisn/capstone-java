@@ -1,3 +1,11 @@
+// Night mode toggle
+const toggle = document.getElementById("toggle");
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    document.body.classList.toggle("night-mode");
+  });
+}
+
 // Select all code spans for highlighting
 const lines = document.querySelectorAll("#high span");
 const memItems = document.querySelectorAll(".mem-item");
@@ -235,7 +243,7 @@ nextBtn.addEventListener("click", () => {
   }
 
   if (current === 6) {
-    current = 2;
+    current = 3;
     updateUI();
     return;
   }

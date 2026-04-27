@@ -23,13 +23,18 @@ body {
   display: grid;
   grid-template-rows: 15vh minmax(0, 1fr) 10vh;
   height: 100vh;
+  position: relative;
 }
 
 .bar {
   overflow-y: auto;
   overflow-x: hidden;
+  margin: auto;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
+  min-height: 0;
+  top: 0;
 }
 
 .a {
@@ -61,8 +66,8 @@ body {
 
 .cent {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: safe center;
+  justify-content: safe center;
 }
 
 .scroll-center {
@@ -96,6 +101,22 @@ header img {
 
 .box {
   border-bottom: 2px solid #ddd;
+}
+
+:root {
+  interpolate-size: allow-keywords; 
+}
+
+details::details-content {
+  opacity: 0;
+  block-size: 0;
+  overflow: hidden;
+  transition: block-size 0.5s ease, opacity 0.5s ease, content-visibility 0.5s allow-discrete;
+}
+
+details[open]::details-content {
+  opacity: 1;
+  block-size: auto;
 }
 
 .box summary {
