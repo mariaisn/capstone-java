@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="percent">
+    <head>
+        <title>Structural | Calling Methods 1</title>
+        <link rel="stylesheet" href="css/callingmethodsone.css" />
+    </head>
+
+
+    <body class="container percent">
+        <header class="a1 cent">
+            <a href="index.html" class="fit">
+                <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold">
+            </a>
+            <div class="example-title-box">Calling Methods 1</div>
+            <div class="theme-toggle-wrapper">
+              <input type="checkbox" id="toggle" class="toggle-checkbox" />
+              <label for="toggle" class="toggle-label"></label>
+            </div>
+        </header>
+
+        <div class="b1 code">
+            <div class="sectiontitle cent ca">
+                Code
+            </div>
+
+            <div class="cb bar">
+            <pre id="high">
+<span>public static void main(String[] args) {</span>
+<span>  int i</span> = <span>5</span>;
+<span>  int j</span> = <span>2</span>;
+<span>  int k</span> = <span>max(i, j)</span>;
+<span>  System.out.println(
+   "The maximum between " + i +
+    " and " + " is " + k);</span>
+}
+<span>public static int max(int num1, int num2) {</span>
+<span>  int result;</span>
+<span>  if (num1 > num2)</span>
+<span>    result = num1;</span>
+<span>  else</span>
+<span>    result = num2;</span>
+<span>  return result;</span>
+<span>}</span>
+            </pre>
+
+            </div>
+
+            <div class="cc cent">
+                <button id="back">Back</buttdiv with on>
+                <button id="next">Next</button>
+            </div>
+            
+        </div>
+
+        <!-- updated memory section - antonio -->
+        <div class="b2 viz">
+            <div class="sectiontitle cent ca">
+                Memory
+            </div>
+            
+            <div class="cb memory-content">
+                <div class="memory-explanation" id="memory-explanation"></div>
+                <div class="mVariable cent">
+                    <div class="mem-item" id="item-i">
+                        <div class="mem-label">i</div>
+                        <div class="mem-square cent" id="mem-i"></div>
+                    </div>
+
+                    <div class="mem-item" id="item-j">
+                        <div class="mem-label">j</div>
+                        <div class="mem-square cent" id="mem-j"></div>
+                    </div>
+
+                    <div class="mem-item" id="item-k">
+                        <div class="mem-label">k</div>
+                        <div class="mem-square cent" id="mem-k"></div>
+                    </div>
+
+                    <div class="mem-item" id="item-num1">
+                        <div class="mem-label">num1</div>
+                        <div class="mem-square cent" id="mem-num1"></div>
+                    </div>
+
+                    <div class="mem-item" id="item-num2">
+                        <div class="mem-label">num2</div>
+                        <div class="mem-square cent" id="mem-num2"></div>
+                    </div>
+
+                    <div class="mem-item" id="item-result">
+                        <div class="mem-label">result</div>
+                        <div class="mem-square cent" id="mem-result"></div>
+                    </div>
+                </div>
+
+                <div class="mVariable" id="mem-calc">
+                    <div class="mem-item memOut" id="calc-left"></div>
+                    <div class="memOut cent" id="calc-op"></div>
+                    <div class="mem-item memOut" id="calc-right"></div>
+                    <div class="memOut cent" id="calc-eq"></div>
+                    <div class="mem-item memOut" id="calc-result"></div>
+                </div>
+            </div>
+
+    </div>
+
+        
+        <div class="c1 out">
+            <div class="ca sectiontitle cent">
+                Output
+            </div>
+            
+            <!--18, 8, 65, 2, 3, 2.6-->>
+            <div class="cb bar">
+                <div id="ou1"></div>
+                <div id="ou2"></div>
+                <div id="ou3"></div>
+                <div id="ou4"></div>
+                <div id="ou5"></div>
+                <div id="ou6"></div>
+            </div>
+
+        </div>
+
+        <script src="js/callingmethodsone.js"></script>
+    </body>
+</html>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html class="percent">
     <head>
-        <title>Structural | Declaring Variables</title>
-        <link rel="stylesheet" href="css/declaring.css" />
+        <title>Structural | Using Scanner to get Input</title>
+        <link rel="stylesheet" href="css/Scanner.css" />
     </head>
 
 
@@ -11,12 +11,12 @@
             <a href="index.html">
                 <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
             </a>
-            <div class="example-title-box">Declaring Variables</div>
-                        <div class="theme-toggle-wrapper">
-                            <input type="checkbox" id="toggle" class="toggle-checkbox" />
-                            <label for="toggle" class="toggle-label"></label>
-                        </div>
-    </header>
+            <div class="example-title-box">Using Scanner to get Input</div>
+            <div class="theme-toggle-wrapper">
+              <input type="checkbox" id="toggle" class="toggle-checkbox" />
+              <label for="toggle" class="toggle-label"></label>
+            </div>
+        </header>
 
         <div class="b1 div1 code">
             <div class="sectiontitle cent ca">
@@ -25,29 +25,27 @@
 
             <div class="cb bar">
             <pre id="high">
+<span>Import java.util.Scanner;</span>
+
 public class Test {
 	
 	public static void main(String args[]) {
-		<span>int a=</span><span id="val-a"> 68</span>;
+        <span>Scanner input= new Scanner(System.in);</span>
+		
+                <span>int a=</span><span id="val-a"> input.nextInt()</span>;
         
-        <span>  System.out.println(a);</span>
 
-		<span>double b=</span><span id="val-b"> 68.0</span>;
+		<span>double b=</span><span id="val-b"> input.nextdouble()</span>;
         
-        <span>  System.out.println(b);</span>
-
 	
-		<span>char c=</span><span id="val-c"> '68'</span>;
+		<span>string c=</span><span id="val-c">input.next()</span>;
 		
-        <span>  System.out.println(c);</span>
 
-		<span>string d=</span> <span id="val-d">"Number 68"</span>;
+		<span>string d=</span> <span id="val-d">input.nextLine()</span>;
 		
-        <span>  System.out.println(d);</span>
-
-		<span>boolean e=</span><span id="val-e"> true</span>;
+    
+		<span>char e=</span><span id="val-e">input.next().charAt(0)</span>;
 		
-        <span>  System.out.println(e);</span>
 		
 	}
 
@@ -71,9 +69,7 @@ public class Test {
             
             <div class="cb memory-content">
 
-                                <div class="memory-explanation" id="memory-explanation">
-                                    Click Next to begin
-                                </div>
+                <div class="memory-explanation" id="memory-explanation"></div>
 
                 <div class="mVariable cent">
                     <div class="mem-item" id="mem-item-x">
@@ -89,6 +85,7 @@ public class Test {
                     <div class="mem-item" id="mem-item-c">
                         <div class="mem-label">c</div>
                         <div class="mem-square cent" id="mem-c"></div>
+                        <div class="char-container" id="mem-c-chars"></div>
                     </div>
                     <div class="mem-item" id="mem-item-d">
                         <div class="mem-label">d</div>
@@ -135,6 +132,6 @@ public class Test {
 
         </div>
 
-        <script src="js/declaring.js"></script>
+        <script src="js/Scanner.js"></script>
     </body>
 </html>

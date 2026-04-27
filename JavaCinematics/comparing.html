@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="percent">
     <head>
-        <title>Comparing Strings</title>
+        <title>Structural | Comparing Strings</title>
         <link rel="stylesheet" href="css/comparing.css" />
     </head>
 
@@ -14,6 +14,10 @@
                 <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
             </a>
             <div class="example-title-box">Comparing Strings</div>
+            <div class="theme-toggle-wrapper">
+              <input type="checkbox" id="toggle" class="toggle-checkbox" />
+              <label for="toggle" class="toggle-label"></label>
+            </div>
         </header>
 
 
@@ -29,13 +33,13 @@
 
 public class OrderTwoCities {
    public static void main(String[] args) {
-    <span>Scanner in = new Scanner(System.in)</span>;
+    <span>Scanner input = new Scanner(System.in)</span>;
 		  
 		  
     <span id="print-c1">System.out.print("Enter the first city: ")</span>;
-	<span>String city1</span> = <span>in.nextLine()</span>;
+	<span>String city1</span> = <span>input.nextLine()</span>;
 	<span id="print-c2">System.out.print("Enter the second city: ")</span>;
-	<span>String city2</span> = <span>in.nextLine()</span>;
+	<span>String city2</span> = <span>input.nextLine()</span>;
 		 
 	<span id="num-zero">if (city1.compareTo(city2) < 0)</span>
 		<span id="print-a1">System.out.println("The cities in alphabetical order are " + city1 + " " + city2)</span>;
@@ -121,7 +125,7 @@ public class OrderTwoCities {
             
            <div class="console-wrapper bar">
                 <div id="console"></div>
-                <input id="console-input" type="text" placeholder="Enter a city..." />
+                <input id="console-input" type="text" placeholder="Enter a string..." />
             </div>
 
         </div>

@@ -2,7 +2,7 @@
 <html class="percent">
   <head>
     <title>Java Cinematics Example</title>
-    <link rel="stylesheet" href="css/multiif.css" />
+    <link rel="stylesheet" href="css/multifscanner.css" />
   </head>
 
   <body class="container percent">
@@ -10,7 +10,7 @@
       <a href="index.html">
         <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
       </a>
-      <div class="example-title-box">Multi-Way If Statement</div>
+      <div class="example-title-box">Multi-Way If Statement with Scanner</div>
       <div class="theme-toggle-wrapper">
         <input type="checkbox" id="toggle" class="toggle-checkbox" />
         <label for="toggle" class="toggle-label"></label>
@@ -22,11 +22,17 @@
 
       <div class="cb bar">
         <pre id="high">
+      <span>import java.util.Scanner;</span>
+
 public class Test {
 
 	public static void main(String args[]) {
-		<span>int x</span> <span id="val-x">= 7</span>;
-                <span>int y</span> <span id="val-y">= 8</span>;
+    <span>Scanner input= new Scanner(System.in);</span>
+    <span>System.out.print("Enter x: ");</span>
+    <span>int x= </span><span id="val-x">input.nextInt()</span>;
+    <span>System.out.print("Enter y: ");</span>
+    <span>int y= </span><span id="val-y">input.nextInt()</span>;
+    input.close();
   <span>if(x>y)</span>{
 	  <span>System.out.println(x)</span>;}
   <span> else if(x&lt;y) {</span>
@@ -65,16 +71,6 @@ public class Test {
             <div class="mem-label">y</div>
             <div class="mem-square cent" id="mem-y"></div>
           </div>
-
-          <div class="mem-item" id="item-eql">
-            <div class="mem-label">condition</div>
-            <div class="mem-square cent" id="mem-c1"></div>
-          </div>
-
-          <div class="mem-item" id="item-lEql">
-            <div class="mem-label">cond2</div>
-            <div class="mem-square cent" id="mem-c2"></div>
-          </div>
         </div>
 
         <div class="mVariable" id="mem-calc">
@@ -92,12 +88,16 @@ public class Test {
 
       <div class="cb bar out-box">
         <div id="ou1"></div>
+        <input id="input-x" type="text" class="input-item" autocomplete="off" />
+        <div id="echo-x" class="input-echo"></div>
         <div id="ou2"></div>
+        <input id="input-y" type="text" class="input-item" autocomplete="off" />
+        <div id="echo-y" class="input-echo"></div>
         <div id="ou3"></div>
         <div id="ou4"></div>
       </div>
     </div>
 
-    <script src="js/multiif.js"></script>
+    <script src="js/multifScanner.js"></script>
   </body>
 </html>

@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | Compute Angles with Scanner</title>
+    <link rel="stylesheet" href="css/triangle.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">Compute Angles with Scanner</div>
+      <div class="theme-toggle-wrapper">
+        <input type="checkbox" id="toggle" class="toggle-checkbox" />
+        <label for="toggle" class="toggle-label"></label>
+      </div>
+    </header>
+
+    <div class="b1 div1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+<span>import java.util.Scanner;</span>
+
+<span>public class ComputeAngles {</span>
+  public static void main(String[] args) {
+    <span>Scanner input = new Scanner(System.in);</span>
+
+    // Prompt the user to enter three points
+    <span>System.out.print("Enter three points: ");</span>
+    <span id="val-x1">double x1</span> = <span>input.nextDouble();</span>
+    <span id="val-y1">double y1</span> = <span>input.nextDouble();</span>
+    <span id="val-x2">double x2</span> = <span>input.nextDouble();</span>
+    <span id="val-y2">double y2</span> = <span>input.nextDouble();</span>
+    <span id="val-x3">double x3</span> = <span>input.nextDouble();</span>
+    <span id="val-y3">double y3</span> = <span>input.nextDouble();</span>
+
+    // Compute three sides
+    <span id="val-a">double a</span> = <span>Math.sqrt((x2 - x3) * (x2 - x3)
+      + (y2 - y3) * (y2 - y3));</span>
+    <span id="val-b">double b</span> = <span>Math.sqrt((x1 - x3) * (x1 - x3)
+      + (y1 - y3) * (y1 - y3));</span>
+    <span id="val-c">double c</span> = <span>Math.sqrt((x1 - x2) * (x1 - x2)
+      + (y1 - y2) * (y1 - y2));</span>
+
+    // Compute three angles
+    <span id="val-A">double A</span> = <span>Math.toDegrees(Math.acos((a * a - b * b - c * c)
+      / (-2 * b * c)));</span>
+    <span id="val-B">double B</span> = <span>Math.toDegrees(Math.acos((b * b - a * a - c * c)
+      / (-2 * a * c)));</span>
+    <span id="val-C">double C</span> = <span>Math.toDegrees(Math.acos((c * c - b * b - a * a)
+      / (-2 * a * b)));</span>
+
+    // Display results
+    <span>System.out.println("The three angles are " +
+      Math.round(A * 100) / 100.0 + " " +
+      Math.round(B * 100) / 100.0 + " " +
+      Math.round(C * 100) / 100.0);</span>
+  }
+}
+        </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div
+          class="memory-explanation"
+          id="memory-explanation"
+          style="display: none"
+        ></div>
+
+        <div class="mVariable cent" id="mem-vars" style="flex-wrap: wrap">
+          <div class="mem-item" id="item-x">
+            <div class="mem-label">x1</div>
+            <div class="mem-square cent" id="mem-x"></div>
+          </div>
+
+          <div class="mem-item" id="item-y">
+            <div class="mem-label">y1</div>
+            <div class="mem-square cent" id="mem-y"></div>
+          </div>
+
+          <div class="mem-item" id="item-x2">
+            <div class="mem-label">x2</div>
+            <div class="mem-square cent" id="mem-x2"></div>
+          </div>
+
+          <div class="mem-item" id="item-y2">
+            <div class="mem-label">y2</div>
+            <div class="mem-square cent" id="mem-y2"></div>
+          </div>
+
+          <div class="mem-item" id="item-x3">
+            <div class="mem-label">x3</div>
+            <div class="mem-square cent" id="mem-x3"></div>
+          </div>
+
+          <div class="mem-item" id="item-y3">
+            <div class="mem-label">y3</div>
+            <div class="mem-square cent" id="mem-y3"></div>
+          </div>
+
+          <div class="mem-item" id="item-a">
+            <div class="mem-label">a</div>
+            <div class="mem-square cent" id="mem-a"></div>
+          </div>
+
+          <div class="mem-item" id="item-b">
+            <div class="mem-label">b</div>
+            <div class="mem-square cent" id="mem-b"></div>
+          </div>
+
+          <div class="mem-item" id="item-c">
+            <div class="mem-label">c</div>
+            <div class="mem-square cent" id="mem-c"></div>
+          </div>
+
+          <div class="mem-item" id="item-A">
+            <div class="mem-label">A</div>
+            <div class="mem-square cent" id="mem-A"></div>
+          </div>
+
+          <div class="mem-item" id="item-B">
+            <div class="mem-label">B</div>
+            <div class="mem-square cent" id="mem-B"></div>
+          </div>
+
+          <div class="mem-item" id="item-C">
+            <div class="mem-label">C</div>
+            <div class="mem-square cent" id="mem-C"></div>
+          </div>
+        </div>
+
+        <div id="mem-calc">
+          <div class="mem-formula" id="calc-formula"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+
+      <div class="cb bar out-box">
+        <div id="ou1"></div>
+        <input id="input-x" type="text" class="input-item" autocomplete="off" />
+        <div id="echo-x" class="input-echo"></div>
+        <div id="ou2"></div>
+        <input id="input-y" type="text" class="input-item" autocomplete="off" />
+        <div id="echo-y" class="input-echo"></div>
+        <div id="ou3"></div>
+        <div id="ou4"></div>
+      </div>
+    </div>
+
+    <script src="js/triangle.js"></script>
+    <script>
+      const codeSpans = Array.from(document.querySelectorAll("#high span"));
+      const variableBindings = [
+        { tokenId: "val-x1", itemId: "item-x", memId: "mem-x" },
+        { tokenId: "val-y1", itemId: "item-y", memId: "mem-y" },
+        { tokenId: "val-x2", itemId: "item-x2", memId: "mem-x2" },
+        { tokenId: "val-y2", itemId: "item-y2", memId: "mem-y2" },
+        { tokenId: "val-x3", itemId: "item-x3", memId: "mem-x3" },
+        { tokenId: "val-y3", itemId: "item-y3", memId: "mem-y3" },
+        { tokenId: "val-a", itemId: "item-a", memId: "mem-a" },
+        { tokenId: "val-b", itemId: "item-b", memId: "mem-b" },
+        { tokenId: "val-c", itemId: "item-c", memId: "mem-c" },
+        { tokenId: "val-A", itemId: "item-A", memId: "mem-A" },
+        { tokenId: "val-B", itemId: "item-B", memId: "mem-B" },
+        { tokenId: "val-C", itemId: "item-C", memId: "mem-C" },
+      ];
+
+      function syncVariableVisibility() {
+        const highlightedIndex = codeSpans.findIndex((s) =>
+          s.classList.contains("highlight"),
+        );
+
+        variableBindings.forEach(({ tokenId, itemId, memId }) => {
+          const token = document.getElementById(tokenId);
+          const item = document.getElementById(itemId);
+          const memSquare = document.getElementById(memId);
+          if (!token || !item || !memSquare) return;
+
+          const tokenIndex = codeSpans.indexOf(token);
+
+          item.style.display =
+            highlightedIndex !== -1 &&
+            tokenIndex !== -1 &&
+            highlightedIndex >= tokenIndex
+              ? "flex"
+              : "none";
+        });
+      }
+
+      const high = document.getElementById("high");
+      if (high) {
+        const observer = new MutationObserver(syncVariableVisibility);
+        observer.observe(high, {
+          subtree: true,
+          attributes: true,
+          attributeFilter: ["class"],
+        });
+      }
+
+      document.getElementById("next")?.addEventListener("click", () => {
+        requestAnimationFrame(syncVariableVisibility);
+      });
+      document.getElementById("back")?.addEventListener("click", () => {
+        requestAnimationFrame(syncVariableVisibility);
+      });
+
+      syncVariableVisibility();
+    </script>
+  </body>
+</html>

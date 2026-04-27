@@ -1,0 +1,144 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | Calculating Average</title>
+    <link rel="stylesheet" href="css/calcAvg.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html" class="fit">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">Calculating Average</div>
+      <div class="theme-toggle-wrapper">
+        <input type="checkbox" id="toggle" class="toggle-checkbox" />
+        <label for="toggle" class="toggle-label"></label>
+      </div>
+    </header>
+
+    <div class="b1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+<span>public class AnalyzeNumbers {</span>
+<span>  public static void main(String[] args) {</span>
+<span>    java.util.Scanner input = new java.util.Scanner(System.in);</span>
+<span>    System.out.print("Enter the number of items: ");</span>
+<span>    int n = input.nextInt();</span>
+<span>    double[] numbers = new double[n];</span>
+<span>    double sum = 0;</span>
+<span>    System.out.print("Enter the numbers: ");</span>
+<span>    for (int i = 0; i &lt; n; i++) {</span>
+<span>      numbers[i] = input.nextDouble();</span>
+<span>      sum += numbers[i];</span>
+<span>    }</span>
+<span>    double average = sum / n;</span>
+<span>    int count = 0;</span>
+<span>    for (int i = 0; i &lt; n; i++)</span>
+<span>      if (numbers[i] &gt; average)</span>
+<span>        count++;</span>
+<span>    System.out.println("Average is " + average);</span>
+<span>    System.out.println("Number of elements above the average is " + count);</span>
+<span>  }</span>
+<span>}</span>
+            </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation"></div>
+
+        <div class="mVariable cent">
+          <div class="mem-item" id="item-n">
+            <div class="mem-label">n</div>
+            <div class="mem-square cent" id="mem-n"></div>
+          </div>
+          <div class="mem-item" id="item-sum">
+            <div class="mem-label">sum</div>
+            <div class="mem-square cent" id="mem-sum"></div>
+          </div>
+          <div class="mem-item" id="item-average">
+            <div class="mem-label">average</div>
+            <div class="mem-square cent" id="mem-average"></div>
+          </div>
+          <div class="mem-item" id="item-count">
+            <div class="mem-label">count</div>
+            <div class="mem-square cent" id="mem-count"></div>
+          </div>
+          <div class="mem-item" id="item-i">
+            <div class="mem-label">i</div>
+            <div class="mem-square cent" id="mem-i"></div>
+          </div>
+        </div>
+
+        <div class="char-container" id="numbers-container">
+          <div
+            style="
+              font-weight: bold;
+              font-size: 14px;
+              font-family: Consolas, monospace;
+              text-align: center;
+              margin-bottom: 4px;
+            "
+          >
+            numbers[]
+          </div>
+          <div class="char-row">
+            <div class="char-index">0</div>
+            <div class="char-index">1</div>
+            <div class="char-index">2</div>
+            <div class="char-index">3</div>
+            <div class="char-index">4</div>
+          </div>
+          <div class="char-row">
+            <div class="char-box" id="arr-0"></div>
+            <div class="char-box" id="arr-1"></div>
+            <div class="char-box" id="arr-2"></div>
+            <div class="char-box" id="arr-3"></div>
+            <div class="char-box" id="arr-4"></div>
+          </div>
+        </div>
+
+        <div class="mVariable" id="mem-calc">
+          <div class="mem-item memOut" id="calc-left"></div>
+          <div class="memOut cent" id="calc-op"></div>
+          <div class="mem-item memOut" id="calc-right"></div>
+          <div class="memOut cent" id="calc-eq"></div>
+          <div class="mem-item memOut" id="calc-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+      <div class="cb bar out-box" id="out-box">
+        <div class="console-row" id="console-input-row" style="display: none">
+          <div id="prompt">Enter input here:</div>
+          <input
+            id="console-input"
+            type="text"
+            inputmode="decimal"
+            placeholder=""
+            autocomplete="off"
+          />
+        </div>
+        <div id="ou1"></div>
+        <div id="ou2"></div>
+        <div id="ou3"></div>
+        <div id="ou4"></div>
+      </div>
+    </div>
+
+    <script src="js/calcAvg.js"></script>
+  </body>
+</html>
