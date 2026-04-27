@@ -368,7 +368,7 @@ const steps = [
     highlight: [lineList2],
     list: [1, 2, 3, 4, 5, 6],
     result: [6, 5, 4, 3, 2, 1],
-    list2: [0, 0, 0, 0, 0, 0],
+    list2: [6, 5, 4, 3, 2, 1],
     iValue: "6",
     jValue: "-1",
     calc: null,
