@@ -1,0 +1,123 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Structural | Deck of Cards</title>
+    <link rel="stylesheet" href="css/deckofcards.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html" class="fit">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">Deck of Cards</div>
+    </header>
+
+    <div class="b1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+<span>public class DeckOfCards {</span>
+<span>  public static void main(String[] args) {</span>
+<span>    int[] deck = new int[52];</span>
+<span>    String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};</span>
+<span>    String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8",</span>
+<span>      "9", "10", "Jack", "Queen", "King"};</span>
+<span>    for (int i = 0; i &lt; deck.length; i++)</span>
+<span>      deck[i] = i;</span>
+<span>    for (int i = 0; i &lt; deck.length; i++) {</span>
+<span>      int index = (int)(Math.random() * deck.length);</span>
+<span>      int temp = deck[i];</span>
+<span>      deck[i] = deck[index];</span>
+<span>      deck[index] = temp;</span>
+<span>    }</span>
+<span>    for (int i = 0; i &lt; 4; i++) {</span>
+<span>      String suit = suits[deck[i] / 13];</span>
+<span>      String rank = ranks[deck[i] % 13];</span>
+<span>      System.out.println("Card number " + deck[i] + ": "</span>
+<span>        + rank + " of " + suit);</span>
+<span>    }</span>
+<span>  }</span>
+<span>}</span>
+        </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation"></div>
+
+        <div class="mVariable cent">
+          <div class="mem-item" id="item-i">
+            <div class="mem-label">i</div>
+            <div class="mem-square cent" id="mem-i"></div>
+          </div>
+          <div class="mem-item" id="item-index">
+            <div class="mem-label">index</div>
+            <div class="mem-square cent" id="mem-index"></div>
+          </div>
+          <div class="mem-item" id="item-temp">
+            <div class="mem-label">temp</div>
+            <div class="mem-square cent" id="mem-temp"></div>
+          </div>
+        </div>
+
+        <div class="mVariable cent">
+          <div class="mem-item" id="item-suit">
+            <div class="mem-label">suit</div>
+            <div class="mem-square mem-wide cent" id="mem-suit"></div>
+          </div>
+          <div class="mem-item" id="item-rank">
+            <div class="mem-label">rank</div>
+            <div class="mem-square mem-wide cent" id="mem-rank"></div>
+          </div>
+        </div>
+
+        <div class="char-container" id="deck-container">
+          <div class="arr-label">deck[ ] (showing [0..3])</div>
+          <div class="char-row">
+            <div class="char-index">0</div>
+            <div class="char-index">1</div>
+            <div class="char-index">2</div>
+            <div class="char-index">3</div>
+          </div>
+          <div class="char-row">
+            <div class="char-box" id="arr-0"></div>
+            <div class="char-box" id="arr-1"></div>
+            <div class="char-box" id="arr-2"></div>
+            <div class="char-box" id="arr-3"></div>
+          </div>
+        </div>
+
+        <div class="mVariable" id="mem-calc">
+          <div class="mem-item memOut" id="calc-left"></div>
+          <div class="memOut cent" id="calc-op"></div>
+          <div class="mem-item memOut" id="calc-right"></div>
+          <div class="memOut cent" id="calc-eq"></div>
+          <div class="mem-item memOut" id="calc-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+      <div class="cb bar out-box">
+        <div id="ou1"></div>
+        <div id="ou2"></div>
+        <div id="ou3"></div>
+        <div id="ou4"></div>
+      </div>
+    </div>
+
+    <script src="js/deckofcards.js"></script>
+  </body>
+</html>

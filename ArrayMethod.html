@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html class="percent">
+    <head>
+        <title>Structural | Array with Methods</title>
+        <link rel="stylesheet" href="css/ArrayMethod.css" />
+    </head>
+
+
+    <body class="container percent">
+        <header class="a1 cent">
+            <a href="index.html">
+                <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+            </a>
+            <div class="example-title-box">Array with Methods</div>
+            <div class="theme-toggle-wrapper">
+              <input type="checkbox" id="toggle" class="toggle-checkbox" />
+              <label for="toggle" class="toggle-label"></label>
+            </div>
+        </header>
+
+        <div class="b1 div1 code">
+            <div class="sectiontitle cent ca">
+                Code
+            </div>
+
+            <div class="cb bar">
+            <pre id="high">
+<span>public class Test {</span>
+    <span>public static void main(String[] args) {</span>
+        <span>int[] a = new int[5];</span>
+        <span>a[0] = 7;</span>
+        <span>a[1] = 8;</span>
+        <span>a[2] = 5;</span>
+        <span>a[3] = 6;</span>
+        <span>a[4] = 4;</span>
+        <span>edit(a);</span>
+        <span>System.out.println(a[2]);</span>
+    <span>}</span>
+    <span>public static void edit(int[] b) {</span>
+        <span>b[2] = 10;</span>
+    <span>}</span>
+<span>}</span>
+            </pre>
+
+            </div>
+
+            <div class="cc cent">
+                <button id="back">Back</button>
+                <button id="next">Next</button>
+            </div>
+            
+        </div>
+
+        <!-- updated memory section - antonio -->
+        <div class="b2 viz">
+            <div class="sectiontitle cent ca">
+                Memory
+            </div>
+            
+            <div class="cb memory-content">
+                <!-- Memory explanation section -->
+
+                <div class="memory-explanation" id="memory-explanation"></div>
+
+                <div class="mVariable cent">
+                    <div class="mem-item" id="mem-item-a">
+                        <div class="mem-label">a</div>
+                        <div class="mem-square cent" id="mem-a"></div>
+                        <div class="char-container" id="mem-a-array"></div>
+                    </div>
+
+                    <div class="mem-item" id="mem-item-b">
+                        <div class="mem-label">b</div>
+                        <div class="mem-square cent" id="mem-b"></div>
+                        <div class="mem-ref-pointer" id="mem-b-pointer"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        
+        <div class="c1 out">
+            <div class="ca sectiontitle cent">
+                Output
+            </div>
+            
+            <div class="cb bar">
+             <div class="cb bar out-box">
+                    <div id="ou1"></div>
+                </div>
+
+        </div>
+
+        <script src="js/ArrayMethod.js"></script>
+    </body>
+</html>

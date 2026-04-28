@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | Average Method</title>
+    <link rel="stylesheet" href="css/avgmethod.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">Average Number & Sum Example</div>
+      <div class="theme-toggle-wrapper">
+        <input type="checkbox" id="toggle" class="toggle-checkbox" />
+        <label for="toggle" class="toggle-label"></label>
+      </div>
+    </header>
+
+    <div class="b1 div1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+<span>import java.util.Scanner;</span>
+
+public class AverageMethod {
+
+  public static void main(String[] args){
+    <span>Scanner input = new Scanner(System.in);</span>
+
+    <span>System.out.print("Enter the first number: ");</span>
+    <span>int num1 </span><span id="val-num1">= input.nextInt();</span>
+
+    <span>System.out.print("Enter the second number: ");</span>
+    <span>int num2 </span><span id="val-num2">= input.nextInt();</span>
+
+    <span>System.out.print("Enter the third number: ");</span>
+    <span>int num3 </span><span id="val-num3">= input.nextInt();</span>
+
+    <span>average(num1, num2, num3);</span>
+    <span>sum(num1, num2, num3);</span>
+  }
+
+    <span>public static void average(int x, int y, int z){</span>
+    <span>double avg = (x + y + z) / </span><span id="lit-three-double">3.0</span>;
+    <span>System.out.println("The average is: " + avg);</span>
+  }
+
+  <span>public static void sum(int x, int y, int z){</span>
+    <span>int total = x + y + z;</span>
+    <span>System.out.println("The sum is: " + total);</span>
+  }
+}
+        </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation"></div>
+
+        <div class="mVariable cent" id="mem-vars-top">
+          <div class="mem-item" id="item-num1">
+            <div class="mem-label">num1</div>
+            <div class="mem-square cent" id="mem-num1"></div>
+          </div>
+
+          <div class="mem-item" id="item-num2">
+            <div class="mem-label">num2</div>
+            <div class="mem-square cent" id="mem-num2"></div>
+          </div>
+
+          <div class="mem-item" id="item-num3">
+            <div class="mem-label">num3</div>
+            <div class="mem-square cent" id="mem-num3"></div>
+          </div>
+        </div>
+
+        <div class="mVariable" id="mem-calc">
+          <div class="mem-item memOut" id="calc-left"></div>
+          <div class="memOut cent" id="plus-op-1">+</div>
+          <div class="mem-item memOut" id="calc-mid"></div>
+          <div class="memOut cent" id="plus-op-2">+</div>
+          <div class="mem-item memOut" id="calc-right"></div>
+          <div class="memOut cent" id="extra-op">/</div>
+          <div class="mem-item memOut" id="extra-num"></div>
+          <div class="memOut cent" id="eq-op">=</div>
+          <div class="mem-item memOut" id="calc-result"></div>
+        </div>
+
+        <div class="mVariable cent" id="mem-vars-bottom">
+          <div class="mem-item" id="item-avg">
+            <div class="mem-label">avg</div>
+            <div class="mem-square cent" id="mem-avg"></div>
+          </div>
+
+          <div class="mem-item" id="item-total">
+            <div class="mem-label">total</div>
+            <div class="mem-square cent" id="mem-total"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+
+      <div class="cb bar out-box">
+        <div class="console-row" id="console-input-row">
+          <div id="prompt"></div>
+          <input
+            id="number-input"
+            type="text"
+            inputmode="numeric"
+            placeholder="6"
+            autocomplete="off"
+          />
+        </div>
+
+        <div id="ou1"></div>
+        <div id="ou2"></div>
+        <div id="ou3"></div>
+        <div id="ou4"></div>
+        <div id="ou5"></div>
+      </div>
+    </div>
+
+    <script src="js/avgmethod.js"></script>
+  </body>
+</html>
