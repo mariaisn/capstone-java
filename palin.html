@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="percent">
+    <head>
+        <title>Palindrome with Scanner Class</title>
+        <link rel="stylesheet" href="css/palin.css" />
+    </head>
+
+
+
+
+    <body class="container percent">
+        <header class="a1 cent">
+            <a href="index.html">
+                <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+            </a>
+            <div class="example-title-box">Palindrome with Scanner Class</div>
+            <div class="theme-toggle-wrapper">
+              <input type="checkbox" id="toggle" class="toggle-checkbox" />
+              <label for="toggle" class="toggle-label"></label>
+            </div>
+        </header>
+
+
+        <div class="b1 div1 code">
+            <div class="sectiontitle cent ca">
+                Code
+            </div>
+
+
+            <div class="cb bar">
+            <pre id="high">
+<span>import java.util.Scanner;</span>
+
+public class Palindrome{
+  
+  public static void main(String[] args){
+    
+    <span>Scanner input= new Scanner(System.in)</span>;
+    
+    <span id="print-E">System.out.print("Enter a string: ")</span>;
+    <span>String s</span> = <span>input.nextLine()</span>;
+    
+    <span>int low</span> <span id="ini-low">= 0</span>;
+    
+    <span>int high</span> <span id="ini-high">= s.length() - 1</span>;
+    
+    <span>boolean isPalindrome</span> <span id="ini-isP">= true</span>;
+    
+    <span>while</span><span>(low < high)</span>{
+      <span>if(s.charAt(low) != s.charAt(high))</span>{
+        <span id="ini-isF">isPalindrome = false</span>;
+        <span>break</span>;
+      }
+      
+      <span id="ini-plus">low++</span>;
+      <span id="ini-minus">high--</span>;
+    }<span> </span>
+    
+    <span>if(isPalindrome)</span>{
+      <span id="print-is">System.out.println(s + " is a palindrome")</span>;
+    }
+    <span>else</span>{
+      <span id="print-not">System.out.println(s + " is not a palindrome")</span>;
+    }<span> </span>
+  }
+}
+            </pre>
+
+
+            </div>
+
+
+            <div class="cc cent">
+                <button id="back">Back</buttdiv with on>
+                <button id="next">Next</button>
+            </div>
+           
+        </div>
+
+
+
+        <div class="b2 viz">
+            <div class="sectiontitle cent ca">
+                Memory
+            </div>
+           
+            <div class="cb memory-content">
+
+                <div class="memory-explanation" id="memory-explanation"></div>
+
+
+                <div class="mVariable cent">
+
+                    <!-- mem-item 0 -->
+                    <div class="mem-item">
+                        <div class="mem-label">s</div>
+                        <div class="mem-square cent" id="mem-s"></div>
+                        <div class="char-container" id="mem-r"></div>
+                    </div>
+
+                    <!-- mem-item 1 -->
+                    <div class="mem-item">
+                        <div class="mem-label">low</div>
+                        <div class="mem-square cent" id="mem-l"></div>
+                    </div>
+
+                    <!-- mem-item 2 -->
+                    <div class="mem-item">
+                        <div class="mem-label">high</div>
+                        <div class="mem-square cent" id="mem-h"></div>
+                    </div>
+
+                    <!-- mem-item 3 -->
+                    <div class="mem-item">
+                        <div class="mem-label">isPalindrome</div>
+                        <div class="mem-square cent" id="mem-p"></div>
+                    </div>
+                </div>
+                
+
+
+                <div class="mVariable">
+                    <div class="mem-item memOut" id="num-low"></div>
+
+                    <div class="mem-item memOut" id="num-length"></div>
+
+
+                    <div class="memOut cent" id="plus-op">+</div>
+                    <div class="memOut cent" id="less-op"><</div>
+                    <div class="memOut cent" id="notE-op">!=</div>
+
+                    <div class="mem-item memOut" id="num-high"></div>
+
+                    <div class="memOut cent" id="minus-op">-</div>
+
+                    <div class="mem-item memOut" id="num-one"></div>
+
+
+                    <div class="memOut cent" id="equal-op">=</div>
+
+
+                    <div class="mem-item memOut" id="num-sum"></div>
+                    <div class="mem-item memOut" id="num-bool"></div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+       
+        <div class="c1 out">
+            <div class="ca sectiontitle cent">
+                Output
+            </div>
+            
+           <div class="console-wrapper bar">
+                <div id="console"></div>
+                <input id="console-input" type="text" placeholder="Enter a string..." />
+            </div>
+
+        </div>
+
+
+        <script src="js/palin.js"></script>
+    </body>
+</html>

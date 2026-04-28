@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | Sentinel</title>
+    <link rel="stylesheet" href="css/sentinel.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">Sentinel Value</div>
+      <div class="theme-toggle-wrapper">
+        <input type="checkbox" id="toggle" class="toggle-checkbox" />
+        <label for="toggle" class="toggle-label"></label>
+      </div>
+    </header>
+
+    <div class="b1 div1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+<span>import java.util.Scanner;</span>
+
+<span>public class SentinelValue {</span>
+  <span>public static void main(String[] args) {</span>
+    <span>Scanner input = new Scanner(System.in);</span>
+
+    <span>System.out.print("Enter an integer (the input ends if it is 0): ");</span>
+    <span>int data</span> <span>= input.nextInt();</span>
+
+    <span>int sum</span> <span>= 0;</span>
+    <span>while (data != 0) {</span>
+      <span>sum += data;</span>
+
+      <span>System.out.print("Enter an integer (the input ends if it is 0): ");</span>
+      <span>data = input.nextInt();</span>
+    <span>}</span>
+
+    <span>System.out.println("The sum is " + sum);</span>
+  <span>}</span>
+<span>}</span>
+        </pre>
+      </div>
+
+      <div class="cc cent">
+        <button id="back">Back</button>
+        <button id="next">Next</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation"></div>
+
+        <div class="mVariable cent" id="mem-vars">
+          <div class="mem-item" id="item-data">
+            <div class="mem-label">data</div>
+            <div class="mem-square cent" id="mem-data"></div>
+          </div>
+          <div class="mem-item" id="item-sum">
+            <div class="mem-label">sum</div>
+            <div class="mem-square cent" id="mem-sum"></div>
+          </div>
+        </div>
+
+        <div class="mVariable" id="mem-calc">
+          <div class="mem-item memOut" id="calc-left"></div>
+          <div class="memOut cent" id="calc-op"></div>
+          <div class="mem-item memOut" id="calc-right"></div>
+          <div class="memOut cent" id="eq-op">=</div>
+          <div class="mem-item memOut" id="calc-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+
+      <div class="cb bar out-box" id="out-box">
+        <div id="output-lines"></div>
+        <input
+          id="data-input"
+          type="number"
+          class="input-item"
+          autocomplete="off"
+        />
+      </div>
+    </div>
+
+    <script src="js/sentinel.js"></script>
+  </body>
+</html>
