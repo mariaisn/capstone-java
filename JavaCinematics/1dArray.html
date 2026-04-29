@@ -1,0 +1,158 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | 1D Array Example</title>
+    <link rel="stylesheet" href="css/1dArray.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">1D Array Example</div>
+      <div class="theme-toggle-wrapper">
+        <input type="checkbox" id="toggle" class="toggle-checkbox" />
+        <label for="toggle" class="toggle-label"></label>
+      </div>
+    </header>
+
+    <div class="b1 div1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+public class Test {
+
+  public static void main(String[] args) {
+    <span>int[] x </span><span id="val-x">= new int[5];</span>
+
+    <span>double[] y;</span>
+    <span>y </span><span id="val-y">= new double[5];</span>
+
+    <span>String[] z </span><span id="val-z">= {"Hello", "Apple"};</span>
+  }
+}
+        </pre>
+      </div>
+
+      <div class="buttons cent">
+        <button class="btn back-btn" id="back">&larr; Back</button>
+        <button class ="btn next-btn" id="next">Next &rarr;</button>
+	    </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation"></div>
+
+        <div class="memory-layout">
+          <div class="array-panel panel-left" id="panel-x">
+            <div class="ref-group">
+              <div class="mem-item" id="item-x">
+                <div class="mem-label">x</div>
+                <div class="mem-square cent" id="mem-x"></div>
+              </div>
+            </div>
+
+            <div class="array-block" id="array-x-block">
+              <div class="array-title"></div>
+              <div class="array-row">
+                <div class="array-cell-wrap">
+                  <div class="array-index">0</div>
+                  <div class="array-cell cent" id="x-cell-0">0</div>
+                </div>
+                <div class="array-cell-wrap">
+                  <div class="array-index">1</div>
+                  <div class="array-cell cent" id="x-cell-1">0</div>
+                </div>
+                <div class="array-cell-wrap">
+                  <div class="array-index">2</div>
+                  <div class="array-cell cent" id="x-cell-2">0</div>
+                </div>
+                <div class="array-cell-wrap">
+                  <div class="array-index">3</div>
+                  <div class="array-cell cent" id="x-cell-3">0</div>
+                </div>
+                <div class="array-cell-wrap">
+                  <div class="array-index">4</div>
+                  <div class="array-cell cent" id="x-cell-4">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="array-panel panel-right" id="panel-y">
+            <div class="ref-group">
+              <div class="mem-item" id="item-y">
+                <div class="mem-label">y</div>
+                <div class="mem-square cent" id="mem-y"></div>
+              </div>
+            </div>
+
+            <div class="array-block" id="array-y-block">
+              <div class="array-title"></div>
+              <div class="array-row">
+                <div class="array-cell-wrap">
+                  <div class="array-index">0</div>
+                  <div class="array-cell cent" id="y-cell-0">0.0</div>
+                </div>
+                <div class="array-cell-wrap">
+                  <div class="array-index">1</div>
+                  <div class="array-cell cent" id="y-cell-1">0.0</div>
+                </div>
+                <div class="array-cell-wrap">
+                  <div class="array-index">2</div>
+                  <div class="array-cell cent" id="y-cell-2">0.0</div>
+                </div>
+                <div class="array-cell-wrap">
+                  <div class="array-index">3</div>
+                  <div class="array-cell cent" id="y-cell-3">0.0</div>
+                </div>
+                <div class="array-cell-wrap">
+                  <div class="array-index">4</div>
+                  <div class="array-cell cent" id="y-cell-4">0.0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="array-panel panel-center-bottom" id="panel-z">
+            <div class="ref-group">
+              <div class="mem-item" id="item-z">
+                <div class="mem-label">z</div>
+                <div class="mem-square cent" id="mem-z"></div>
+              </div>
+            </div>
+
+            <div class="array-block" id="array-z-block">
+              <div class="array-title">String[2]</div>
+              <div class="array-row">
+                <div class="array-cell-wrap">
+                  <div class="array-index">0</div>
+                  <div class="array-cell cent string-cell" id="z-cell-0"></div>
+                </div>
+                <div class="array-cell-wrap">
+                  <div class="array-index">1</div>
+                  <div class="array-cell cent string-cell" id="z-cell-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+
+      <div class="cb bar out-box">
+        <div id="ou1"></div>
+      </div>
+    </div>
+
+    <script src="js/1dArray.js"></script>
+  </body>
+</html>

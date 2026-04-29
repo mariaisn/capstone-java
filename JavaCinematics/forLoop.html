@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | For Loop</title>
+    <link rel="stylesheet" href="css/forLoop.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">For Loop</div>
+      <div class="theme-toggle-wrapper">
+        <input type="checkbox" id="toggle" class="toggle-checkbox" />
+        <label for="toggle" class="toggle-label"></label>
+      </div>
+    </header>
+
+    <!-- CODE PANEL -->
+    <div class="b1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+public class Test {
+
+  public static void main(String args[]) {
+
+    <span>for</span>(<span>int i</span><span id="val-i">=0</span>; <span id="cmp-i3">i &lt; 3</span>; <span id="inc-i">i++</span>) {
+      <span id="lit-hello">System.out.println("Hello");</span>
+    <span>}</span>
+
+  }
+
+}
+        </pre>
+      </div>
+
+      <div class="buttons cent">
+        <button class="btn back-btn" id="back">&larr; Back</button>
+        <button class ="btn next-btn" id="next">Next &rarr;</button>
+      </div>
+    </div>
+
+    <!-- MEMORY PANEL -->
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation">
+          Click Next to begin
+        </div>
+
+        <div class="mVariable">
+          <div class="mem-item" id="item-i">
+            <div class="mem-label">i</div>
+            <div class="mem-square cent" id="mem-i"></div>
+          </div>
+        </div>
+
+        <div class="mVariable">
+          <div class="memOut cent" id="mem-num-i"></div>
+          <div class="memOut cent" id="comp-op"></div>
+          <div class="memOut cent" id="mem-num-limit"></div>
+          <div class="memOut cent" id="equal-op">=</div>
+          <div class="memOut cent" id="val-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTPUT PANEL -->
+    <div class="c1 out">
+      <div class="sectiontitle cent ca">Output</div>
+
+      <div class="console-wrapper bar">
+        <div id="console"></div>
+      </div>
+    </div>
+
+    <script src="js/forLoop.js"></script>
+  </body>
+</html>

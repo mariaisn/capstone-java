@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | While Loop</title>
+    <link rel="stylesheet" href="css/whileLoop.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">While Loop</div>
+      <div class="theme-toggle-wrapper">
+        <input type="checkbox" id="toggle" class="toggle-checkbox" />
+        <label for="toggle" class="toggle-label"></label>
+      </div>
+    </header>
+
+    <div class="b1 div1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+public class Test {
+
+	public static void main(String args[]) {
+		<span>int j </span><span id="val-j">= 0;</span>
+		
+		<span>while(j&lt;</span><span id="lit-3">3</span><span>) {</span>
+			<span>System.out.println(</span><span id="lit-world">"World"</span><span>);</span>
+			<span id="inc">j++;</span>
+		<span>}</span>
+	}
+
+}
+        </pre>
+      </div>
+
+      <div class="buttons cent">
+        <button class="btn back-btn" id="back">&larr; Back</button>
+        <button class ="btn next-btn" id="next">Next &rarr;</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div
+          class="memory-explanation"
+          id="memory-explanation"
+          style="display: none"
+        ></div>
+
+        <div class="mVariable cent" id="mem-vars">
+          <div class="mem-item" id="item-j">
+            <div class="mem-label">j</div>
+            <div class="mem-square cent" id="mem-j"></div>
+          </div>
+        </div>
+
+        <div class="mVariable" id="mem-calc">
+          <div class="mem-item memOut" id="mem-num-j"></div>
+          <div class="memOut cent" id="comp-op"></div>
+          <div class="mem-item memOut" id="mem-num-limit"></div>
+          <div class="memOut cent" id="eq-op">=</div>
+          <div class="mem-item memOut" id="val-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+
+      <div class="cb bar out-box">
+        <div id="ou1"></div>
+        <div id="ou2"></div>
+        <div id="ou3"></div>
+        <div id="ou4"></div>
+      </div>
+    </div>
+
+    <script src="js/whileLoop.js"></script>
+  </body>
+</html>

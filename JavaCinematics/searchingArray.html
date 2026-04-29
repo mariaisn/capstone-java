@@ -1,0 +1,142 @@
+<!doctype html>
+<html class="percent">
+  <head>
+    <title>Structural | Searching Array Example</title>
+    <link rel="stylesheet" href="css/searchingArray.css" />
+  </head>
+
+  <body class="container percent">
+    <header class="a1 cent">
+      <a href="index.html">
+        <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+      </a>
+      <div class="example-title-box">Searching Array Example</div>
+      <div class="theme-toggle-wrapper">
+        <input type="checkbox" id="toggle" class="toggle-checkbox" />
+        <label for="toggle" class="toggle-label"></label>
+      </div>
+    </header>
+
+    <div class="b1 div1 code">
+      <div class="sectiontitle cent ca">Code</div>
+
+      <div class="cb bar">
+        <pre id="high">
+public class Test {
+
+  public static void main(String[] args) {
+
+    <span>int[] values </span><span id="val-array">= {1,2,3,4,5,6,7,8};</span>
+
+    <span>int target </span><span id="val-target">= 5;</span>
+    <span>int index;</span>
+
+    <span>for(index=0;</span><span id="loop-cond">index&lt;values.length;</span><span id="loop-inc">index++)</span>
+    <span>{</span>
+      <span>if(</span><span id="if-left">values[index]</span><span id="if-op">==</span><span id="if-right">target</span><span>)</span>
+      <span>{</span>
+        <span>break;</span>
+      <span>}</span>
+    <span>}</span>
+
+    <span>if(</span><span id="final-left">index</span><span id="final-op">==</span><span id="final-right">values.length</span><span>)</span>
+    <span>{</span>
+      <span>System.out.print(</span><span id="not-found">"Not found"</span><span>);</span>
+    <span>}</span>
+    <span>else</span>
+    <span>{</span>
+      <span>System.out.println(</span><span id="found-text">"Found at index: " + index</span><span>);</span>
+    <span>}</span>
+  }
+}
+        </pre>
+      </div>
+
+      <div class="buttons cent">
+        <button class="btn back-btn" id="back">&larr; Back</button>
+        <button class ="btn next-btn" id="next">Next &rarr;</button>
+      </div>
+    </div>
+
+    <div class="b2 viz">
+      <div class="sectiontitle cent ca">Memory</div>
+
+      <div class="cb memory-content">
+        <div class="memory-explanation" id="memory-explanation"></div>
+
+        <div class="memory-layout">
+          <div class="top-vars">
+            <div class="mem-item" id="item-array">
+              <div class="mem-label">values</div>
+              <div class="mem-square cent" id="mem-array"></div>
+            </div>
+
+            <div class="mem-item" id="item-target">
+              <div class="mem-label">target</div>
+              <div class="mem-square cent" id="mem-target"></div>
+            </div>
+
+            <div class="mem-item" id="item-index">
+              <div class="mem-label">index</div>
+              <div class="mem-square cent" id="mem-index"></div>
+            </div>
+          </div>
+
+          <div class="array-block" id="array-block">
+            <div class="array-title"></div>
+            <div class="array-row">
+              <div class="array-cell-wrap">
+                <div class="array-index">0</div>
+                <div class="array-cell cent" id="cell-0">1</div>
+              </div>
+              <div class="array-cell-wrap">
+                <div class="array-index">1</div>
+                <div class="array-cell cent" id="cell-1">2</div>
+              </div>
+              <div class="array-cell-wrap">
+                <div class="array-index">2</div>
+                <div class="array-cell cent" id="cell-2">3</div>
+              </div>
+              <div class="array-cell-wrap">
+                <div class="array-index">3</div>
+                <div class="array-cell cent" id="cell-3">4</div>
+              </div>
+              <div class="array-cell-wrap">
+                <div class="array-index">4</div>
+                <div class="array-cell cent" id="cell-4">5</div>
+              </div>
+              <div class="array-cell-wrap">
+                <div class="array-index">5</div>
+                <div class="array-cell cent" id="cell-5">6</div>
+              </div>
+              <div class="array-cell-wrap">
+                <div class="array-index">6</div>
+                <div class="array-cell cent" id="cell-6">7</div>
+              </div>
+              <div class="array-cell-wrap">
+                <div class="array-index">7</div>
+                <div class="array-cell cent" id="cell-7">8</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-row" id="calc-row">
+            <div class="calc-expression cent" id="calc-expression"></div>
+            <div class="calc-op cent" id="calc-op"></div>
+            <div class="calc-box cent" id="calc-result"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="c1 out">
+      <div class="ca sectiontitle cent">Output</div>
+
+      <div class="cb bar out-box">
+        <div id="ou1"></div>
+      </div>
+    </div>
+
+    <script src="js/searchingArray.js"></script>
+  </body>
+</html>

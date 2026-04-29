@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="percent">
+    <head>
+        <title>Structural | Primitive vs. Reference Data Type</title>
+        <link rel="stylesheet" href="css/primrefDataType.css" />
+    </head>
+
+
+    <body class="container percent">
+        <header class="a1 cent">
+            <a href="index.html">
+                <img src="images/GoldLogo.png" alt="Gold Logo" class="logo-gold" />
+            </a>
+            <div class="example-title-box">Primitive vs. Reference Data Type</div>
+            <div class="theme-toggle-wrapper">
+              <input type="checkbox" id="toggle" class="toggle-checkbox" />
+              <label for="toggle" class="toggle-label"></label>
+            </div>
+        </header>
+
+        <div class="b1 div1 code">
+            <div class="sectiontitle cent ca">
+                Code
+            </div>
+
+            <div class="cb bar">
+            <pre id="high">
+<span>class Main {</span>
+<span>public static void main(String[] args) {</span>
+<span>int x = 7;</span>
+<span>int y = x;</span>
+<span>y = y + 1;</span>
+<span>int x1[] = {1, 2, 3};</span>
+<span>int y1[] = x1;</span>
+<span>y1[1] = 7;</span>
+<span>System.out.println(x1[1]);</span>
+<span>System.out.println(y1[1]);</span>
+}
+}
+            </pre>
+
+            </div>
+
+      <div class="buttons cent">
+        <button class="btn back-btn" id="back">&larr; Back</button>
+        <button class ="btn next-btn" id="next">Next &rarr;</button>
+      </div>
+            
+        </div>
+
+        <!-- updated memory section - antonio -->
+        <div class="b2 viz">
+            <div class="sectiontitle cent ca">
+                Memory
+            </div>
+            
+            <div class="cb memory-content">
+                <!-- Memory explanation section -->
+
+                <div class="memory-explanation" id="memory-explanation"></div>
+
+                <div class="mVariable cent">
+                    <div class="mem-item" id="mem-item-x">
+                        <div class="mem-label">x</div>
+                        <div class="mem-square cent" id="mem-x"></div>
+                    </div>
+
+                    <div class="mem-item" id="mem-item-y">
+                        <div class="mem-label">y</div>
+                        <div class="mem-square cent" id="mem-y"></div>
+                    </div>
+
+                    <div class="mem-item" id="mem-item-x1">
+                        <div class="mem-label">x1</div>
+                        <div class="mem-square cent" id="mem-x1"></div>
+                        <div class="char-container" id="mem-x1-array"></div>
+                    </div>
+
+                    <div class="mem-item" id="mem-item-y1">
+                        <div class="mem-label">y1</div>
+                        <div class="mem-square cent" id="mem-y1"></div>
+                        <div class="mem-ref-pointer" id="mem-y1-pointer"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        
+        <div class="c1 out">
+            <div class="ca sectiontitle cent">
+                Output
+            </div>
+            
+            <div class="cb bar">
+             <div class="cb bar out-box">
+                    <div id="ou1"></div>
+                    <div id="ou2"></div>
+                </div>
+
+        </div>
+
+        <script src="js/primrefDataType.js"></script>
+    </body>
+</html>
